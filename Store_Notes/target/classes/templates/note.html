@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notatki</title>
+</head>
+<body>
+
+<h1 th:text="'Szczegóły o notatce: '+${note.name}"></h1>
+    <p th:text="'Content: '+${note.content}"></p>
+    <p th:text="'Category: '+${note.category.getName()}"></p>
+    <p th:text="'Creation Date: '+${note.creationDate}"></p>
+
+</body>
+</html>
