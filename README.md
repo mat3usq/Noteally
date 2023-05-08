@@ -9,7 +9,7 @@ np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 najmniej 5 znaków), wiek (min. 18 lat)
 
 #                       OPIS
-+ Aplikacja do zapisywania i udostępniania wartych uwagi 
+- Aplikacja do zapisywania i udostępniania wartych uwagi 
 informacji, np. strony www, listy zakupów, zaproszenia 
 na spotkanie.
 - Główną funkcjonalnością jest umożliwienie zapisania na 
