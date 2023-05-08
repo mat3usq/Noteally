@@ -1,4 +1,4 @@
-#               Java Spring Projekt -> StoreEverything
+#               Java Spring Projekt -> Store Notes
 1) Aplikacja do zapisywania i udostępniania wartych uwagi informacji, 
 np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 2) Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania 
