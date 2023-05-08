@@ -18,3 +18,12 @@ innym oraz wygodnego przeglądania i przeszukiwania w
 dogodnym czasie.
 
 # Role Użytkowników
+● admin - zarządza użytkownikami, 
+● uż. z ograniczonymi prawami (limited user) - jest 
+zarejestrowany, może przegladać udostępnione linki, ale nie 
+może tworzyć informacji, 
+● uż. z pełnymi prawami (full user) - może tworzyć informacje i 
+udostępniać je innym, przeglądać w oddzielnym widoku 
+informacje udostępnione dla niego
+● użytkownik niezalogowany - ma dostęp tylko do strony 
+początkowej i strony rejestracji
