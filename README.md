@@ -1,4 +1,4 @@
-# Java Spring Projekt -> StoreEverything
+#               Java Spring Projekt -> StoreEverything
 1) Aplikacja do zapisywania i udostępniania wartych uwagi informacji, 
 np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 2) Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania 
@@ -8,8 +8,8 @@ np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 (3-50, litery, pierwsza duża), login (3-20, małe litery), hasło (co 
 najmniej 5 znaków), wiek (min. 18 lat)
 
-# OPIS a
-- Aplikacja do zapisywania i udostępniania wartych uwagi 
+#                       OPIS
++ Aplikacja do zapisywania i udostępniania wartych uwagi 
 informacji, np. strony www, listy zakupów, zaproszenia 
 na spotkanie.
 - Główną funkcjonalnością jest umożliwienie zapisania na 
@@ -17,7 +17,7 @@ swoim koncie ciekawych informacji, udostępniania ich
 innym oraz wygodnego przeglądania i przeszukiwania w 
 dogodnym czasie.
 
-# 1. Role Użytkowników
+#               1. Role Użytkowników
 - admin - zarządza użytkownikami, 
 - uż. z ograniczonymi prawami (limited user) - jest 
 zarejestrowany, może przegladać udostępnione linki, ale nie 
@@ -28,7 +28,7 @@ informacje udostępnione dla niego
 - użytkownik niezalogowany - ma dostęp tylko do strony 
 początkowej i strony rejestracji
 
-# 2. Szczegółowe funkcjonalności, full user (19p)
+#       2. Szczegółowe funkcjonalności, full user (19p)
 - dodanie/edycja/usunięcie przez siebie zebranych informacji - 5p.
 - Walidacja formularza - 1p.
 - Edycja na danych bieżących - 1p.
@@ -42,17 +42,17 @@ kategoria, alfabetycznie) - 2p.
 - Logowanie - 1p.
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 
-# 3. Szczegółowe Funkcjonalności, Niezalogowany (4p)
+#       3. Szczegółowe Funkcjonalności, Niezalogowany (4p)
 - Rejestracja - 1p.
 - Walidacja formularza - 1p.
 - Strona powitalna - 1p.
 - Wyświetlenie informacji z udostępnionego linku - 1p.
 
-# 4. Szczegółowe Funkcjonalności, admin (2p)
+#       4. Szczegółowe Funkcjonalności, admin (2p)
 - Wyśw. listy użytkowników - 1p.
 - Zarządzanie rolami - 1p.
 
-# 5. Elementy Techniczne (25p.)
+#       5. Elementy Techniczne (25p.)
 - Kontrolery - 2p.
 - Baza danych (co najmniej 2 tabele z relacją) - 5p.
 - Widoki: formularze z walidacją (3 różne elementy), 
@@ -63,7 +63,7 @@ kategoria, alfabetycznie) - 2p.
 - Klient REST - 2p.
 - Spring Security - 5p. (z bazą danych), 3p. (w pamięci)
 
-# 6. Dodatkowe Elementy
+#       6. Dodatkowe Elementy
 - Dokumentacja z odniesieniem do wszystkich 
 elementów punktowanych
 - Wygląd - wystarczy Bootstrap (Mateusz Ogarnie Frontend)
