@@ -8,7 +8,7 @@ np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 (3-50, litery, pierwsza duża), login (3-20, małe litery), hasło (co 
 najmniej 5 znaków), wiek (min. 18 lat)
 
-# OPIS 
+# OPIS a
 - Aplikacja do zapisywania i udostępniania wartych uwagi 
 informacji, np. strony www, listy zakupów, zaproszenia 
 na spotkanie.
