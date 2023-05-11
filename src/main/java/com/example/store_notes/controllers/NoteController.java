@@ -19,7 +19,7 @@ public class NoteController {
     public String getNotes(Model model){
         model.addAttribute("notes", noteRepository.getNoteList());
         model.addAttribute("categories", noteRepository.getCategories());
-        return "notes";
+        return "notesxd";
     }
 
     @GetMapping("/{id}")
