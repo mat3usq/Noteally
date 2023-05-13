@@ -19,7 +19,10 @@
 		}
 
 		body {
-			background: linear-gradient(242deg, #f64f59, #c471ed, #12c2e9);
+			/* background: linear-gradient(242deg, #f64f59, #c471ed, #12c2e9); */
+			background-image: url("../static/images/flat-mountain-landscape-wallpaper-5120x2160_16.jpg");
+			background-size: cover;
+			background-position: center;
 			font-family: "Montserrat", sans-serif;
 			color: aliceblue;
 		}
@@ -37,7 +40,7 @@
 		.login-box {
 			position: relative;
 			background: transparent;
-			backdrop-filter: blur(2000px);
+			backdrop-filter: blur(10px);
 			width: 400px;
 			height: 500px;
 			border-radius: 50px;
@@ -54,7 +57,7 @@
 		}
 
 		.note {
-			color: #f4157e;
+			color: #960a4b;
 		}
 
 		.ally {
@@ -159,33 +162,33 @@
 	<body>
 		<section>
 			<div class="login-box">
-			<form th:action="@{/login}" method="post">
-				<h2 class="note">Note<span class="ally">Ally</span></h2>
-				<div class="input-box">
-					<span><i class="fa-sharp fa-solid fa-user"></i></span>
-					<input type="text" id="username" name="username" required />
-					<label for="username">Username</label>
-				</div>
+				<form th:action="@{/login}" method="post">
+					<h2 class="note">Note<span class="ally">Ally</span></h2>
+					<div class="input-box">
+						<span><i class="fa-sharp fa-solid fa-user"></i></span>
+						<input type="text" id="username" name="username" required />
+						<label for="username">Username</label>
+					</div>
 
-				<div class="input-box">
-					<span><i class="fa-sharp fa-solid fa-lock"></i></span>
-					<input type="password" id="password" name="password" required />
-					<label for="password">Password</label>
-				</div>
+					<div class="input-box">
+						<span><i class="fa-sharp fa-solid fa-lock"></i></span>
+						<input type="password" id="password" name="password" required />
+						<label for="password">Password</label>
+					</div>
 
-				<div class="remember-me">
-					<label for="remember-me">
-						<input type="checkbox" id="remember-me" name="remember-me" /><span>Remember Me!</span></label
+					<div class="remember-me">
+						<label for="remember-me">
+							<input type="checkbox" id="remember-me" name="remember-me" /><span>Remember Me!</span></label
+						>
+					</div>
+
+					<button type="submit">Login</button>
+
+					<a th:href="@{/registerMe}"
+						><p>Don't have an account? <span class="register">Register Me!</span></p></a
 					>
-				</div>
-
-				<button type="submit">Login</button>
-
-				<a th:href="@{/registerMe}"
-					><p>Don't have an account? <span class="register">Register Me!</span></p
-				></a>
-			</form>
-		</div>
+				</form>
+			</div>
 		</section>
 	</body>
 </html>
