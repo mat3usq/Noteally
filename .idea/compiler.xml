@@ -7,12 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="StoreNotes---Projekt-Spring-main" />
         <module name="Store_Notes" />
+        <module name="Noteally-Projekt-Spring-main" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Noteally-Projekt-Spring-main" options="-parameters" />
+      <module name="StoreNotes---Projekt-Spring-main" options="-parameters" />
       <module name="Store_Notes" options="-parameters" />
     </option>
   </component>
