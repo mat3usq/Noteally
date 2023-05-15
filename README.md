@@ -1,5 +1,7 @@
-# TODO:
+# TODO/notatki:
 - Do rejestracji dodac imie, nazwisko, wiek i sprawdzac, czy wiek >18
+- Walidacja w klasach, a nie w html (specjalne adnotacje, wyrazenia regularne)
+- PasswordEncoder do haszowania hasla
 
 
 #               Java Spring Projekt -> Noteally
