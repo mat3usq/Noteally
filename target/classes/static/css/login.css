@@ -5,10 +5,7 @@
 }
 
 body {
-	/*background: linear-gradient(242deg, #f64f59, #c471ed, #12c2e9) center;*/
-	background-image: url("../images/flat-mountain-landscape-wallpaper-5120x2160_16.jpg");
-	background-size: cover;
-	background-position: center;
+	background: linear-gradient(242deg, #f64f59, #c471ed, #12c2e9);
 	font-family: "Montserrat", sans-serif;
 	color: aliceblue;
 }
@@ -19,12 +16,14 @@ section {
 	align-items: center;
 	height: 100vh;
 	width: 100%;
+	background-size: cover;
+	background-position: center;
 }
 
 .login-box {
 	position: relative;
 	background: transparent;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(2000px);
 	width: 400px;
 	height: 500px;
 	border-radius: 50px;
@@ -41,7 +40,7 @@ h2 {
 }
 
 .note {
-	color: #960a4b;
+	color: #f4157e;
 }
 
 .ally {
