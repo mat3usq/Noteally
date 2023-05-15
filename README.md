@@ -6,12 +6,12 @@
 
 #               Java Spring Projekt -> Noteally
 
-1) Aplikacja do zapisywania i udostępniania wartych uwagi informacji, 
+- Aplikacja do zapisywania i udostępniania wartych uwagi informacji, 
 np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
-2) ~~Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania 
+- ~~Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania 
 (aktualna, format dd-mm-yyyy), kategoria~~
-3) ~~Dane kategorii: nazwa (3-20, małe litery)~~
-4) ~~Dane użytkownika: imię (3-20, litery, pierwsza duża), nazwisko 
+- ~~Dane kategorii: nazwa (3-20, małe litery)~~
+- ~~Dane użytkownika: imię (3-20, litery, pierwsza duża), nazwisko 
 (3-50, litery, pierwsza duża), login (3-20, małe litery), hasło (co 
 najmniej 5 znaków), wiek (min. 18 lat)~~
 
