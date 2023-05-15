@@ -1,4 +1,9 @@
-#               Java Spring Projekt -> Store Notes
+# TODO:
+- Do rejestracji dodac imie, nazwisko, wiek i sprawdzac, czy wiek >18
+
+
+#               Java Spring Projekt -> Noteally
+
 1) Aplikacja do zapisywania i udostępniania wartych uwagi informacji, 
 np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 2) Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania 
@@ -18,15 +23,12 @@ innym oraz wygodnego przeglądania i przeszukiwania w
 dogodnym czasie.
 
 #               1. Role Użytkowników
-- admin - zarządza użytkownikami, 
-- uż. z ograniczonymi prawami (limited user) - jest 
-zarejestrowany, może przegladać udostępnione linki, ale nie 
-może tworzyć informacji, 
+- admin - zarządza użytkownikami,  
 - uż. z pełnymi prawami (full user) - może tworzyć informacje i 
 udostępniać je innym, przeglądać w oddzielnym widoku 
 informacje udostępnione dla niego
-- użytkownik niezalogowany - ma dostęp tylko do strony 
-początkowej i strony rejestracji
+- użytkownik niezalogowany - ma dostęp do strony 
+początkowej i strony rejestracji oraz do podlinkowanych materiałów
 
 #       2. Szczegółowe funkcjonalności, full user (19p)
 - dodanie/edycja/usunięcie przez siebie zebranych informacji - 5p.
