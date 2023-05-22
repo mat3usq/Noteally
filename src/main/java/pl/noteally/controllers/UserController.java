@@ -18,10 +18,10 @@ public class UserController {
     this.userService = userService;
     }
 
-    @GetMapping("xd")
+    @GetMapping("users")
     public List<User> getUsers(){
     return userService.getUsers();
     }
 
-    }
+}
 
