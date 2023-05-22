@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter
 @NoArgsConstructor
 @Table(name="notes")
 public class Note
@@ -49,4 +49,15 @@ public class Note
     @Column(name = "date", nullable = false, columnDefinition = "date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", link='" + link + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

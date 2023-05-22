@@ -12,7 +12,7 @@ import lombok.ToString;
 import java.util.List;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter
 @NoArgsConstructor
 @Table(name="catalogs")
 public class Catalog
@@ -35,4 +35,12 @@ public class Catalog
     @NotBlank(message = "Must not be empty")
     @Pattern(regexp = "^[a-z]+$", message = "Name must contain only small letters.")
     private String name;
+
+    @Override
+    public String toString() {
+        return "Catalog{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

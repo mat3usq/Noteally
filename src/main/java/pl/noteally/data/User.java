@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Entity
-@Getter @Setter @ToString
+@Getter @Setter
 @NoArgsConstructor
 @Table(name="users")
 public class User
@@ -66,5 +66,19 @@ public class User
     @Column(name = "role", nullable = false, columnDefinition = "varchar(6) default 'GUEST'")
     @Enumerated(EnumType.STRING)
     private Role role = Role.GUEST;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", role=" + role +
+                '}';
+    }
 }
 
