@@ -21,8 +21,7 @@ public class User
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Catalog> catalogs;
 
     @Basic
@@ -63,6 +62,9 @@ public class User
     @DecimalMin(value = "18", message = "Must be 18 or older")
     private Integer age;
 
-    private enum role{GUEST, LOGGED, ADMIN};
+    @Basic
+    @Column(name = "role", nullable = false, columnDefinition = "varchar(6) default 'GUEST'")
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.GUEST;
 }
 

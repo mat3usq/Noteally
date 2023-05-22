@@ -23,6 +23,10 @@ public class Note
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "catalog_id")
+    private Catalog catalog;
+
     @Basic
     @Column(name = "title", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")
@@ -42,7 +46,7 @@ public class Note
 
     @Basic
     @CreationTimestamp
-    @Column(name = "date", nullable = false, columnDefinition = "date default current_date")
+    @Column(name = "date", nullable = false, columnDefinition = "date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 }
