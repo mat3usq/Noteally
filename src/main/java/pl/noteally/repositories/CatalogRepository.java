@@ -6,6 +6,4 @@ import pl.noteally.data.Catalog;
 import java.util.List;
 
 public interface CatalogRepository extends JpaRepository<Catalog, Integer> {
-
-    List<Catalog> findByUserId(Integer userId);
 }
