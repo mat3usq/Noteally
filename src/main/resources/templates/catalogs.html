@@ -8,7 +8,7 @@
 <h1>Moje Katalogi:</h1>
 
 <ul th:each="catalog : ${catalogs}">
-    <li><a th:href="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.name}}" th:text="${catalog.name}">Nazwa Katalogu</a></li>
+    <li><a th:href="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id}}" th:text="${catalog.name}">Nazwa Katalogu</a></li>
 </ul>
 </body>
 </html>

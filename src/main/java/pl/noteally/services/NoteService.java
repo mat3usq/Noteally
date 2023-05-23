@@ -13,7 +13,9 @@ public class NoteService {
     public NoteService(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
-    public List<Note> getNote(){
+    public List<Note> getNotes(){
         return noteRepository.findAll();
     }
+
+    public List<Note> getNotesByCatalogId(Integer catalogId) { return noteRepository.findByCatalogId(catalogId); }
 }
