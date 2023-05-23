@@ -24,7 +24,6 @@ public class NotesController {
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId) {
         List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
         model.addAttribute("notes", noteList);
-
         return "notes";
     }
 }

@@ -6,25 +6,15 @@
 </head>
 <body>
 
-<h1>Moje Notatki:</h1>
+<h1 th:text="'Katalog o Nazwie: ' + ${notes.get(0).catalog.getName()}"></h1>
 
-<form th:action="@{/notes/category}" method="get">
-    <select th:name="category">
-        <option th:each="cat: ${categories}" th:value="${cat.name}" th:text="${cat.name}"></option>
-    </select>
-
-    <input type="submit" value="Select">
-
-</form>
-
-<ol th:each="note, i:${notes}">
+<ul th:each="note, i: ${notes}">
     <h3 th:text="'Notatka '+${i.index+1}"></h3>
-    <li th:text="'Name: '+${note.name}"></li>
-    <li th:text="'Content: '+${note.content}"></li>
-    <li th:text="'Category: '+${note.category.getName()}"></li>
-    <li th:text="'Creation Date: '+${note.creationDate}"></li>
-    <li><a th:href="@{'/notes/'+${note.getIdNote()}}">Szczegóły</a></li>
-</ol>
+    <li th:text="'Name: '+${note.getTitle()}"></li>
+    <li th:text="'Content: '+${note.getContent()}"></li>
+    <li th:text="'Creation Date: '+${note.getDate()}"></li>
+    <li th:text="'Link: '+${note.getLink()}"></li>
+</ul>
 
 </body>
 </html>
