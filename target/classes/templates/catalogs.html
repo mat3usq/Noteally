@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+<title>Katalogi</title>
+</head>
+<body>
+
+<h1>Moje Katalogi:</h1>
+
+<ul th:each="catalog : ${catalogs}">
+    <li><a th:href="@{/catalogs/} + ${catalog.name}" th:text="${catalog.name}">Nazwa Katalogu</a></li>
+</ul>
+</body>
+</html>
