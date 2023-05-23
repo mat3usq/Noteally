@@ -19,4 +19,6 @@ public class CatalogService {
     public List<Catalog> getCatalogs() {
         return catalogRepository.findAll();
     }
+
+    public List<Catalog> getCatalogsByUserId(Integer userId) {return catalogRepository.findByUserId(userId);}
 }
