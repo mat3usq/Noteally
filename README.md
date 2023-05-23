@@ -1,6 +1,6 @@
 # TODO/notatki:
 - Do rejestracji dodac imie, nazwisko, wiek i sprawdzac, czy wiek >18
-- Walidacja w klasach, a nie w html (specjalne adnotacje, wyrazenia regularne)
+- Walidacja z łądną obsługą i ogólnie obsluga bledow (404 itp)
 - PasswordEncoder do haszowania hasla
 - DELETE ON CASCADE, ze jak usuwasz katalog to wszystkie notatki tez sie usuwają
 
