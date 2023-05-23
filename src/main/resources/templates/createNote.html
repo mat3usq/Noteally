@@ -13,7 +13,7 @@
 <body>
 <section>
     <div>
-        <form th:action="@{/createNote}" th:method="post" th:object="${note}">
+        <form th:action="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id} + '/createNote'}" th:method="post" th:object="${note}">
             <h2 class="note">Create<span class="ally">Note</span></h2>
             <div class="input-box">
                 <input type="text" id="title" name="title" required th:field="*{title}">

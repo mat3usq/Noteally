@@ -9,7 +9,7 @@
 <h1 th:text="'Katalog o Nazwie: ' + (${notes.isEmpty() ? '' : notes.get(0).catalog.getName()})"></h1>
 
 <ul th:each="note, i: ${notes}">
-    <h3 th:text="'Notatka '+${i.index+1}"></h3>
+    <h3 th:text="'Notatka '+${note.getTitle()}"></h3>
     <li th:text="'Name: '+${note.getTitle()}"></li>
     <li th:text="'Content: '+${note.getContent()}"></li>
     <li th:text="'Creation Date: '+${note.getDate()}"></li>

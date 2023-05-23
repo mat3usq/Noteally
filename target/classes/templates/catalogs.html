@@ -10,5 +10,7 @@
 <ul th:each="catalog : ${catalogs}">
     <li><a th:href="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id}}" th:text="${catalog.name}">Nazwa Katalogu</a></li>
 </ul>
+
+<a th:href="@{'/' + ${userId} + '/catalogs/' + 'createCatalog'}">Utwórz Katalog</a>
 </body>
 </html>
