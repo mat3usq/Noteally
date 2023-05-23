@@ -25,7 +25,6 @@ public class CatalogController {
     public String getCatalogs(Model model) {
         List<Catalog> catalogList = catalogService.getCatalogs();
         model.addAttribute("catalogs", catalogList);
-
         return "catalogs";
     }
 }
