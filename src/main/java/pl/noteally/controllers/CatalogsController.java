@@ -25,7 +25,6 @@ public class CatalogsController {
     public String getCatalogsByUserId(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
         model.addAttribute("catalogs", catalogList);
-
         return "catalogs";
     }
 }

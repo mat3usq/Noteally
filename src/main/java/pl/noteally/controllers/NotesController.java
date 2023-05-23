@@ -26,4 +26,10 @@ public class NotesController {
         model.addAttribute("notes", noteList);
         return "notes";
     }
+
+    @GetMapping("/createNote")
+    public String redirect(){
+        // Przekierowanie Na CreateNote
+        return "createNote";
+    }
 }
