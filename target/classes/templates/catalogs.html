@@ -10,6 +10,7 @@
 <ul th:each="catalog : ${catalogs}">
     <li><a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a></li>
     <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}">Usuń Katalog</a>
+    <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}">Edytuj Katalog</a>
 </ul>
 
 <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'createCatalog'}">Utwórz Katalog</a>

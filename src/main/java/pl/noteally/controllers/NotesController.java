@@ -53,4 +53,22 @@ public class NotesController {
         noteService.deleteNoteById(noteId);
         return "redirect:/" + userId + "/catalogs/" + catalogId;
     }
+
+    @GetMapping("/editNote/{noteId}")
+    public String redirect(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId,
+                         @PathVariable("userId") Integer userId){
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Optional<Note> note = noteService.getNoteById(noteId);
+        model.addAttribute("note", note.get());
+        model.addAttribute("catalog", catalog.get());
+        return "editNote";
+    }
+
+    @PostMapping("/editNote/{noteId}")
+    public String editNote(@PathVariable("noteId") Integer noteId,  @Valid @ModelAttribute("note") Note note, @PathVariable("catalogId") Integer catalogId,
+                       @PathVariable("userId") Integer userId){
+
+        noteService.updateNote(note, catalogId);
+        return "redirect:/" + userId + "/catalogs/" + catalogId;
+    }
 }
