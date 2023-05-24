@@ -32,7 +32,7 @@ public class CatalogsController {
     }
 
     @GetMapping("/createCatalog")
-    public String redirect(Model model, @PathVariable("userId") Integer userId){
+    public String redirectCreate(Model model, @PathVariable("userId") Integer userId){
         Catalog catalog = new Catalog();
         Optional<User> user = userService.getUserById(userId);
         model.addAttribute("catalog", catalog);
@@ -50,6 +50,20 @@ public class CatalogsController {
     @GetMapping("/deleteCatalog/{catalogId}")
     public String delete(Model model, @PathVariable("catalogId") Integer catalogId, @PathVariable("userId") Integer userId) {
         catalogService.deleteCatalogById(catalogId);
+        return "redirect:/" + userId + "/catalogs";
+    }
+
+    @GetMapping("/editCatalog/{catalogId}")
+    public String redirectEdit(Model model, @PathVariable("catalogId") Integer catalogId){
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
+        return "editCatalog";
+    }
+
+    @PostMapping("/editCatalog/{catalogId}")
+    public String editCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, @PathVariable("catalogId") Integer catalogId,
+                           @PathVariable("userId") Integer userId){
+        catalogService.updateCatalog(catalog, catalogId);
         return "redirect:/" + userId + "/catalogs";
     }
 }

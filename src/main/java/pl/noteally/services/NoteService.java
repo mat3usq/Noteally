@@ -29,8 +29,21 @@ public class NoteService {
         noteRepository.save(note);
     }
 
+    public void updateNote(Note note, Integer noteId)
+    {
+        Note existingNote = noteRepository.getById(noteId);
+        existingNote.setTitle(note.getTitle());
+        existingNote.setContent(note.getContent());
+        existingNote.setLink(note.getTitle() + "Link");
+        noteRepository.save(existingNote);
+    }
+
     public void deleteNoteById(Integer noteId)
     {
         noteRepository.deleteById(noteId);
+    }
+
+    public Optional<Note> getNoteById(Integer noteId){
+        return noteRepository.findById(noteId);
     }
 }

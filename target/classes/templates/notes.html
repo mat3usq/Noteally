@@ -15,6 +15,7 @@
     <li th:text="'Creation Date: '+${note.getDate()}"></li>
     <li th:text="'Link: '+${note.getLink()}"></li>
     <a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}">Usuń Notatke</a>
+    <a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}">Edytuj Notatke</a>
 </ul>
 
 <a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/createNote'}">Stworz Notatke</a>
