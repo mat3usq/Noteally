@@ -24,7 +24,6 @@ public class NotesController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId) {
         List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getDate).reversed());
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         model.addAttribute("catalog", catalog.get());
         model.addAttribute("notes", noteList);
@@ -33,7 +32,7 @@ public class NotesController {
     @GetMapping("/ASC")
     public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId) {
         List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+        noteList.sort(Comparator.comparing(Note::getTitle));
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         model.addAttribute("catalog", catalog.get());
         model.addAttribute("notes", noteList);

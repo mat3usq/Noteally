@@ -10,8 +10,8 @@
 
 <a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" th:text="'Alfabetycznie A-Z'" ></a>
 <a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
-<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataASC'}" th:value="3" th:text="'Od najnowszej'" ></a>
-<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataDESC'}" th:value="4" th:text="'Od najstarszej'" ></a>
+<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataASC'}" th:value="3" th:text="'Od najstarszej'" ></a>
+<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataDESC'}" th:value="4" th:text="'Od najnowszej'" ></a>
 
 <ul th:each="note, i: ${notes}">
     <h3 th:text="'Notatka '+${note.getTitle()}"></h3>

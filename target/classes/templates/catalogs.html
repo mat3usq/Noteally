@@ -6,9 +6,8 @@
 </head>
 <body>
 <h1>Moje Katalogi:</h1>
-
-<a th:href="@{'/' + ${user.getId()} + '/catalogs/ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'"></a>
-<a th:href="@{'/' + ${user.getId()} + '/catalogs/DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
+    <a th:href="@{'/' + ${user.getId()} + '/catalogs/ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'" ></a>
+    <a th:href="@{'/' + ${user.getId()} + '/catalogs/DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
 
 <ul th:each="catalog : ${catalogs}">
     <li><a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a></li>

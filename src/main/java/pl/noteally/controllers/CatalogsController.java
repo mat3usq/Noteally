@@ -26,7 +26,6 @@ public class CatalogsController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
-        catalogList.sort(Comparator.comparing(Catalog::getName));
         Optional<User> user = userService.getUserById(userId);
         model.addAttribute("catalogs", catalogList);
         model.addAttribute("user", user.get());
