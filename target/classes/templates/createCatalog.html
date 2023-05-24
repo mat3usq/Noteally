@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Note</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+
+  <script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<section>
+  <div>
+    <form th:action="@{'/' + ${user.id} + '/catalogs/' + 'createCatalog'}" th:method="post" th:object="${catalog}">
+      <h2 class="note">Create<span class="ally">Note</span></h2>
+      <div class="input-box">
+        <input type="text" id="name" name="name" required th:field="*{name}">
+        <label for="title">Title</label>
+      </div>
+
+      <button type="submit">Utwórz Katalog</button>
+    </form>
+  </div>
+</section>
+</body>
+</html>
