@@ -27,7 +27,9 @@ public class CatalogsController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+        Optional<User> user = userService.getUserById(userId);
         model.addAttribute("catalogs", catalogList);
+        model.addAttribute("user", user.get());
         return "catalogs";
     }
 
@@ -44,6 +46,12 @@ public class CatalogsController {
     public String addCatalog(Model model, @Valid @ModelAttribute("catalog") Catalog catalog, @PathVariable("userId") Integer userId) {
 
         catalogService.saveCatalog(catalog, userId);
+        return "redirect:/" + userId + "/catalogs";
+    }
+
+    @GetMapping("/deleteCatalog/{catalogId}")
+    public String delete(Model model, @PathVariable("catalogId") Integer catalogId, @PathVariable("userId") Integer userId) {
+        catalogService.deleteCatalogById(catalogId);
         return "redirect:/" + userId + "/catalogs";
     }
 }

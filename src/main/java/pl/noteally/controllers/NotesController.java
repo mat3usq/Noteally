@@ -23,6 +23,8 @@ public class NotesController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId) {
         List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
         model.addAttribute("notes", noteList);
         return "notes";
     }
@@ -42,6 +44,13 @@ public class NotesController {
                           @PathVariable("userId") Integer userId) {
 
         noteService.saveNote(note, catalogId);
+        return "redirect:/" + userId + "/catalogs/" + catalogId;
+    }
+
+    @GetMapping("/deleteNote/{noteId}")
+    public String delete(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId,
+                         @PathVariable("userId") Integer userId){
+        noteService.deleteNoteById(noteId);
         return "redirect:/" + userId + "/catalogs/" + catalogId;
     }
 }

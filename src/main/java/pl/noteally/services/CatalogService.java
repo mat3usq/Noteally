@@ -33,4 +33,9 @@ public class CatalogService {
         catalog.setUser(user.get());
         catalogRepository.save(catalog);
     }
+
+    public void deleteCatalogById(Integer catalogId)
+    {
+        catalogRepository.deleteById(catalogId);
+    }
 }

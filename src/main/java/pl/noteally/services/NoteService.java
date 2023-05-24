@@ -26,4 +26,9 @@ public class NoteService {
         note.setLink(note.getTitle() + "Link");
         noteRepository.save(note);
     }
+
+    public void deleteNoteById(Integer noteId)
+    {
+        noteRepository.deleteById(noteId);
+    }
 }
