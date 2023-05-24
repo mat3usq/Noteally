@@ -32,7 +32,7 @@ public class CatalogsController {
         model.addAttribute("user", user.get());
         return "catalogs";
     }
-    @GetMapping("")
+    @GetMapping("/ASC")
     public String sortCatalogsASC(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
         catalogList.sort(Comparator.comparing(Catalog::getName));
@@ -41,7 +41,7 @@ public class CatalogsController {
         model.addAttribute("user", user.get());
         return "catalogs";
     }
-    @GetMapping("")
+    @GetMapping("/DESC")
     public String sortCatalogsDESC(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
         catalogList.sort(Comparator.comparing(Catalog::getName).reversed());
