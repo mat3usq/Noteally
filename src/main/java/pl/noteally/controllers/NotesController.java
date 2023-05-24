@@ -30,42 +30,42 @@ public class NotesController {
         model.addAttribute("notes", noteList);
         return "notes";
     }
-//    @GetMapping("/ASC")
-//    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId) {
-//        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-//        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
-//        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-//        model.addAttribute("catalog", catalog.get());
-//        model.addAttribute("notes", noteList);
-//        return "notes";
-//    }
-//    @GetMapping("/DESC")
-//    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
-//        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-//        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
-//        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-//        model.addAttribute("catalog", catalog.get());
-//        model.addAttribute("notes", noteList);
-//        return "notes";
-//    }
-//    @GetMapping("/dataASC")
-//    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId) {
-//        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-//        noteList.sort(Comparator.comparing(Note::getDate));
-//        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-//        model.addAttribute("catalog", catalog.get());
-//        model.addAttribute("notes", noteList);
-//        return "notes";
-//    }
-//    @GetMapping("/dataDESC")
-//    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
-//        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-//        noteList.sort(Comparator.comparing(Note::getDate).reversed());
-//        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-//        model.addAttribute("catalog", catalog.get());
-//        model.addAttribute("notes", noteList);
-//        return "notes";
-//    }
+    @GetMapping("/ASC")
+    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId) {
+        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
+        model.addAttribute("notes", noteList);
+        return "notes";
+    }
+    @GetMapping("/DESC")
+    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
+        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
+        model.addAttribute("notes", noteList);
+        return "notes";
+    }
+    @GetMapping("/dataASC")
+    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId) {
+        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        noteList.sort(Comparator.comparing(Note::getDate));
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
+        model.addAttribute("notes", noteList);
+        return "notes";
+    }
+    @GetMapping("/dataDESC")
+    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
+        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        noteList.sort(Comparator.comparing(Note::getDate).reversed());
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        model.addAttribute("catalog", catalog.get());
+        model.addAttribute("notes", noteList);
+        return "notes";
+    }
 
 
     @GetMapping("/createNote")
