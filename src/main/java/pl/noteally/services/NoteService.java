@@ -27,12 +27,13 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public void updateNote(Note note, Integer catalogId)
+    public void updateNote(Note note, Integer noteId)
     {
-        note.setTitle(note.getTitle());
-        note.setContent(note.getContent());
-        note.setLink(note.getTitle() + "Link");
-        noteRepository.save(note);
+        Note existingNote = noteRepository.getById(noteId);
+        existingNote.setTitle(note.getTitle());
+        existingNote.setContent(note.getContent());
+        existingNote.setLink(note.getTitle() + "Link");
+        noteRepository.save(existingNote);
     }
 
     public void deleteNoteById(Integer noteId)

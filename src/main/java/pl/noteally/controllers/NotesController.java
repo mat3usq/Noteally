@@ -30,7 +30,7 @@ public class NotesController {
     }
 
     @GetMapping("/createNote")
-    public String redirect(Model model, @PathVariable("catalogId") Integer catalogId){
+    public String redirectCreate(Model model, @PathVariable("catalogId") Integer catalogId){
         // Przekierowanie Na CreateNote
         Note note = new Note();
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
@@ -55,7 +55,7 @@ public class NotesController {
     }
 
     @GetMapping("/editNote/{noteId}")
-    public String redirect(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId,
+    public String redirectEdit(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId,
                          @PathVariable("userId") Integer userId){
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Optional<Note> note = noteService.getNoteById(noteId);
@@ -67,8 +67,7 @@ public class NotesController {
     @PostMapping("/editNote/{noteId}")
     public String editNote(@PathVariable("noteId") Integer noteId,  @Valid @ModelAttribute("note") Note note, @PathVariable("catalogId") Integer catalogId,
                        @PathVariable("userId") Integer userId){
-
-        noteService.updateNote(note, catalogId);
+        noteService.updateNote(note, noteId);
         return "redirect:/" + userId + "/catalogs/" + catalogId;
     }
 }
