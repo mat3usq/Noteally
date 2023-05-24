@@ -7,7 +7,12 @@
 <body>
 
 <h1 th:text="'Katalog o Nazwie: ' + ${catalog.getName()}"></h1>
-
+<select>
+    <option th:value="1" th:text="'Alfabetycznie A-Z'" selected>
+    <option th:value="1" th:text="'Alfabetycznie Z-A'">
+    <option th:value="1" th:text="'Od najnowszej'">
+    <option th:value="1" th:text="'Od najstarszej'">
+    </option>
 <ul th:each="note, i: ${notes}">
     <h3 th:text="'Notatka '+${note.getTitle()}"></h3>
     <li th:text="'Name: '+${note.getTitle()}"></li>

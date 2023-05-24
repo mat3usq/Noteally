@@ -32,6 +32,25 @@ public class CatalogsController {
         model.addAttribute("user", user.get());
         return "catalogs";
     }
+    @GetMapping("")
+    public String sortCatalogsASC(Model model, @PathVariable("userId") Integer userId) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+        catalogList.sort(Comparator.comparing(Catalog::getName));
+        Optional<User> user = userService.getUserById(userId);
+        model.addAttribute("catalogs", catalogList);
+        model.addAttribute("user", user.get());
+        return "catalogs";
+    }
+    @GetMapping("")
+    public String sortCatalogsDESC(Model model, @PathVariable("userId") Integer userId) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+        catalogList.sort(Comparator.comparing(Catalog::getName).reversed());
+        Optional<User> user = userService.getUserById(userId);
+        model.addAttribute("catalogs", catalogList);
+        model.addAttribute("user", user.get());
+        return "catalogs";
+    }
+
 
     @GetMapping("/createCatalog")
     public String redirectCreate(Model model, @PathVariable("userId") Integer userId){

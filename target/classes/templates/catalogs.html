@@ -6,7 +6,11 @@
 </head>
 <body>
 <h1>Moje Katalogi:</h1>
-
+<select>
+    <option th:value="1" th:text="'Alfabetycznie A-Z'" selected>
+    <option th:value="1" th:text="'Alfabetycznie Z-A'">
+</option>
+</select>
 <ul th:each="catalog : ${catalogs}">
     <li><a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a></li>
     <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}">Usuń Katalog</a>
