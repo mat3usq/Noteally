@@ -11,6 +11,7 @@ import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.UserService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class CatalogsController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("userId") Integer userId) {
         List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+        catalogList.sort(Comparator.comparing(Catalog::getName));
         Optional<User> user = userService.getUserById(userId);
         model.addAttribute("catalogs", catalogList);
         model.addAttribute("user", user.get());
