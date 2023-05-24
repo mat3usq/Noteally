@@ -11,6 +11,7 @@ import pl.noteally.data.Note;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.NoteService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class NotesController {
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId) {
         List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+        noteList.sort(Comparator.comparing(Note::getDate).reversed());
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         model.addAttribute("catalog", catalog.get());
         model.addAttribute("notes", noteList);

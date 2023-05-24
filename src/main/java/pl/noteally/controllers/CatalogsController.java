@@ -4,6 +4,7 @@ package pl.noteally.controllers;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.QSort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.UserService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 

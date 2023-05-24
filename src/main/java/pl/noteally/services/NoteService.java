@@ -16,7 +16,9 @@ import java.util.Optional;
 public class NoteService {
     private final NoteRepository noteRepository;
     private final CatalogService catalogService;
-    public List<Note> getNotesByCatalogId(Integer catalogId) { return noteRepository.findByCatalogId(catalogId); }
+    public List<Note> getNotesByCatalogId(Integer catalogId) {
+        return noteRepository.findByCatalogId(catalogId);
+    }
 
     public void saveNote(Note note, Integer catalogId)
     {
