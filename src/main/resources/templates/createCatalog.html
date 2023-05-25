@@ -21,9 +21,11 @@
       </div>
 
       <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger"
-           role="alert"></div>
-
-
+           role="alert">
+<!--        <ul>-->
+<!--          <li th:each="error : ${#fields.errors('name')}" th:text="${error}"></li>-->
+<!--        </ul>-->
+      </div>
       <button type="submit">Utwórz Katalog</button>
     </form>
   </div>

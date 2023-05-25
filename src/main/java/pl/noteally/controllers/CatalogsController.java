@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.noteally.data.Catalog;
@@ -67,8 +68,8 @@ public class CatalogsController {
 
     @PostMapping("/createCatalog")
     public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model,  @PathVariable("userId") Integer userId) {
-       // walidacja
         if (bindingResult.hasErrors()) {
+           // model.addAttribute("errors",bindingResult);
             return "redirect:/" + userId + "/catalogs/createCatalog";
         }
 
@@ -94,11 +95,9 @@ public class CatalogsController {
     public String editCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult,  @PathVariable("catalogId") Integer catalogId,
                            @PathVariable("userId") Integer userId){
 
-        // walidacja
         if (bindingResult.hasErrors()) {
             return "redirect:/" + userId + "/catalogs/editCatalog/{catalogId}";
         }
-
         catalogService.updateCatalog(catalog, catalogId);
         return "redirect:/" + userId + "/catalogs";
     }
