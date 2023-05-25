@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Note;
@@ -78,8 +79,12 @@ public class NotesController {
     }
 
     @PostMapping("/createNote")
-    public String addNote(Model model, @Valid @ModelAttribute("note") Note note, @PathVariable("catalogId") Integer catalogId,
+    public String addNote(@Valid @ModelAttribute("note") Note note, BindingResult bindingResult,  Model model, @PathVariable("catalogId") Integer catalogId,
                           @PathVariable("userId") Integer userId) {
+        // walidacja
+        if (bindingResult.hasErrors()) {
+            return "redirect:/" + userId + "/catalogs/" + catalogId + "/createNote";
+        }
 
         noteService.saveNote(note, catalogId);
         return "redirect:/" + userId + "/catalogs/" + catalogId;
@@ -103,8 +108,13 @@ public class NotesController {
     }
 
     @PostMapping("/editNote/{noteId}")
-    public String editNote(@PathVariable("noteId") Integer noteId,  @Valid @ModelAttribute("note") Note note, @PathVariable("catalogId") Integer catalogId,
+    public String editNote( @Valid @ModelAttribute("note") Note note, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId,
                        @PathVariable("userId") Integer userId){
+        // walidacja
+        if (bindingResult.hasErrors()) {
+            return "redirect:/" + userId + "/catalogs/" + catalogId + "/editNote/" + noteId;
+        }
+
         noteService.updateNote(note, noteId);
         return "redirect:/" + userId + "/catalogs/" + catalogId;
     }

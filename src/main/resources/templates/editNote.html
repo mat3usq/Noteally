@@ -16,11 +16,11 @@
     <div>
         <form th:action="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id} + '/editNote/' + ${note.getId()}}" th:method="POST" th:object="${note}">
             <div class="input-box">
-                <input type="text" id="title" name="title" required th:field="*{title}">
+                <input type="text" id="title" name="title" th:field="*{title}">
                 <label for="title">Title</label>
             </div>
             <div class="input-box">
-                <input type="text" id="content" name="content" required th:field="*{content}">
+                <input type="text" id="content" name="content" th:field="*{content}">
                 <label for="content">Content</label>
             </div>
             <button type="submit">Edit Note</button>

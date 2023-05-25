@@ -16,8 +16,8 @@
         <form th:action="@{'/' + ${catalog.user.id} + '/catalogs' + '/editCatalog/'  + ${catalog.getId()}}" th:method="post" th:object="${catalog}">
             <h2 class="note">Edit<span class="ally">Catalog</span></h2>
             <div class="input-box">
-                <input type="text" id="name" name="name" required th:field="*{name}">
-                <label for="title">Title</label>
+                <input type="text" id="name" name="name" th:field="*{name}">
+                <label for="name">Title</label>
             </div>
 
             <button type="submit">Zmień nazwę</button>
