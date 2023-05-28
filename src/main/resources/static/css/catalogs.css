@@ -235,23 +235,23 @@ body:before {
   margin: 30px 0 20px;
 }
 
-.main-catalogs {
+.main-notes {
   display: flex;
   flex-wrap: wrap;
 }
 
-.main-catalogs ul {
+.main-notes ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.main-catalogs li {
+.main-notes li {
   flex: 0 0 33.33%;
   padding: 10px;
 }
 
-.main-catalogs li a {
+.main-notes li a {
   display: block;
   margin-bottom: 5px;
   text-decoration: none;
@@ -278,7 +278,7 @@ i {
   transition: color 0.3s ease;
 }
 
-.sidebar .add-catalog {
+.sidebar .add-note {
   margin-top: 30px;
 }
 .container-catalog i.fa-xmark {
@@ -327,7 +327,7 @@ i {
   color: #12c6de;
 }
 
-.add-catalog i:hover{
+.add-note i:hover{
   color: lightgreen;
 }
 
