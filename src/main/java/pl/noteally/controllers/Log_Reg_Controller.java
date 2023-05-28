@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @AllArgsConstructor
 public class Log_Reg_Controller {
+    @GetMapping("/login")
+    public String redirectLogin(){
+        // Przekierowanie Na Login
+        return "login";
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password) {
         // Zaloguj użytkownika
 
-        return "main";
+        return "redirect:/" + "1/catalogs";
     }
 
     @GetMapping("/registerMe")
-    public String redirect(){
+    public String redirectRegister(){
         // Przekierowanie Na Register
         return "register";
     }
@@ -29,6 +35,6 @@ public class Log_Reg_Controller {
         // Zarejestruj użytkownika
 
         // Przekierowanie na Logowanie
-        return "index";
+        return "redirect:/" + "1/catalogs";
     }
 }

@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Katalogi</title>
-</head>
-<body>
-<h1>Moje Katalogi:</h1>
-    <a th:href="@{'/' + ${user.getId()} + '/catalogs/ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'" ></a>
-    <a th:href="@{'/' + ${user.getId()} + '/catalogs/DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Katalogi</title>
+	</head>
+	<body>
+		<h1>Moje Katalogi:</h1>
+		<a th:href="@{'/' + ${user.getId()} + '/catalogs/ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'"></a>
+		<a th:href="@{'/' + ${user.getId()} + '/catalogs/DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
 
-<ul th:each="catalog : ${catalogs}">
-    <li><a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a></li>
-    <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}">Usuń Katalog</a>
-    <a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}">Zmień nazwę</a>
-</ul>
+		<ul th:each="catalog : ${catalogs}">
+			<li>
+				<a
+					th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}"
+					th:text="${catalog.getName()}"
+					>Nazwa Katalogu</a
+				>
+			</li>
+			<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}">Usuń Katalog</a>
+			<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}">Zmień nazwę</a>
+		</ul>
 
-<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'createCatalog'}">Utwórz Katalog</a>
-</body>
+		<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'createCatalog'}">Utwórz Katalog</a>
+	</body>
 </html>
