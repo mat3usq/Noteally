@@ -3,6 +3,8 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     transition: background-color 5000s ease-in-out 0s!important;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
 * {
     box-sizing: border-box;
@@ -15,7 +17,7 @@ body {
     background-image: url("../images/flat-mountain-landscape-wallpaper-5120x2160_16.jpg");
     background-size: cover;
     background-position: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: aliceblue;
 }
 
@@ -146,4 +148,19 @@ span {
 
 .remember-me label input {
     accent-color: #f4157e;
+}
+
+.cursor {
+    position: absolute;
+    z-index: 1;
+    border-radius: 100%;
+    background: radial-gradient(circle, #d9266b, #12c6de);
+    width: 250px;
+    height: 250px;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(30px) opacity(30%);
+    transition: opacity 1s ease-in-out;
 }
