@@ -1,31 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Edytuj Catalog</title>
-
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
-
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Edycja Katalogu</title>
+		<link rel="stylesheet" th:href="@{/css/catalogs.css}" />
 		<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<section>
-			<div>
+		<div class="container">
+			<div class="sidebar">
+				<h1 class="note">Note<span class="ally">ally</span></h1>
+				<div class="side-wrapper">
+					<div class="side-title">SORTOWANIE</div>
+					<div class="side-menu">
+						<a th:href="@{'/' + ${userId} + '/catalogs/ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'"></a>
+						<a th:href="@{'/' + ${userId} + '/catalogs/DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
+					</div>
+				</div>
+				<div class="line"></div>
+				<div class="add-note anim" style="--delay: 0.2s">
+					<a th:href="@{'/' + ${userId} + '/catalogs/' + 'createCatalog'}"><i class="fa-solid fa-folder-plus"></i></a>
+				</div>
+			</div>
+			<div class="wrapper">
+				<div class="header">
+					<nav class="nav">
+						<a th:href="@{'/' + ${userId} + '/catalogs'}" class="nav-item is-active" active-color="orange">Foldery</a>
+						<a href="#" class="nav-item" active-color="limegreen">O Nas!</a>
+						<a href="#" class="nav-item" active-color="aqua">Kontakt</a>
+						<a th:href="@{/login}" class="nav-item" active-color="red">Wyloguj Sie!</a>
+						<span class="nav-indicator"></span>
+					</nav>
+				</div>
+				<div class="main-header anim" style="--delay: 0s">Katalogi</div>
+				<div class="main-container">
+					<div class="anim main-catalog" style="--delay: 0.1s">
+						<ul th:each="catalog : ${catalogs}">
+							<div class="container-catalog">
+								<li>
+									<i class="fa-solid fa-folder"></i>
+									<a
+										th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}"
+										th:text="${catalog.getName()}"
+										>Nazwa Katalogu</a
+									>
+								</li>
+								<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
+									><i class="fa-solid fa-xmark"></i
+								></a>
+
+								<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
+									><i class="fa-regular fa-pen-to-square"></i
+								></a>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="create-catalog">
+			<div class="box-catalog">
 				<form
 					th:action="@{'/' + ${catalog.user.id} + '/catalogs' + '/editCatalog/'  + ${catalog.getId()}}"
 					th:method="post"
 					th:object="${catalog}">
-					<h2 class="note">Edit<span class="ally">Catalog</span></h2>
+					<h2 class="note">Edycja <span class="ally">Katalogu</span></h2>
 					<div class="input-box">
 						<input type="text" id="name" name="name" th:field="*{name}" />
-						<label for="name">Title</label>
+						<label for="name">Nazwa Katalogu</label>
 					</div>
 
 					<button type="submit">Zmień nazwę</button>
 				</form>
 			</div>
-		</section>
+		</div>
+
+		<script type="text/javascript" th:src="@{/js/catalogs.js}"></script>
 	</body>
 </html>

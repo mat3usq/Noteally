@@ -1,36 +1,107 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Create Note</title>
-
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
-
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tworzenie Notatki</title>
+		<link rel="stylesheet" th:href="@{/css/notes.css}" />
 		<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<section>
-			<div>
-				<form
-					th:action="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id} + '/createNote'}"
-					th:method="post"
-					th:object="${note}">
-					<h2 class="note">Create<span class="ally">Note</span></h2>
-					<div class="input-box">
-						<input type="text" id="title" name="title" th:field="*{title}" />
-						<label for="title">Title</label>
+		<div class="container">
+			<div class="sidebar">
+				<h1 class="note">Note<span class="ally">ally</span></h1>
+				<div class="side-wrapper">
+					<div class="side-title">SORTOWANIE</div>
+					<div class="side-menu">
+						<a
+							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/ASC'}"
+							th:value="1"
+							th:text="'Alfabetycznie A-Z'"></a>
+						<a
+							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/DESC'}"
+							th:value="2"
+							th:text="'Alfabetycznie Z-A'"></a>
+						<a
+							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataASC'}"
+							th:value="3"
+							th:text="'Od najstarszej'"></a>
+						<a
+							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}+'/dataDESC'}"
+							th:value="4"
+							th:text="'Od najnowszej'"></a>
 					</div>
-
-					<div class="input-box">
-						<input type="text" id="content" name="content" th:field="*{content}" />
-						<label for="content">Content</label>
-					</div>
-
-					<button type="submit">Create Note</button>
-				</form>
+				</div>
+				<div class="line"></div>
+				<div class="add-note anim" style="--delay: 0.2s">
+					<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/createNote'}"
+						><i class="fa-regular fa-square-plus"></i
+					></a>
+				</div>
 			</div>
-		</section>
+			<div class="wrapper">
+				<div class="header">
+					<nav class="nav">
+						<a
+							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs'}"
+							class="nav-item is-active"
+							active-color="orange"
+							>Foldery</a
+						>
+						<a href="#" class="nav-item" active-color="limegreen">O Nas!</a>
+						<a href="#" class="nav-item" active-color="aqua">Kontakt</a>
+						<a th:href="@{/login}" class="nav-item" active-color="red">Wyloguj Sie!</a>
+						<span class="nav-indicator"></span>
+					</nav>
+				</div>
+				<div class="main-header anim" th:text="'Notatki W Katalogu ' + ${catalog.getName()}" style="--delay: 0s"></div>
+				<div class="main-container">
+					<div class="anim main-notes" style="--delay: 0.1s">
+						<ul th:each="note, i: ${notes}">
+							<div class="container-notes">
+								<div class="testimonial">
+									<h3 th:text="${note.getTitle()}"></h3>
+									<p th:text="${note.getContent()}"></p>
+									<span class="date" th:text="${note.getDate()}"></span>
+									<span class="link" th:text="${note.getLink()}"></span>
+								</div>
+								<a
+									th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
+									><i class="fa-solid fa-xmark"></i
+								></a>
+								<a
+									th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}"
+									><i class="fa-regular fa-pen-to-square"></i
+								></a>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="create-note">
+			<div class="box-note"></div>
+			<form
+				th:action="@{'/' + ${catalog.user.id} + '/catalogs/' + ${catalog.id} + '/createNote'}"
+				th:method="post"
+				th:object="${note}">
+				<h2 class="note">Stwórz <span class="ally">Notatke</span></h2>
+				<div class="input-box">
+					<input type="text" id="title" name="title" th:field="*{title}" />
+					<label for="title">Tytuł</label>
+				</div>
+
+				<div class="input-box">
+					<input type="text" id="content" name="content" th:field="*{content}" />
+					<label for="content">Zawartość</label>
+				</div>
+
+				<button type="submit">Stwórz Notatke</button>
+			</form>
+		</div>
+
+		<script type="text/javascript" th:src="@{/js/notes.js}"></script>
 	</body>
 </html>

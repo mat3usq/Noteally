@@ -21,13 +21,17 @@
 				</div>
 				<div class="line"></div>
 				<div class="add-note anim" style="--delay: 0.2s">
-					<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'createCatalog'}"><i class="fa-solid fa-folder-plus"></i></a>
+					<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'createCatalog'}"
+						><i class="fa-solid fa-folder-plus"></i
+					></a>
 				</div>
 			</div>
 			<div class="wrapper">
 				<div class="header">
 					<nav class="nav">
-						<a th:href="@{'/' + ${user.getId()} + '/catalogs'}" class="nav-item is-active" active-color="orange">Foldery</a>
+						<a th:href="@{'/' + ${user.getId()} + '/catalogs'}" class="nav-item is-active" active-color="orange"
+							>Foldery</a
+						>
 						<a href="#" class="nav-item" active-color="limegreen">O Nas!</a>
 						<a href="#" class="nav-item" active-color="aqua">Kontakt</a>
 						<a th:href="@{/login}" class="nav-item" active-color="red">Wyloguj Sie!</a>
@@ -36,26 +40,27 @@
 				</div>
 				<div class="main-header anim" style="--delay: 0s">Katalogi</div>
 				<div class="main-container">
-						<div class="anim main-notes" style="--delay: 0.1s">
-							<ul th:each="catalog : ${catalogs}">
-								<div class="container-catalog">
-									<li>
-										<i class="fa-solid fa-folder"></i>
-										<a
-												th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}"
-												th:text="${catalog.getName()}"
+					<div class="anim main-catalog" style="--delay: 0.1s">
+						<ul th:each="catalog : ${catalogs}">
+							<div class="container-catalog">
+								<li>
+									<i class="fa-solid fa-folder"></i>
+									<a
+										th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs/' + ${catalog.getId()}}"
+										th:text="${catalog.getName()}"
 										>Nazwa Katalogu</a
-										>
-									</li>
-									<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
-									><i class="fa-solid fa-xmark"></i></a>
-
-									<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
-									><i class="fa-regular fa-pen-to-square"></i></a
 									>
-								</div>
-							</ul>
-						</div>
+								</li>
+								<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
+									><i class="fa-solid fa-xmark"></i
+								></a>
+
+								<a th:href="@{'/' + ${user.getId()} + '/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
+									><i class="fa-regular fa-pen-to-square"></i
+								></a>
+							</div>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -59,8 +59,8 @@
 				<div class="main-container">
 					<div class="anim main-notes" style="--delay: 0.1s">
 						<ul th:each="note, i: ${notes}">
-							<div class="container-catalog">
-								<div class="testimonial" id="dynamicDiv">
+							<div class="container-notes">
+								<div class="testimonial">
 									<h3 th:text="${note.getTitle()}"></h3>
 									<p th:text="${note.getContent()}"></p>
 									<span class="date" th:text="${note.getDate()}"></span>
