@@ -3,6 +3,7 @@
 - Walidacja z łądną obsługą i ogólnie obsluga bledow (404 itp)
 - PasswordEncoder do haszowania hasla
 - opcjonalne linki w notatkach
+- sprawdzanie czy nazwa folderu nalezy do slownika (REST)
 
 
 #               Java Spring Projekt -> Noteally
