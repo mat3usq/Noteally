@@ -29,16 +29,11 @@
 			<div class="wrapper">
 				<div class="header">
 					<nav class="nav">
-						<a th:href="@{'/' + ${user.getId()} + '/catalogs'}" class="nav-item is-active" active-color="orange"
-							>Foldery</a
-						>
-						<a href="#" class="nav-item" active-color="limegreen">O Nas!</a>
-						<a href="#" class="nav-item" active-color="aqua">Kontakt</a>
-						<a th:href="@{/login}" class="nav-item" active-color="red">Wyloguj Sie!</a>
+						<a th:href="@{'/' + ${user.getId()} + '/catalogs'}" class="nav-item is-active" active-color="pink">Katalogi</a>
+						<a th:href="@{/login}" class="nav-item" active-color="pink">Wyloguj Sie!</a>
 						<span class="nav-indicator"></span>
 					</nav>
 				</div>
-				<div class="main-header anim" style="--delay: 0s">Katalogi</div>
 				<div class="main-container">
 					<div class="anim main-catalog" style="--delay: 0.1s">
 						<ul th:each="catalog : ${catalogs}">

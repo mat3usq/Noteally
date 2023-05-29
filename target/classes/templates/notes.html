@@ -43,24 +43,17 @@
 			<div class="wrapper">
 				<div class="header">
 					<nav class="nav">
-						<a
-							th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs'}"
-							class="nav-item is-active"
-							active-color="orange"
-							>Foldery</a
-						>
-						<a href="#" class="nav-item" active-color="limegreen">O Nas!</a>
-						<a href="#" class="nav-item" active-color="aqua">Kontakt</a>
-						<a th:href="@{/login}" class="nav-item" active-color="red">Wyloguj Sie!</a>
+						<a th:text="${catalog.getName()}" class="nav-item is-active" active-color="pink">Katalog</a>
+						<a th:href="@{'/' + ${catalog.getUser().getId()} + '/catalogs'}" class="nav-item" active-color="pink">Katalogi</a>
+						<a th:href="@{/login}" class="nav-item" active-color="pink">Wyloguj Sie!</a>
 						<span class="nav-indicator"></span>
 					</nav>
 				</div>
-				<div class="main-header anim" th:text="'Notatki W Katalogu ' + ${catalog.getName()}" style="--delay: 0s"></div>
 				<div class="main-container">
 					<div class="anim main-notes" style="--delay: 0.1s">
 						<ul th:each="note, i: ${notes}">
-							<div class="container-catalog">
-								<div class="testimonial" id="dynamicDiv">
+							<div class="container-notes">
+								<div class="testimonial">
 									<h3 th:text="${note.getTitle()}"></h3>
 									<p th:text="${note.getContent()}"></p>
 									<span class="date" th:text="${note.getDate()}"></span>
