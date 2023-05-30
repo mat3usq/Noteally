@@ -411,8 +411,8 @@ i {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 300px;
-	height: 370px;
+	width: 350px;
+	height: 500px;
 	transform: translate(-50%, -50%);
 	background: #fef6e4;
 	border-radius: 25px;
@@ -433,8 +433,9 @@ i {
 }
 
 .create-note .note {
+	width: 200px;
 	position: absolute;
-	top: 29%;
+	top: 5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	color: #960a4b;
@@ -453,11 +454,13 @@ i {
 
 .input-box label {
 	position: absolute;
-	top: -34%;
-	left: 50%;
+	top: -60%;
 	font-size: 1.1em;
 	pointer-events: none;
-	transform: translate(-50%, -50%);
+}
+
+.input-box .content {
+	top: -15%;
 }
 
 .input-box input {
@@ -473,10 +476,23 @@ i {
 	border-radius: 25px;
 }
 
+.input-box textarea {
+	font-family: "Poppins", sans-serif;
+	font-weight: bold;
+	color: #7f063e;
+	width: 80%;
+	height: 200px;
+	border: none;
+	outline: none;
+	font-size: 1.2em;
+	border-radius: 20px;
+	resize: none;
+	padding: 10px;
+}
+
 form button {
 	position: absolute;
-	top: 66%;
-	left: 50%;
+	top: 90%;
 	width: 200px;
 	height: 40px;
 	transform: translate(-50%, -50%);
