@@ -1,6 +1,7 @@
 package pl.noteally.controllers;
 
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("{userId}/catalogs")
+@RequestMapping("/catalogs")
 @AllArgsConstructor
 public class CatalogsController {
     final private CatalogService catalogService;
@@ -25,27 +26,27 @@ public class CatalogsController {
     final private UserService userService;
 
     @GetMapping("")
-    public String getCatalogsByUserId(Model model, @PathVariable("userId") Integer userId) {
-        List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
-        Optional<User> user = userService.getUserById(userId);
+    public String getCatalogsByUserId(Model model, HttpSession session) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
         model.addAttribute("catalogs", catalogList);
         model.addAttribute("user", user.get());
         return "catalogs";
     }
     @GetMapping("/ASC")
-    public String sortCatalogsASC(Model model, @PathVariable("userId") Integer userId) {
-        List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+    public String sortCatalogsASC(Model model, HttpSession session) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getName));
-        Optional<User> user = userService.getUserById(userId);
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
         model.addAttribute("catalogs", catalogList);
         model.addAttribute("user", user.get());
         return "catalogs";
     }
     @GetMapping("/DESC")
-    public String sortCatalogsDESC(Model model, @PathVariable("userId") Integer userId) {
-        List<Catalog> catalogList = catalogService.getCatalogsByUserId(userId);
+    public String sortCatalogsDESC(Model model, HttpSession session) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getName).reversed());
-        Optional<User> user = userService.getUserById(userId);
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
         model.addAttribute("catalogs", catalogList);
         model.addAttribute("user", user.get());
         return "catalogs";
@@ -53,30 +54,30 @@ public class CatalogsController {
 
 
     @GetMapping("/createCatalog")
-    public String redirectCreate(Model model, @PathVariable("userId") Integer userId){
+    public String redirectCreate(Model model, HttpSession session){
         Catalog catalog = new Catalog();
-        Optional<User> user = userService.getUserById(userId);
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
         model.addAttribute("catalog", catalog);
         model.addAttribute("user", user.get());
         return "createCatalog";
     }
 
     @PostMapping("/createCatalog")
-    public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model,  @PathVariable("userId") Integer userId) {
+    public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model,  HttpSession session) {
         if (bindingResult.hasErrors()) {
            // model.addAttribute("errors",bindingResult);
-            return "redirect:/" + userId + "/catalogs/createCatalog";
+            return "redirect:/" + session.getAttribute("userId") + "/catalogs/createCatalog";
         }
 
-        catalogService.saveCatalog(catalog, userId);
-        return "redirect:/" + userId + "/catalogs";
+        catalogService.saveCatalog(catalog, (Integer) session.getAttribute("userId"));
+        return "redirect:/" +  session.getAttribute("userId") + "/catalogs";
     }
 
 
     @GetMapping("/deleteCatalog/{catalogId}")
-    public String delete(Model model, @PathVariable("catalogId") Integer catalogId, @PathVariable("userId") Integer userId) {
+    public String delete(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         catalogService.deleteCatalogById(catalogId);
-        return "redirect:/" + userId + "/catalogs";
+        return "redirect:/" + session.getAttribute("userId") + "/catalogs";
     }
 
     @GetMapping("/editCatalog/{catalogId}")
@@ -88,12 +89,12 @@ public class CatalogsController {
 
     @PostMapping("/editCatalog/{catalogId}")
     public String editCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult,  @PathVariable("catalogId") Integer catalogId,
-                           @PathVariable("userId") Integer userId){
+                              HttpSession session){
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/" + userId + "/catalogs/editCatalog/{catalogId}";
+            return "redirect:/" + session.getAttribute("userId") + "/catalogs/editCatalog/{catalogId}";
         }
         catalogService.updateCatalog(catalog, catalogId);
-        return "redirect:/" + userId + "/catalogs";
+        return "redirect:/" + session.getAttribute("userId")  + "/catalogs";
     }
 }

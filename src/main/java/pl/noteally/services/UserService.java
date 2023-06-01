@@ -1,7 +1,8 @@
 package pl.noteally.services;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +13,7 @@ import pl.noteally.data.User;
 import pl.noteally.repositories.UserRepository;
 
 import java.time.LocalDateTime;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,6 +23,9 @@ import java.util.UUID;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
+
+    @Autowired
+    private HttpSession httpSession;
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -29,7 +34,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id);
     }
 
-    public String signUpUser(User user){
+    public void signUpUser(User user){
         boolean userExists = userRepository.findByLogin(user.getLogin()).isPresent();
 
         if(userExists){
@@ -43,7 +48,6 @@ public class UserService implements UserDetailsService {
         user.setRole(Role.USER);
 
         userRepository.save(user);
-        return "catalogs";
     }
 
     @Override
@@ -51,9 +55,10 @@ public class UserService implements UserDetailsService {
         Optional<User> user = userRepository.findByLogin(login);
         if(user.isPresent())
         {
+            httpSession.setAttribute("userId", user.get().getId());
+            httpSession.setMaxInactiveInterval(100);
             return user.get();
         }
         else throw new UsernameNotFoundException("Niepoprawne hasło lub nazwa użytkownika");
     }
 }
-

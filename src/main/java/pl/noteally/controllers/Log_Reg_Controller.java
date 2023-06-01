@@ -34,8 +34,9 @@ public class Log_Reg_Controller {
         if (bindingResult.hasErrors()) {
             return "register";
         }
+
         userService.signUpUser(user);
-        //zarejestruj
-        return "redirect:/" + user.getId() + "/catalogs";
+
+        return "login";
     }
 }
