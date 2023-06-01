@@ -1,10 +1,14 @@
 package pl.noteally.controllers;
-
+import jakarta.validation.Valid;
+import org.springframework.ui.Model;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.noteally.data.User;
 
 @Controller
 @AllArgsConstructor
@@ -16,25 +20,27 @@ public class Log_Reg_Controller {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password) {
-        // Zaloguj użytkownika
-
+    public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+        //logowanie
         return "redirect:/" + "1/catalogs";
     }
 
     @GetMapping("/registerMe")
-    public String redirectRegister(){
-        // Przekierowanie Na Register
+    public String redirectRegister(Model model){
+        User user= new User();
+        model.addAttribute("user",user);
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam("username") String username, @RequestParam("email") String email,
-                        @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword) {
-        // Zarejestruj użytkownika
-
-        // Przekierowanie na Logowanie
+    public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        //zarejestruj
         return "redirect:/" + "1/catalogs";
     }
 }
