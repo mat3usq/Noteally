@@ -1,9 +1,7 @@
 package pl.noteally.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.noteally.data.Catalog;
 import pl.noteally.data.User;
 import pl.noteally.repositories.UserRepository;
 
@@ -12,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService{
     private final UserRepository userRepository;
     public List<User> getUsers(){
         return userRepository.findAll();

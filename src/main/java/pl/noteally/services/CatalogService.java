@@ -34,6 +34,13 @@ public class CatalogService {
         catalogRepository.save(catalog);
     }
 
+    public void updateCatalog(Catalog catalog, Integer catalogId)
+    {
+        Optional<Catalog> existingCatalog = catalogRepository.findById(catalogId);
+        existingCatalog.get().setName(catalog.getName());
+        catalogRepository.save(existingCatalog.get());
+    }
+
     public void deleteCatalogById(Integer catalogId)
     {
         catalogRepository.deleteById(catalogId);
