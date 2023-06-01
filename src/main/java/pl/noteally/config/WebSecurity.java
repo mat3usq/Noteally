@@ -1,8 +1,10 @@
 package pl.noteally.config;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,8 +18,8 @@ import pl.noteally.services.UserService;
 @EnableWebSecurity
 public class WebSecurity {
 
-    private final UserDetailsService userDetailsService;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Bean
@@ -27,11 +29,21 @@ public class WebSecurity {
                         .requestMatchers("/css/**", "/images/**","/js/**").permitAll()
                         .requestMatchers("/registerMe","/**","/login").permitAll()
                         .anyRequest().authenticated()
+                ).formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .usernameParameter("login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/catalogs")
+                                .permitAll()
                 );
         return http.build();
     }
 
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-                auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(bCryptPasswordEncoder);
     }
 }

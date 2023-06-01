@@ -9,23 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.noteally.data.User;
+import pl.noteally.services.UserService;
 
 @Controller
 @AllArgsConstructor
 public class Log_Reg_Controller {
+
+    private final UserService userService;
     @GetMapping("/login")
     public String redirectLogin(){
         // Przekierowanie Na Login
         return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        //logowanie
-        return "redirect:/" + "1/catalogs";
     }
 
     @GetMapping("/registerMe")
@@ -40,7 +34,8 @@ public class Log_Reg_Controller {
         if (bindingResult.hasErrors()) {
             return "register";
         }
+        userService.signUpUser(user);
         //zarejestruj
-        return "redirect:/" + "1/catalogs";
+        return "redirect:/" + user.getId() + "/catalogs";
     }
 }

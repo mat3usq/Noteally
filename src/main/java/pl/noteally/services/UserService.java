@@ -1,12 +1,13 @@
 package pl.noteally.services;
 
-import jdk.internal.icu.impl.Punycode;
 import lombok.AllArgsConstructor;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.noteally.data.Role;
 import pl.noteally.data.User;
 import pl.noteally.repositories.UserRepository;
 
@@ -19,7 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptpasswordEncoder;
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -29,23 +30,30 @@ public class UserService implements UserDetailsService {
     }
 
     public String signUpUser(User user){
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+        boolean userExists = userRepository.findByLogin(user.getLogin()).isPresent();
 
         if(userExists){
-            throw new IllegalStateException("Email already taken");
+            throw new IllegalStateException("Login already taken");
         }
 
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        String encodedPassword = bCryptpasswordEncoder.encode(user.getPassword());
 
         user.setPassword(encodedPassword);
 
+        user.setRole(Role.USER);
+
         userRepository.save(user);
-        return null;
+        return "catalogs";
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByLogin(login);
+        if(user.isPresent())
+        {
+            return user.get();
+        }
+        else throw new UsernameNotFoundException("Niepoprawne hasło lub nazwa użytkownika");
     }
 }
 
