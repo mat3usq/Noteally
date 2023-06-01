@@ -6,12 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.noteally.data.Catalog;
-import pl.noteally.data.Note;
 import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.UserService;
@@ -19,7 +15,6 @@ import pl.noteally.services.UserService;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("{userId}/catalogs")
