@@ -25,7 +25,6 @@ public class NoteService {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         note.setCatalog(catalog.get());
         note.setDate(LocalDate.now());
-        note.setLink(note.getTitle() + "Link");
         noteRepository.save(note);
     }
 
@@ -34,7 +33,7 @@ public class NoteService {
         Note existingNote = noteRepository.getById(noteId);
         existingNote.setTitle(note.getTitle());
         existingNote.setContent(note.getContent());
-        existingNote.setLink(note.getTitle() + "Link");
+        existingNote.setLink(note.getLink());
         noteRepository.save(existingNote);
     }
 
