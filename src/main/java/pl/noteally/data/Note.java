@@ -41,7 +41,7 @@ public class Note
 
     @Basic
     @Column(name = "link")
-    @Size(min = 5, max = 50, message = "Size must be between 5 and 500")
+    @Size(max = 50, message = "Size must be maximum 50")
     private String link;
 
     @Basic
