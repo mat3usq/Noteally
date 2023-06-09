@@ -75,17 +75,17 @@
 </div>
 
 <div class="share-note">
-	<div class="box-note">
+	<div class="box-note share">
 		<form
 				th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}"
 				th:method="post">
-			<h2 class="note">Share <span class="ally">Note</span></h2>
+			<h2 class="note-share">Share <span class="ally">Note</span></h2>
 
 			<div class="shared-users">
 
 			</div>
 
-			<div class="input-box">
+			<div class="input-box-share">
 				<input type="text" id="username" name="username" />
 				<label for="username">Share To (username)</label>
 			</div>
