@@ -63,7 +63,7 @@ public class CatalogsController {
     }
 
     @PostMapping("/createCatalog")
-    public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model,  HttpSession session) {
+    public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",bindingResult);
             return "redirect:/catalogs/createCatalog";
@@ -74,16 +74,26 @@ public class CatalogsController {
     }
 
     @GetMapping("/deleteCatalog/{catalogId}")
-    public String delete(Model model, @PathVariable("catalogId") Integer catalogId) {
-        catalogService.deleteCatalogById(catalogId);
+    public String delete(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+        Integer userId = (Integer)session.getAttribute("userId");
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("default")) && !(catalog.get().getName().equals("shared")))
+        {
+            catalogService.deleteCatalogById(catalogId);
+        }
         return "redirect:/catalogs";
     }
 
     @GetMapping("/editCatalog/{catalogId}")
-    public String redirectEdit(Model model, @PathVariable("catalogId") Integer catalogId){
+    public String redirectEdit(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session){
+        Integer userId = (Integer)session.getAttribute("userId");
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        return "editCatalog";
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("default")) && !(catalog.get().getName().equals("shared")))
+        {
+            model.addAttribute("catalog", catalog.get());
+            return "editCatalog";
+        }
+        return "redirect:/catalogs";
     }
 
     @PostMapping("/editCatalog/{catalogId}")

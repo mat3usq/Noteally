@@ -1,5 +1,6 @@
 package pl.noteally.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,59 +23,88 @@ public class NotesController {
     final private NoteService noteService;
     final private CatalogService catalogService;
     @GetMapping("")
-    public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId) {
-        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+    public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        model.addAttribute("notes", noteList);
-        return "notes";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
+        {
+            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList);
+            return "notes";
+        }
+        return "redirect:/catalogs";
     }
     @GetMapping("/ASC")
-    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId) {
-        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getTitle));
+    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        model.addAttribute("notes", noteList);
-        return "notes";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
+        {
+            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            noteList.sort(Comparator.comparing(Note::getTitle));
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList);
+            return "notes";
+        }
+        return "redirect:/catalogs";
     }
     @GetMapping("/DESC")
-    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
-        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        model.addAttribute("notes", noteList);
-        return "notes";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
+        {
+            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList);
+            return "notes";
+        }
+        return "redirect:/catalogs";
     }
     @GetMapping("/dataASC")
-    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId) {
-        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getDate));
+    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        model.addAttribute("notes", noteList);
-        return "notes";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
+        {
+            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            noteList.sort(Comparator.comparing(Note::getDate));
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList);
+            return "notes";
+        }
+        return "redirect:/catalogs";
     }
     @GetMapping("/dataDESC")
-    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId) {
-        List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
-        noteList.sort(Comparator.comparing(Note::getDate).reversed());
+    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("catalog", catalog.get());
-        model.addAttribute("notes", noteList);
-        return "notes";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
+        {
+            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            noteList.sort(Comparator.comparing(Note::getDate).reversed());
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList);
+            return "notes";
+        }
+        return "redirect:/catalogs";
     }
 
-
     @GetMapping("/createNote")
-    public String redirectCreate(Model model, @PathVariable("catalogId") Integer catalogId){
-        // Przekierowanie Na CreateNote
-        Note note = new Note();
+    public String redirectCreate(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session){
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
-        model.addAttribute("note", note);
-        model.addAttribute("catalog", catalog.get());
-        return "createNote";
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared")))
+        {
+            Note note = new Note();
+            model.addAttribute("note", note);
+            model.addAttribute("catalog", catalog.get());
+            return "createNote";
+        }
+        return "redirect:/catalogs";
     }
 
     @PostMapping("/createNote")
@@ -89,18 +119,32 @@ public class NotesController {
     }
 
     @GetMapping("/deleteNote/{noteId}")
-    public String delete(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
-        noteService.deleteNoteById(noteId);
-        return "redirect:/catalogs/" + catalogId;
+    public String delete(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, HttpSession session){
+        Integer userId = (Integer)session.getAttribute("userId");
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared")))
+        {
+            noteService.deleteNoteById(noteId);
+            return "redirect:/catalogs/" + catalogId;
+        }
+        return "redirect:/catalogs";
     }
 
     @GetMapping("/editNote/{noteId}")
-    public String redirectEdit(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
+    public String redirectEdit(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, HttpSession session){
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared")))
+        {
+            Optional<Note> note = noteService.getNoteById(noteId);
+            model.addAttribute("note", note.get());
+            model.addAttribute("catalog", catalog.get());
+            return "editNote";
+        }
         Optional<Note> note = noteService.getNoteById(noteId);
         model.addAttribute("note", note.get());
         model.addAttribute("catalog", catalog.get());
-        return "editNote";
+        return "redirect:/catalogs";
     }
 
     @PostMapping("/editNote/{noteId}")

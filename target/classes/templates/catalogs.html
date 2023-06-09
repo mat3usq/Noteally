@@ -46,13 +46,16 @@
 										>Nazwa Katalogu</a
 									>
 								</li>
-								<a th:href="@{'/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
+								<div th:if="${catalog.getName() != 'default' && catalog.getName() != 'shared'}">
+									<a th:href="@{'/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
 									><i class="fa-solid fa-xmark"></i
-								></a>
+									></a>
 
-								<a th:href="@{'/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
+									<a th:href="@{'/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
 									><i class="fa-regular fa-pen-to-square"></i
-								></a>
+									></a>
+								</div>
+
 							</div>
 						</ul>
 					</div>
