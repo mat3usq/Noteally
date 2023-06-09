@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Note;
+import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.NoteService;
 
@@ -141,20 +142,38 @@ public class NotesController {
             model.addAttribute("catalog", catalog.get());
             return "editNote";
         }
-        Optional<Note> note = noteService.getNoteById(noteId);
-        model.addAttribute("note", note.get());
-        model.addAttribute("catalog", catalog.get());
         return "redirect:/catalogs";
     }
 
     @PostMapping("/editNote/{noteId}")
-    public String editNote( @Valid @ModelAttribute("note") Note note, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
+    public String editNote(@Valid @ModelAttribute("note") Note note, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
         // walidacja
         if (bindingResult.hasErrors()) {
             return "redirect:/catalogs/" + catalogId + "/editNote/" + noteId;
         }
 
         noteService.updateNote(note, noteId);
+        return "redirect:/catalogs/" + catalogId;
+    }
+
+    @GetMapping("/shareNote/{noteId}")
+    public String redirectShare(Model model, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, HttpSession session){
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Integer userId = (Integer)session.getAttribute("userId");
+        if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared")))
+        {
+            Optional<Note> note = noteService.getNoteById(noteId);
+            model.addAttribute("note", note.get());
+            model.addAttribute("catalog", catalog.get());
+
+            User user = new User();
+            model.addAttribute("user", user);
+            return "shareNote";
+        }
+        return "redirect:/catalogs";
+    }
+    @PostMapping("/shareNote/{noteId}")
+    public String shareNote(@ModelAttribute("user") User user, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
         return "redirect:/catalogs/" + catalogId;
     }
 }

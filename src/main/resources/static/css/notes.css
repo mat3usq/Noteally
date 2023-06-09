@@ -297,6 +297,16 @@ i {
 	font-weight: bold;
 }
 
+.container-notes i.fa-share {
+	font-size: 32px;
+	position: absolute;
+	left: -9%;
+	top: 40%;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	font-weight: bold;
+}
+
 .container-notes i.fa-pen-to-square {
 	font-size: 42px;
 	position: absolute;
@@ -310,6 +320,7 @@ i {
 }
 
 .container-notes:hover i.fa-xmark,
+.container-notes:hover i.fa-share,
 .container-notes:hover i.fa-pen-to-square {
 	opacity: 1;
 }
@@ -402,7 +413,7 @@ i {
 }
 
 .testimonial .link {
-	color: rgba(210, 18, 88, 0.77);
+	color: rgb(255, 0, 93);
 	display: block;
 	margin-top: 12px;
 	font-weight: bold;
@@ -528,4 +539,30 @@ button:hover {
 	cursor: pointer;
 	background-color: aqua;
 	color: #f4157e;
+}
+
+/*UDOSTEPNIANIE NOTATKI*/
+
+.share-note .box-note{
+	width: 300px;
+	height: 500px;
+}
+
+.share-note .note {
+	width: 200px;
+	position: absolute;
+	top: 2%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #960a4b;
+}
+
+.shared-users{
+	padding-top: 10px;
+	padding-bottom: 20px;
+	width: 250px;
+	height: 250px;
+	background-color: rgba(59, 180, 197, 0.78);
+	border-radius: 20px;
+	overflow: auto;
 }
