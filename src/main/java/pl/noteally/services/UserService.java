@@ -31,6 +31,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id);
     }
 
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByLogin(username);
+    }
+
     public String signUpUser(User user){
         boolean userExists = userRepository.findByLogin(user.getLogin()).isPresent();
 

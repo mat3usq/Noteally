@@ -9,9 +9,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Note;
+import pl.noteally.data.SharedNote;
 import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.NoteService;
+import pl.noteally.services.UserService;
 
 import java.util.Comparator;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class NotesController {
     final private NoteService noteService;
     final private CatalogService catalogService;
+    final private UserService userService;
     @GetMapping("")
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
@@ -165,15 +168,21 @@ public class NotesController {
             Optional<Note> note = noteService.getNoteById(noteId);
             model.addAttribute("note", note.get());
             model.addAttribute("catalog", catalog.get());
-
-            User user = new User();
-            model.addAttribute("user", user);
             return "shareNote";
         }
         return "redirect:/catalogs";
     }
     @PostMapping("/shareNote/{noteId}")
-    public String shareNote(@ModelAttribute("user") User user, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId){
-        return "redirect:/catalogs/" + catalogId;
+    public String shareNote(@RequestParam(value = "username", required = true) String username, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, Model model){
+        Optional<User> user = userService.getUserByUsername(username);
+        if(user.isPresent())
+        {
+            SharedNote sharedNote = new SharedNote();
+            sharedNote.setNote(noteService.getNoteById(noteId).get());
+            sharedNote.setUser(user.get());
+            noteService.saveSharedNote(sharedNote);
+            return "redirect:/catalogs/" + catalogId;
+        }
+        return "redirect:/catalogs/";
     }
 }

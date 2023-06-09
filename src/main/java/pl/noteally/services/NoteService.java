@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Note;
+import pl.noteally.data.SharedNote;
 import pl.noteally.repositories.NoteRepository;
+import pl.noteally.repositories.SharedRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class NoteService {
     private final NoteRepository noteRepository;
+    private final SharedRepository sharedRepository;
     private final CatalogService catalogService;
     public List<Note> getNotesByCatalogId(Integer catalogId) {
         return noteRepository.findByCatalogId(catalogId);
@@ -26,6 +29,11 @@ public class NoteService {
         note.setCatalog(catalog.get());
         note.setDate(LocalDate.now());
         noteRepository.save(note);
+    }
+
+    public void saveSharedNote(SharedNote sharedNote)
+    {
+        sharedRepository.save(sharedNote);
     }
 
     public void updateNote(Note note, Integer noteId)
