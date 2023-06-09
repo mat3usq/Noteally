@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
         catalogRepository.save(defaultCatalog);
 
         Catalog sharedCatalog = new Catalog();
-        sharedCatalog.setName("shared with me");
+        sharedCatalog.setName("shared");
         sharedCatalog.setUser(user);
         catalogRepository.save(sharedCatalog);
 

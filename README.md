@@ -1,10 +1,11 @@
 # TODO/notatki:
-- Do rejestracji dodac imie, nazwisko, wiek i sprawdzac, czy wiek >18
-- Walidacja z łądną obsługą i ogólnie obsluga bledow (404 itp)
-- PasswordEncoder do haszowania hasla
-- opcjonalne linki w notatkach
-- sprawdzanie czy nazwa folderu nalezy do slownika (REST)
-- nie mozna dodac dwoch takich samoych katalogow o identycznych nazwach
+- Autoryzacja (admin, swoje notatki, usuwanie, przegladanie tylko swoich rzeczy)
+- Walidacja/errory
+- filtrowanie
+- Udostepnianie
+- w katalogu shared nie mozna usuwac i dodawac notatek
+- nie mozna usunac ani edytowac katalogu default i shared
+- 
 
 
 #               Java Spring Projekt -> Noteally
