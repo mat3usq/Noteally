@@ -34,7 +34,7 @@ public class User implements UserDetails
     @NotBlank(message = "Must not be empty")
     @Column(name = "login", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")
-    @Pattern(regexp = "^[a-z]+$", message = "Name must contain only small letters.")
+    @Pattern(regexp = "^[a-z]+$", message = "Login must contain only small letters.")
     private String login;
 
     @Basic

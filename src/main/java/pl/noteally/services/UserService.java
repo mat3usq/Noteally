@@ -7,8 +7,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.noteally.data.Catalog;
 import pl.noteally.data.Role;
 import pl.noteally.data.User;
+import pl.noteally.repositories.CatalogRepository;
 import pl.noteally.repositories.UserRepository;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final CatalogRepository catalogRepository;
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
     private final HttpSession httpSession;
     public List<User> getUsers(){
@@ -42,6 +45,18 @@ public class UserService implements UserDetailsService {
         user.setRole(Role.USER);
 
         userRepository.save(user);
+
+        //default catalogs
+        Catalog defaultCatalog = new Catalog();
+        defaultCatalog.setName("default");
+        defaultCatalog.setUser(user);
+        catalogRepository.save(defaultCatalog);
+
+        Catalog sharedCatalog = new Catalog();
+        sharedCatalog.setName("shared with me");
+        sharedCatalog.setUser(user);
+        catalogRepository.save(sharedCatalog);
+
         return "catalogs";
     }
 
