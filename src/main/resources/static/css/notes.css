@@ -572,6 +572,26 @@ button:hover {
 	background-color: rgba(59, 180, 197, 0.78);
 	border-radius: 20px;
 	overflow: auto;
+	text-align: center;
+}
+
+.shared-users .user-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.shared-users .user-list li {
+	list-style-type: none;
+}
+
+.shared-users .user-list p {
+	display: inline-block;
+	margin: 0;
+	list-style-type: none;
+	color: aliceblue;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .share-note {

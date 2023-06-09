@@ -173,7 +173,9 @@ public class NotesController {
         Integer userId = (Integer)session.getAttribute("userId");
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared")))
         {
+            List<User> userList = userService.getUsers();
             Optional<Note> note = noteService.getNoteById(noteId);
+            model.addAttribute("users", userList);
             model.addAttribute("note", note.get());
             model.addAttribute("catalog", catalog.get());
             return "shareNote";

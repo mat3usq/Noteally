@@ -76,17 +76,18 @@
 
 <div class="share-note">
 	<div class="box-note share">
-		<form
-				th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}"
-				th:method="post">
+		<form th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}"
+			  th:method="post">
 			<h2 class="note-share">Share <span class="ally">Note</span></h2>
 
 			<div class="shared-users">
-
+				<ul class="user-list" th:each="user : ${users}">
+					<p th:text="${user.getName()}"></p>
+				</ul>
 			</div>
 
 			<div class="input-box-share">
-				<input type="text" id="username" name="username" />
+				<input type="text" id="username" name="username" onkeyup="searchUser()" />
 				<label for="username">Share To (username)</label>
 			</div>
 
@@ -96,5 +97,6 @@
 </div>
 
 <script type="text/javascript" th:src="@{/js/notes.js}"></script>
+<script type="text/javascript" th:src="@{/js/share.js}"></script>
 </body>
 </html>
