@@ -2,7 +2,6 @@ package pl.noteally.services;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,10 +11,8 @@ import pl.noteally.data.Role;
 import pl.noteally.data.User;
 import pl.noteally.repositories.UserRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -57,6 +54,22 @@ public class UserService implements UserDetailsService {
             return user.get();
         }
         else throw new UsernameNotFoundException("Niepoprawne hasło lub nazwa użytkownika");
+    }
+
+    public void updateUser(User user, Integer userId)
+    {
+        Optional<User> existingUser = userRepository.findById(userId);
+        existingUser.get().setLogin(user.getLogin());
+        existingUser.get().setName(user.getName());
+        existingUser.get().setSurname(user.getSurname());
+        existingUser.get().setAge(user.getAge());
+        existingUser.get().setRole(user.getRole());
+        userRepository.save(existingUser.get());
+    }
+
+    public void deleteUserById(Integer userId)
+    {
+        userRepository.deleteById(userId);
     }
 }
 

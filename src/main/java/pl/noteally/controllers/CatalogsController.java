@@ -73,7 +73,6 @@ public class CatalogsController {
         return "redirect:/catalogs";
     }
 
-
     @GetMapping("/deleteCatalog/{catalogId}")
     public String delete(Model model, @PathVariable("catalogId") Integer catalogId) {
         catalogService.deleteCatalogById(catalogId);
