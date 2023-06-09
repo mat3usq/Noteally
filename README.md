@@ -2,10 +2,10 @@
 - Walidacja/errory
 - filtrowanie
 - widok przy udostepnianiu, komu udostepniasz i mozliwosc przestania
-- widok udostepnianej notatki (od kogo)
-- zablokowanie panelu admina
-- link z notatki ma zniknac jak go nie ma
-- 
+- zablokowanie panelu admina (do naprawy albo zrobienia od nowa hasRole(ADMIN))
+- naprawa wylogowania
+- zapamietywanie kryteriow sortowania
+
 
 
 #               Java Spring Projekt -> Noteally

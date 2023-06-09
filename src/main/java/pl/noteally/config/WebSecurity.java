@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import pl.noteally.data.Role;
 import pl.noteally.services.UserService;
 
 @Configuration
@@ -28,7 +29,8 @@ public class WebSecurity {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/css/**", "/images/**","/js/**").permitAll()
-                        .requestMatchers("/registerMe","/**","/login").permitAll()
+                        .requestMatchers("/registerMe","/","/login").permitAll()
+                        //.requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 ).formLogin(
                         form -> form
