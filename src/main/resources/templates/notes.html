@@ -57,7 +57,8 @@
 							<h3 th:text="${note.getTitle()}"></h3>
 							<p th:text="${note.getContent()}"></p>
 							<span class="date" th:text="${note.getDate()}"></span>
-							<a class="date" th:text="${note.getLink()}"></a>
+							<a class="link" th:href="'https://' + ${note.getLink()}" th:text="${note.getLink()}" target="_blank"></a>
+
 						</div>
 						<a
 								th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
