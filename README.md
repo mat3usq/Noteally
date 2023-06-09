@@ -4,8 +4,6 @@
 - PasswordEncoder do haszowania hasla
 - opcjonalne linki w notatkach
 - sprawdzanie czy nazwa folderu nalezy do slownika (REST)
-- nie mozna dodac dwoch takich samoych katalogow o identycznych nazwach
-
 
 #               Java Spring Projekt -> Noteally
 
