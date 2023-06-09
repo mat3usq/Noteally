@@ -51,6 +51,10 @@ public class Note
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
+    @Basic
+    @Column(name = "owner")
+    private String owner;
+
     @Override
     public String toString() {
         return "Note{" +

@@ -38,6 +38,7 @@ public class NoteService {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         note.setCatalog(catalog.get());
         note.setDate(LocalDate.now());
+        note.setOwner(catalog.get().getUser().getLogin());
         noteRepository.save(note);
     }
 

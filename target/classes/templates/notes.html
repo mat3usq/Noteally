@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="line"></div>
-		<div class="add-note anim" style="--delay: 0.2s">
+		<div th:if="${catalog.getName() != 'shared'}" class="add-note anim" style="--delay: 0.2s">
 			<a th:href="@{'/catalogs/' + ${catalog.getId()} + '/createNote'}"
 			><i class="fa-regular fa-square-plus"></i
 			></a>
@@ -54,10 +54,11 @@
 				<ul th:each="note, i: ${notes}">
 					<div class="container-notes">
 						<div class="testimonial">
+							<p th:if="${catalog.getName() == 'shared'}" th:text="'Owner: ' + ${note.getOwner()}"></p>
 							<h3 th:text="${note.getTitle()}"></h3>
 							<p th:text="${note.getContent()}"></p>
 							<span class="date" th:text="${note.getDate()}"></span>
-							<a class="link" th:href="'https://' + ${note.getLink()}" th:text="${note.getLink()}" target="_blank"></a>
+							<a th:if="${!note.getLink().equals('')}" class="link" th:href="'https://' + ${note.getLink()}" th:text="${note.getLink()}" target="_blank"></a>
 
 						</div>
 						<div th:if="${catalog.getName() != 'shared'}">
