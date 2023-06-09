@@ -544,6 +544,9 @@ button:hover {
 /*UDOSTEPNIANIE NOTATKI*/
 
 .share-note .box-note{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: 300px;
 	height: 500px;
 }

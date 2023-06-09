@@ -15,6 +15,7 @@ import pl.noteally.services.CatalogService;
 import pl.noteally.services.NoteService;
 import pl.noteally.services.UserService;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +31,16 @@ public class NotesController {
     public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer)session.getAttribute("userId");
+
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
         {
-            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            List<Note> noteList;
+            if(catalog.get().getName().equals("shared")){
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            }
+            else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
             return "notes";

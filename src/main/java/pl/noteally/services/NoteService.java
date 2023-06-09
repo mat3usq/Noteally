@@ -10,6 +10,7 @@ import pl.noteally.repositories.NoteRepository;
 import pl.noteally.repositories.SharedRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,15 @@ public class NoteService {
     private final CatalogService catalogService;
     public List<Note> getNotesByCatalogId(Integer catalogId) {
         return noteRepository.findByCatalogId(catalogId);
+    }
+
+    public List<Note> getNotesFromSharedByCatalogId(Integer userId) {
+        List<SharedNote> sNote = sharedRepository.findByUserId(userId);
+        List<Note> notes = new ArrayList<>();
+        for (int i=0; i< sNote.size(); i++)
+            notes.add(sNote.get(i).getNote());
+
+        return notes;
     }
 
     public void saveNote(Note note, Integer catalogId)

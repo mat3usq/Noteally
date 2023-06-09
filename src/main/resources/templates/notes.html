@@ -60,17 +60,19 @@
 							<a class="link" th:href="'https://' + ${note.getLink()}" th:text="${note.getLink()}" target="_blank"></a>
 
 						</div>
-						<a
-								th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
-						><i class="fa-solid fa-xmark"></i
-						></a>
-						<a
-								th:href="@{'/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}"
-						><i class="fa-regular fa-pen-to-square"></i
-						></a>
-						<a
-								th:href="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' +${note.getId()}}"
-						><i class="fa-sharp fa-solid fa-share"></i></a>
+						<div th:if="${catalog.getName() != 'default' && catalog.getName() != 'shared'}">
+							<a
+									th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
+							><i class="fa-solid fa-xmark"></i
+							></a>
+							<a
+									th:href="@{'/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}"
+							><i class="fa-regular fa-pen-to-square"></i
+							></a>
+							<a
+									th:href="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' +${note.getId()}}"
+							><i class="fa-sharp fa-solid fa-share"></i></a>
+						</div>
 					</div>
 				</ul>
 			</div>
