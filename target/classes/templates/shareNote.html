@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Notatki</title>
+	<title>Tworzenie Notatki</title>
 	<link rel="stylesheet" th:href="@{/css/notes.css}" />
 	<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 </head>
@@ -57,26 +57,41 @@
 							<h3 th:text="${note.getTitle()}"></h3>
 							<p th:text="${note.getContent()}"></p>
 							<span class="date" th:text="${note.getDate()}"></span>
-							<a class="link" th:href="'https://' + ${note.getLink()}" th:text="${note.getLink()}" target="_blank"></a>
-
+							<span class="link" th:text="${note.getLink()}"></span>
 						</div>
-						<div th:if="${catalog.getName() != 'shared'}">
-							<a
-									th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
-							><i class="fa-solid fa-xmark"></i
-							></a>
-							<a
-									th:href="@{'/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}"
-							><i class="fa-regular fa-pen-to-square"></i
-							></a>
-							<a
-									th:href="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' +${note.getId()}}"
-							><i class="fa-sharp fa-solid fa-share"></i></a>
-						</div>
+						<a
+								th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteNote/' +${note.getId()}}"
+						><i class="fa-solid fa-xmark"></i
+						></a>
+						<a
+								th:href="@{'/catalogs/' + ${catalog.getId()} + '/editNote/' +${note.getId()}}"
+						><i class="fa-regular fa-pen-to-square"></i
+						></a>
 					</div>
 				</ul>
 			</div>
 		</div>
+	</div>
+</div>
+
+<div class="share-note">
+	<div class="box-note">
+		<form
+				th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}"
+				th:method="post">
+			<h2 class="note">Share <span class="ally">Note</span></h2>
+
+			<div class="shared-users">
+
+			</div>
+
+			<div class="input-box">
+				<input type="text" id="username" name="username" />
+				<label for="username">Share To (username)</label>
+			</div>
+
+			<button type="submit">Share Note</button>
+		</form>
 	</div>
 </div>
 

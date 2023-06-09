@@ -9,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Role;
+import pl.noteally.data.SharedNote;
 import pl.noteally.data.User;
 import pl.noteally.repositories.CatalogRepository;
+import pl.noteally.repositories.SharedRepository;
 import pl.noteally.repositories.UserRepository;
 
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final SharedRepository sharedRepository;
     private final CatalogRepository catalogRepository;
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
     private final HttpSession httpSession;
@@ -88,6 +91,8 @@ public class UserService implements UserDetailsService {
 
     public void deleteUserById(Integer userId)
     {
+        List<SharedNote> list = sharedRepository.findRelatedNotes(userId);
+        sharedRepository.deleteAll(list);
         userRepository.deleteById(userId);
     }
 }

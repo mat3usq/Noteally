@@ -1,10 +1,10 @@
 # TODO/notatki:
-- Autoryzacja (admin, swoje notatki, usuwanie, przegladanie tylko swoich rzeczy)
 - Walidacja/errory
 - filtrowanie
-- Udostepnianie
-- w katalogu shared nie mozna usuwac i dodawac notatek
-- nie mozna usunac ani edytowac katalogu default i shared
+- widok przy udostepnianiu, komu udostepniasz i mozliwosc przestania
+- widok udostepnianej notatki (od kogo)
+- zablokowanie panelu admina
+- link z notatki ma zniknac jak go nie ma
 - 
 
 
