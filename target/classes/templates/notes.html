@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Notatki</title>
 	<link rel="stylesheet" th:href="@{/css/notes.css}" />
+	<link rel="stylesheet" href="../static/css/notes.css">
 	<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -50,6 +51,11 @@
 	</div>
 	<div class="wrapper">
 		<div class="header">
+			<div class="search-bar">
+				<input type="text" placeholder="Search" />
+				<a th:href="@{'/catalogs/search'}"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
+			</div>
+
 			<nav class="nav">
 				<a th:text="${catalog.getName()}" class="nav-item is-active" active-color="pink">Katalog</a>
 				<a th:href="@{'/catalogs'}" class="nav-item" active-color="pink">Katalogi</a>

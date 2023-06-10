@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Katalogi</title>
 		<link rel="stylesheet" th:href="@{/css/catalogs.css}" />
+		<link rel="stylesheet" th:href="@{/css/search.css}" />
 		<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
@@ -21,13 +22,16 @@
 				</div>
 				<div class="line"></div>
 				<div class="add-note anim" style="--delay: 0.2s">
-					<a th:href="@{'/catalogs/' + 'createCatalog'}"
-						><i class="fa-solid fa-folder-plus"></i
-					></a>
+					<a th:href="@{'/catalogs/' + 'createCatalog'}"><i class="fa-solid fa-folder-plus"></i></a>
 				</div>
 			</div>
 			<div class="wrapper">
 				<div class="header">
+					<div class="search-bar">
+						<input type="text" placeholder="Search" />
+						<a th:href="@{'/catalogs/search'}"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
+					</div>
+
 					<nav class="nav">
 						<a th:href="@{'/catalogs'}" class="nav-item is-active" active-color="pink">Katalogi</a>
 						<a th:href="@{/login}" class="nav-item" active-color="pink">Wyloguj Sie!</a>
@@ -40,22 +44,17 @@
 							<div class="container-catalog">
 								<li>
 									<i class="fa-solid fa-folder"></i>
-									<a
-										th:href="@{'/catalogs/' + ${catalog.getId()}}"
-										th:text="${catalog.getName()}"
-										>Nazwa Katalogu</a
-									>
+									<a th:href="@{'/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a>
 								</li>
 								<div th:if="${catalog.getName() != 'default' && catalog.getName() != 'shared'}">
 									<a th:href="@{'/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
-									><i class="fa-solid fa-xmark"></i
+										><i class="fa-solid fa-xmark"></i
 									></a>
 
 									<a th:href="@{'/catalogs/' + 'editCatalog/' + ${catalog.getId()}}"
-									><i class="fa-regular fa-pen-to-square"></i
+										><i class="fa-regular fa-pen-to-square"></i
 									></a>
 								</div>
-
 							</div>
 						</ul>
 					</div>
