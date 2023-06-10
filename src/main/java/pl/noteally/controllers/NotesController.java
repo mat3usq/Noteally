@@ -228,4 +228,25 @@ public class NotesController {
         }
         return "redirect:/catalogs";
     }
+
+    @PostMapping("/search")
+    public String search(@RequestParam(name="search") String search, Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session){
+
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            List<Note> noteList;
+            if (catalog.get().getName().equals("shared")) {
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            } else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList.stream().filter(n -> n.getTitle().contains(search)).toList());
+            return "notes";
+        }
+        return "redirect:/catalogs";
+    }
 }

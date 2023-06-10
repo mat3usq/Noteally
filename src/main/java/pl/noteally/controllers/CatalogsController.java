@@ -105,4 +105,14 @@ public class CatalogsController {
         catalogService.updateCatalog(catalog, catalogId);
         return "redirect:/catalogs";
     }
+
+    @PostMapping("/search")
+    public String search(@RequestParam(name="search") String search, HttpSession session, Model model){
+
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
+        model.addAttribute("catalogs", catalogList.stream().filter(c -> c.getName().contains(search)).toList());
+        model.addAttribute("user", user.get());
+        return "catalogs";
+    }
 }

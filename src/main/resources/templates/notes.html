@@ -51,7 +51,7 @@
 	<div class="wrapper">
 		<div class="header">
 			<div class="search-bar">
-				<form th:action="@{'/notes/search'}"
+				<form th:action="@{'/catalogs/' + ${catalog.getId()} + '/search'}"
 					  th:method="post">
 					<input  type="text" id="search" name="search" placeholder="Search" />
 					<button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
