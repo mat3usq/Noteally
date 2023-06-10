@@ -4,6 +4,7 @@
 - naprawa wylogowania
 - zapamietywanie kryteriow sortowania
 - confirm pasword
+- backend DLA KUBY z filtrowaniem po dacie 
 
 #               Java Spring Projekt -> Noteally
 
