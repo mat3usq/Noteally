@@ -15,10 +15,8 @@ import pl.noteally.services.CatalogService;
 import pl.noteally.services.NoteService;
 import pl.noteally.services.UserService;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Controller
 @RequestMapping("/catalogs/{catalogId}")
@@ -40,6 +38,24 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
+
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
             model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);

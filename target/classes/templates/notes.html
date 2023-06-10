@@ -23,13 +23,27 @@
 					</div>
 				</div>
 				<div class="line"></div>
-				<div th:if="${catalog.getName() != 'shared'}" class="add-note anim" style="--delay: 0.2s">
-					<a th:href="@{'/catalogs/' + ${catalog.getId()} + '/createNote'}"
-						><i class="fa-regular fa-square-plus"></i
+				<div  class="add-note anim" style="--delay: 0.2s">
+					<form class="dates" th:action="@{'/catalogs/' + ${catalog.getId()} + '/filter'}" th:method="post">
+						<label class="label-date">
+							<span class="date-note">From: </span>
+							<input type="date" name="startDate" th:value="${oldDate}" />
+						</label>
+						<label class="label-date">
+							<span class="date-note">To: </span>
+							<input type="date" name="endDate" th:value="${newDate}" />
+						</label>
+						<button class="filter" type="submit">Filter</button>
+					</form>
+					<a th:if="${catalog.getName() != 'shared'}" th:href="@{'/catalogs/' + ${catalog.getId()} + '/createNote'}"
+					><i class="fa-regular fa-square-plus"></i
 					></a>
+
 				</div>
+				<div th:if="${catalog.getName() != 'shared'}" class="line-share"></div>
 				<div th:if="${catalog.getName() != 'shared'}" class="user-share anim" style="--delay: 0.2s">
 					<p class="side-title">SHARING FROM THIS CATALOG:</p>
+					<p th:if="${sharedNotes.size() == 0}" class="side-title-wrong">You don't share any notes here!</p>
 					<div th:each="share : ${sharedNotes}">
 						<p
 							th:if="${share.getNote().getCatalog().getId() == catalog.getId()}"
