@@ -13,7 +13,7 @@ html {
 	--body-font: "Poppins", sans-serif;
 	--theme-bg: #1f1d2bc5;
 	--body-color: #808191;
-	--button-bg: #353340;
+	--button-bg: #4c45706a;
 	--border-color: rgb(128 129 145 / 24%);
 	--video-bg: #252936;
 	--delay: 0s;
@@ -159,7 +159,7 @@ body:before {
 	height: 100%;
 	border: none;
 	font-family: var(--body-font);
-	background-color: var(--button-bg);
+	background-color: transparent;
 	font-size: 20px;
 	font-weight: 500;
 	margin-left: 15px;
