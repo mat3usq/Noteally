@@ -31,9 +31,8 @@ public class WebSecurity {
                         .requestMatchers("/css/**", "/images/**","/js/**").permitAll()
                         .requestMatchers("/register", "/registerMe","/","/login").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers("/catalogs", "/catalogs/ASC", "catalogs/DESC").permitAll()
+                        .requestMatchers("/catalogs/createCatalog", "/catalogs/deleteCatalog", "/catalogs/editCatalog").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/catalogs/{catalogId}/*").hasAnyAuthority("ADMIN", "USER")
-                        .requestMatchers("catalogs/*").hasAnyAuthority("ADMIN", "USER")
 
                         .anyRequest().authenticated()
                 ).formLogin(
