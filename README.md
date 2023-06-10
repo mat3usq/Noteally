@@ -6,6 +6,7 @@
 - confirm pasword
 - jak jestes zalogowany na admina, to masz na navabrze "Admin Panel"
 - wybieranie rol przez Admina poprzez wybor a nie wpisywanie
+- naprawienie przycisku logowania (Kokretnie link)
 
 
 
