@@ -53,12 +53,13 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
-
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             model.addAttribute("oldDate", oldDate);
             model.addAttribute("newDate", newDate);
             model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";
@@ -76,10 +77,28 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
-            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getTitle));
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";
@@ -96,10 +115,29 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
-            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getTitle).reversed());
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";
@@ -116,10 +154,29 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
-            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getDate));
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";
@@ -136,10 +193,29 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
-            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getDate).reversed());
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";

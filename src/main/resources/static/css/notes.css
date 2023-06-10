@@ -785,3 +785,10 @@ a {
 	cursor: pointer;
 	background-color: transparent;
 }
+
+.name-catalog{
+	font-weight: bold;
+	letter-spacing: 2px;
+	font-size: 20px;
+	color: rgba(0, 255, 255, 0.69);
+}

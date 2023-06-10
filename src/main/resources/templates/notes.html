@@ -14,7 +14,7 @@
 			<div class="sidebar">
 				<h1 class="note">Note<span class="ally">ally</span></h1>
 				<div class="side-wrapper">
-					<div class="side-title">SORTOWANIE</div>
+					<div class="side-title">SORT: <span class="name-catalog" th:text="${catalog.getName()}">Katalog</span></div>
 					<div class="side-menu">
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" th:text="'Alfabetycznie A-Z'"></a>
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
@@ -65,9 +65,9 @@
 					</form>
 
 					<nav class="nav">
-						<a th:text="${catalog.getName()}" class="nav-item is-active" active-color="pink">Katalog</a>
-						<a th:href="@{'/catalogs'}" class="nav-item" active-color="pink">Katalogi</a>
-						<a th:href="@{/login}" class="nav-item" active-color="pink">Wyloguj Sie!</a>
+						<a th:if="${user.getRole().toString().equals('ADMIN')}" th:href="@{'/admin'}" class="nav-item" active-color="red">ADMIN</a>
+						<a th:href="@{'/catalogs'}" class="nav-item is-active" active-color="pink">Catalogs</a>
+						<a th:href="@{/login}" class="nav-item" active-color="pink">Sign Out!</a>
 						<span class="nav-indicator"></span>
 					</nav>
 				</div>

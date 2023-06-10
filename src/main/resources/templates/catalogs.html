@@ -36,8 +36,9 @@
 							</form>
 
 					<nav class="nav">
-						<a th:href="@{'/catalogs'}" class="nav-item is-active" active-color="pink">Katalogi</a>
-						<a th:href="@{/login}" class="nav-item" active-color="pink">Wyloguj Sie!</a>
+						<a th:if="${user.getRole().toString().equals('ADMIN')}" th:href="@{'/admin'}" class="nav-item" active-color="red">ADMIN</a>
+						<a th:href="@{'/catalogs'}" class="nav-item is-active" active-color="pink">Catalogs</a>
+						<a th:href="@{/login}" class="nav-item" active-color="pink">Sign Out!</a>
 						<span class="nav-indicator"></span>
 					</nav>
 				</div>
