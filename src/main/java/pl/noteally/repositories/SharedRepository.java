@@ -15,6 +15,10 @@ public interface SharedRepository  extends JpaRepository<SharedNote, Integer> {
     List<SharedNote> findByUserId(int userId);
 
     @Query
+            ("SELECT n FROM SharedNote n WHERE n.note.catalog.user.id = ?1")
+    List<SharedNote> findMySharedNotes(int userId);
+
+    @Query
             ("SELECT n FROM SharedNote n WHERE n.user.id = ?1 AND n.note.id = ?2")
     List<SharedNote> findByUserIdAndNoteId(int userId, int noteId);
 

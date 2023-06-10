@@ -41,6 +41,7 @@ public class NotesController {
             else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
             return "notes";
@@ -54,7 +55,14 @@ public class NotesController {
         Integer userId = (Integer)session.getAttribute("userId");
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
         {
-            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            List<Note> noteList;
+            if(catalog.get().getName().equals("shared")){
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            }
+            else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             noteList.sort(Comparator.comparing(Note::getTitle));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
@@ -68,7 +76,14 @@ public class NotesController {
         Integer userId = (Integer)session.getAttribute("userId");
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
         {
-            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            List<Note> noteList;
+            if(catalog.get().getName().equals("shared")){
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            }
+            else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             noteList.sort(Comparator.comparing(Note::getTitle).reversed());
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
@@ -82,7 +97,14 @@ public class NotesController {
         Integer userId = (Integer)session.getAttribute("userId");
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
         {
-            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            List<Note> noteList;
+            if(catalog.get().getName().equals("shared")){
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            }
+            else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             noteList.sort(Comparator.comparing(Note::getDate));
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);
@@ -96,7 +118,14 @@ public class NotesController {
         Integer userId = (Integer)session.getAttribute("userId");
         if(catalog.isPresent() && catalog.get().getUser().getId().equals(userId))
         {
-            List<Note> noteList = noteService.getNotesByCatalogId(catalogId);
+            List<Note> noteList;
+            if(catalog.get().getName().equals("shared")){
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            }
+            else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             noteList.sort(Comparator.comparing(Note::getDate).reversed());
             model.addAttribute("catalog", catalog.get());
             model.addAttribute("notes", noteList);

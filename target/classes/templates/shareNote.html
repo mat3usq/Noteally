@@ -82,7 +82,7 @@
 
 			<div class="shared-users">
 				<ul class="user-list" th:each="user : ${users}">
-					<p th:text="${user.getName()}"></p>
+					<p th:text="${user.getLogin()}"></p>
 				</ul>
 			</div>
 

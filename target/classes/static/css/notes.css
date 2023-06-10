@@ -77,7 +77,7 @@ body:before {
 }
 
 .sidebar {
-	width: 250px;
+	width: 300px;
 	height: 100%;
 	padding: 30px;
 	display: flex;
@@ -116,6 +116,8 @@ body:before {
 }
 
 .side-title {
+	font-weight: bold;
+	color: aliceblue;
 	font-size: 18px;
 	letter-spacing: 0.07em;
 	margin-bottom: 24px;
@@ -648,4 +650,27 @@ button:hover {
 	outline: none;
 	font-size: 1.2em;
 	border-radius: 25px;
+}
+
+.user-note{
+	color: floralwhite;
+	font-size: 16px;
+	letter-spacing: 0px;
+}
+
+.user-share p{
+	display: inline;
+}
+
+a{
+	transition: opacity 1s ease-in-out;
+}
+
+.user-share i{
+	font-size: 16px;
+	color: #d9266b;
+}
+
+.user-share i:hover{
+	color: #05beae;
 }

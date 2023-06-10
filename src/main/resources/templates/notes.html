@@ -39,6 +39,14 @@
 			><i class="fa-regular fa-square-plus"></i
 			></a>
 		</div>
+		<div th:if="${catalog.getName() == 'shared'}" class="user-share anim" style="--delay: 0.2s">
+			<p class="side-title">UDOSTEPNIONE NOTATKI:</p>
+			<div th:each="share : ${sharedNotes}">
+			<p class="user-note" th:text="${'FOR: ' + share.getUser().getLogin() + ' - ' + share.getNote().getTitle()}"></p>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteSharedNote/' + ${share.getId()}}"><i class="fa-solid fa-delete-left"></i></a>
+			</div>
+		</div>
+
 	</div>
 	<div class="wrapper">
 		<div class="header">

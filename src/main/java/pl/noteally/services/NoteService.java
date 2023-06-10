@@ -29,8 +29,11 @@ public class NoteService {
         List<Note> notes = new ArrayList<>();
         for (int i=0; i< sNote.size(); i++)
             notes.add(sNote.get(i).getNote());
-
         return notes;
+    }
+
+    public List<SharedNote> getMySharedNotes(Integer userId) {
+        return sharedRepository.findMySharedNotes(userId);
     }
 
     public void saveNote(Note note, Integer catalogId)
