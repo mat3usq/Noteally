@@ -51,8 +51,11 @@
 	<div class="wrapper">
 		<div class="header">
 			<div class="search-bar">
-				<input type="text" placeholder="Search" />
-				<a th:href="@{'/catalogs/search'}"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
+				<form th:action="@{'/notes/search'}"
+					  th:method="post">
+					<input  type="text" id="search" name="search" placeholder="Search" />
+					<button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+				</form>
 			</div>
 
 			<nav class="nav">
