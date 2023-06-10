@@ -30,7 +30,8 @@ public class WebSecurity {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/css/**", "/images/**","/js/**").permitAll()
                         .requestMatchers("/registerMe","/","/login").permitAll()
-                        //.requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/catalogs/{catalogId}/*").hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated()
                 ).formLogin(
                         form -> form

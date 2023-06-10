@@ -49,8 +49,6 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(encodedPassword);
 
-        user.setRole(Role.USER);
-
         userRepository.save(user);
 
         //default catalogs

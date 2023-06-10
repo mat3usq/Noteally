@@ -1,3 +1,3 @@
 package pl.noteally.data;
 
-public enum Role {GUEST, USER, ADMIN}
+public enum Role {LIMITED, USER, ADMIN}

@@ -63,9 +63,9 @@ public class User implements UserDetails
     private Integer age;
 
     @Basic
-    @Column(name = "role", nullable = false, columnDefinition = "varchar(6) default 'GUEST'")
+    @Column(name = "role", nullable = false, columnDefinition = "varchar(7) default 'LIMITED'")
     @Enumerated(EnumType.STRING)
-    private Role role = Role.GUEST;
+    private Role role = Role.LIMITED;
 
     @Override
     public String toString() {

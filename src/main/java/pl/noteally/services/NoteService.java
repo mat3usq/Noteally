@@ -64,7 +64,13 @@ public class NoteService {
         noteRepository.deleteById(noteId);
     }
 
+    public void deleteShareById(Integer shareId) {sharedRepository.deleteById(shareId);}
+
     public Optional<Note> getNoteById(Integer noteId){
         return noteRepository.findById(noteId);
+    }
+
+    public Optional<SharedNote> getShareById(Integer shareId){
+        return sharedRepository.findById(shareId);
     }
 }
