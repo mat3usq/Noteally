@@ -52,6 +52,25 @@ public class CatalogsController {
         return "catalogs";
     }
 
+    @GetMapping("/notesASC")
+    public String sortCatalogsByNotesASC(Model model, HttpSession session) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
+        catalogList.sort(Comparator.comparing(Catalog::getNoteCount));
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
+        model.addAttribute("catalogs", catalogList);
+        model.addAttribute("user", user.get());
+        return "catalogs";
+    }
+
+    @GetMapping("/notesDESC")
+    public String sortCatalogsByNotesDESC(Model model, HttpSession session) {
+        List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
+        catalogList.sort(Comparator.comparing(Catalog::getNoteCount).reversed());
+        Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
+        model.addAttribute("catalogs", catalogList);
+        model.addAttribute("user", user.get());
+        return "catalogs";
+    }
 
     @GetMapping("/createCatalog")
     public String redirectCreate(Model model, HttpSession session){

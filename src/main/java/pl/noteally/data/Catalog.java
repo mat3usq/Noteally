@@ -36,6 +36,10 @@ public class Catalog
     @Pattern(regexp = "^[a-z]+$", message = "Name must contain only small letters.")
     private String name;
 
+    public int getNoteCount()
+    {
+        return notes.size();
+    }
     @Override
     public String toString() {
         return "Catalog{" +
