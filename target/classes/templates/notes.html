@@ -39,11 +39,11 @@
 			><i class="fa-regular fa-square-plus"></i
 			></a>
 		</div>
-		<div th:if="${catalog.getName() == 'shared'}" class="user-share anim" style="--delay: 0.2s">
-			<p class="side-title">UDOSTEPNIONE NOTATKI:</p>
+		<div th:if="${catalog.getName() != 'shared'}" class="user-share anim" style="--delay: 0.2s">
+			<p class="side-title">SHARING FROM THIS CATALOG:</p>
 			<div th:each="share : ${sharedNotes}">
-			<p class="user-note" th:text="${'FOR: ' + share.getUser().getLogin() + ' - ' + share.getNote().getTitle()}"></p>
-				<a th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteSharedNote/' + ${share.getId()}}"><i class="fa-solid fa-delete-left"></i></a>
+			<p th:if="${share.getNote().getCatalog().getId() == catalog.getId()}" class="user-note" th:text="${'FOR: ' + share.getUser().getLogin() + ' - ' + share.getNote().getTitle()}"></p>
+				<a th:if="${share.getNote().getCatalog().getId() == catalog.getId()}" th:href="@{'/catalogs/' + ${catalog.getId()} + '/deleteSharedNote/' + ${share.getId()}}"><i class="fa-solid fa-delete-left"></i></a>
 			</div>
 		</div>
 

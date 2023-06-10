@@ -81,6 +81,7 @@
 			<h2 class="note-share">Share <span class="ally">Note</span></h2>
 
 			<div class="shared-users">
+				<p>Available Users:</p>
 				<ul class="user-list" th:each="user : ${users}">
 					<p th:text="${user.getLogin()}"></p>
 				</ul>
