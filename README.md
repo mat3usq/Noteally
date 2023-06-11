@@ -1,6 +1,9 @@
 # TODO/notatki:
 - Walidacja/errory (one rozwalają okienka np w create)
 - naprawa wylogowania (OGOLNIE TRZEBA OGARNAC SESJE)
+- filtrowanie pustego katalogu powinno nie robic nic
+- search sie znowu rozjeżdza
+- filtrowanie w shared sie rozjezdza
 - Zapamiętanie kierunków i kryteriów sortowania - 1p.
 - confirm pasword
 - zamiast asc/desc strzalki
