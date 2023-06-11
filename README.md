@@ -10,6 +10,7 @@
 - Usługa REST (do uwierzytelniania użytkowników) - 3p. // Tego chyba nie trzeba?
 - Klient REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
 - Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
+- dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
 
 #               Java Spring Projekt -> Noteally
 
