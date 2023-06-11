@@ -3,6 +3,7 @@
 - naprawa wylogowania (OGOLNIE TRZEBA OGARNAC SESJE)
 - Zapamiętanie kierunków i kryteriów sortowania - 1p.
 - confirm pasword
+- zamiast asc/desc strzalki
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1

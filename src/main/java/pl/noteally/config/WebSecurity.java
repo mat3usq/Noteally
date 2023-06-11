@@ -33,7 +33,6 @@ public class WebSecurity {
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/catalogs/createCatalog", "/catalogs/deleteCatalog", "/catalogs/editCatalog").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/catalogs/{catalogId}/*").hasAnyAuthority("ADMIN", "USER")
-
                         .anyRequest().authenticated()
                 ).formLogin(
                         form -> form
