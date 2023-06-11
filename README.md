@@ -1,10 +1,9 @@
 # TODO/notatki:
 - Walidacja/errory
-- filtrowanie
 - naprawa wylogowania
 - zapamietywanie kryteriow sortowania
 - confirm pasword
-- backend DLA KUBY z filtrowaniem po dacie 
+- Przycisk do cancelowania filtrowania i wyszukiwania 
 
 #               Java Spring Projekt -> Noteally
 

@@ -24,7 +24,7 @@
 				</div>
 				<div class="line"></div>
 				<div  class="add-note anim" style="--delay: 0.2s">
-					<form class="dates" th:action="@{'/catalogs/' + ${catalog.getId()} + '/filter'}" th:method="post">
+					<form class="dates" th:action="@{'/catalogs/' + ${catalog.getId()} + '/filterByDates'}" th:method="post">
 						<label class="label-date">
 							<span class="date-note">From: </span>
 							<input type="date" name="startDate" th:value="${oldDate}" />
@@ -43,7 +43,7 @@
 				<div th:if="${catalog.getName() != 'shared'}" class="line-share"></div>
 				<div th:if="${catalog.getName() != 'shared'}" class="user-share anim" style="--delay: 0.2s">
 					<p class="side-title">SHARING FROM THIS CATALOG:</p>
-					<p th:if="${sharedNotes.size() == 0}" class="side-title-wrong">You don't share any notes here!</p>
+					<p th:if="${sharedNotes.size() == 0}" class="side-title-wrong">You don't share any notes from here!</p>
 					<div th:each="share : ${sharedNotes}">
 						<p
 							th:if="${share.getNote().getCatalog().getId() == catalog.getId()}"

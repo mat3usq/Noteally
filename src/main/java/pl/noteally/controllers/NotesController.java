@@ -341,4 +341,29 @@ public class NotesController {
         }
         return "redirect:/catalogs";
     }
+
+    @PostMapping("/filterByDates")
+    public String filter(@RequestParam(name="startDate") LocalDate startDate, @RequestParam(name="endDate") LocalDate endDate, Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session){
+
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            List<Note> noteList;
+            if (catalog.get().getName().equals("shared")) {
+                noteList = noteService.getNotesFromSharedByCatalogId(userId);
+            } else {
+                noteList = noteService.getNotesByCatalogId(catalogId);
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
+            model.addAttribute("oldDate", startDate);
+            model.addAttribute("newDate", endDate);
+            model.addAttribute("user", user.get());
+            model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
+            model.addAttribute("catalog", catalog.get());
+            model.addAttribute("notes", noteList.stream().filter(n -> (n.getDate().isAfter(startDate) && n.getDate().isBefore(endDate))
+            || n.getDate().isEqual(startDate) || n.getDate().isEqual(endDate)).toList());
+            return "notes";
+        }
+        return "redirect:/catalogs";
+    }
 }
