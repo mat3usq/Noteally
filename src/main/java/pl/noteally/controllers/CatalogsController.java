@@ -85,9 +85,8 @@ public class CatalogsController {
     public String addCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors",bindingResult);
-            return "redirect:/catalogs/createCatalog";
+            return "createCatalog";
         }
-
         catalogService.saveCatalog(catalog, (Integer) session.getAttribute("userId"));
         return "redirect:/catalogs";
     }
