@@ -3,6 +3,8 @@ package pl.noteally.controllers;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import pl.noteally.data.User;
 import pl.noteally.repositories.UserRepository;
 import pl.noteally.services.UserService;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +29,15 @@ public class AdminController {
     @GetMapping("")
     public String getAllUser(Model model, HttpSession session) {
         List<User> userList=userService.getUsers();
-        model.addAttribute("userList", userList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loggedIn = authentication.getName();
+        List<User> filteredUserList = new ArrayList<>();
+        for (User user : userList) {
+            if (!user.getUsername().equals(loggedIn)) {
+                filteredUserList.add(user);
+            }
+        }
+        model.addAttribute("userList", filteredUserList);
         return "admin";
     }
 
