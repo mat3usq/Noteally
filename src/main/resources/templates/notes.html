@@ -20,6 +20,7 @@
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataASC'}" th:value="3" th:text="'Od najstarszej'"></a>
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataDESC'}" th:value="4" th:text="'Od najnowszej'"></a>
+						<a th:href="@{'/catalogs/' + ${catalog.getId()}}" th:value="5" th:text="'Usuń Filtry'"></a>
 					</div>
 				</div>
 				<div class="line"></div>

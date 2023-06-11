@@ -1,9 +1,15 @@
 # TODO/notatki:
 - Walidacja/errory
-- naprawa wylogowania
-- zapamietywanie kryteriow sortowania
+- naprawa wylogowania (OGOLNIE TRZEBA OGARNAC SESJE)
+- Zapamiętanie kierunków i kryteriów sortowania - 1p.
 - confirm pasword
-- Przycisk do cancelowania filtrowania i wyszukiwania 
+- Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
+- Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
+- Wygląd - WCAG2.1
+- Ciasteczka - 1p.
+- Usługa REST (do uwierzytelniania użytkowników) - 3p. // Tego chyba nie trzeba?
+- Klient REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
+- Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 
 #               Java Spring Projekt -> Noteally
 
@@ -73,6 +79,6 @@ kategoria, alfabetycznie) - 2p.
 #       6. Dodatkowe Elementy
 - Dokumentacja z odniesieniem do wszystkich 
 elementów punktowanych
-- Wygląd - wystarczy Bootstrap (Mateusz Ogarnie Frontend)
+- Wygląd - (Mateusz Ogarnie Frontend)
 - Prezentacja na forum grupy
 - Termin - ostatnie planowe zajęcia

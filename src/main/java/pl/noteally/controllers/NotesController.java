@@ -334,9 +334,30 @@ public class NotesController {
             } else {
                 noteList = noteService.getNotesByCatalogId(catalogId);
             }
+
+            noteList = noteList.stream().filter(n -> n.getTitle().contains(search)).toList();
+
+            LocalDate oldDate = null;
+            LocalDate newDate = null;
+
+            for (Note n : noteList) {
+                LocalDate currentDate = n.getDate();
+
+                if (oldDate == null || currentDate.isBefore(oldDate)) {
+                    oldDate = currentDate;
+                }
+
+                if (newDate == null || currentDate.isAfter(newDate)) {
+                    newDate = currentDate;
+                }
+            }
+            Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
+            model.addAttribute("oldDate", oldDate);
+            model.addAttribute("newDate", newDate);
             model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
             model.addAttribute("catalog", catalog.get());
-            model.addAttribute("notes", noteList.stream().filter(n -> n.getTitle().contains(search)).toList());
+            model.addAttribute("notes", noteList);
+            model.addAttribute("user", user.get());
             return "notes";
         }
         return "redirect:/catalogs";
@@ -359,9 +380,8 @@ public class NotesController {
             model.addAttribute("newDate", endDate);
             model.addAttribute("user", user.get());
             model.addAttribute("sharedNotes", noteService.getMySharedNotes(userId));
-            model.addAttribute("catalog", catalog.get());
-            model.addAttribute("notes", noteList.stream().filter(n -> (n.getDate().isAfter(startDate) && n.getDate().isBefore(endDate))
-            || n.getDate().isEqual(startDate) || n.getDate().isEqual(endDate)).toList());
+            model.addAttribute("catalog", catalog.get());model.addAttribute("notes", noteList.stream().filter(n -> (n.getDate().isAfter(startDate) && n.getDate().isBefore(endDate))
+                        || n.getDate().isEqual(startDate) || n.getDate().isEqual(endDate)).toList());
             return "notes";
         }
         return "redirect:/catalogs";
