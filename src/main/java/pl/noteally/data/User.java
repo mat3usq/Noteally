@@ -66,7 +66,7 @@ public class User implements UserDetails
     @Column(name = "role", nullable = false, columnDefinition = "varchar(7) default 'LIMITED'")
     @Enumerated(EnumType.STRING)
     private Role role = Role.LIMITED;
-
+    
     @Override
     public String toString() {
         return "User{" +
