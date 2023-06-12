@@ -1,5 +1,7 @@
 package pl.noteally.controllers;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -40,11 +42,13 @@ public class Log_Reg_Controller {
         {
             return "redirect:/catalogs";
         }
+
+        model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam ("confirmPassword") String confirmPassword) {
+    public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam ("confirmPassword") String confirmPassword, HttpServletResponse response) {
         if (bindingResult.hasErrors()) {
             return "register";
         }
@@ -53,6 +57,10 @@ public class Log_Reg_Controller {
             return "register";
         }
         userService.signUpUser(user);
+
+        response.addCookie(new Cookie("catalogCookie", "normal"));
+        response.addCookie(new Cookie("noteCookie", "normal"));
+
         return "login";
     }
 }

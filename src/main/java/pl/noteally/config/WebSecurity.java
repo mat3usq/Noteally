@@ -30,7 +30,7 @@ public class WebSecurity {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/css/**", "/images/**","/js/**").permitAll()
-                        .requestMatchers("/register", "/registerMe","/","/login").permitAll()
+                        .requestMatchers("/register","/","/login").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/catalogs/createCatalog", "/catalogs/deleteCatalog", "/catalogs/editCatalog").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/catalogs/{catalogId}/*").hasAnyAuthority("ADMIN", "USER")

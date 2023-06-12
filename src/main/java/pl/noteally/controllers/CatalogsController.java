@@ -1,6 +1,9 @@
 package pl.noteally.controllers;
 
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -26,7 +29,17 @@ public class CatalogsController {
     final private UserService userService;
 
     @GetMapping("")
-    public String getCatalogsByUserId(Model model, HttpSession session) {
+    public String getCatalogsByUserId(Model model, HttpSession session, HttpServletRequest request) {
+        Cookie cookie = (Cookie) request.getAttribute("catalogCookie");
+        if (cookie.getName().equals("ASC"))
+            return "redirect:/catalogs/ASC";
+        else if (cookie.getName().equals("DESC"))
+            return "redirect:/catalogs/ASC";
+        else if (cookie.getName().equals("notesASC"))
+            return "redirect:/catalogs/notesASC";
+        else if (cookie.getName().equals("notesDESC"))
+            return "redirect:/catalogs/notesDESC";
+
         List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
         model.addAttribute("catalogs", catalogList);
@@ -34,7 +47,8 @@ public class CatalogsController {
         return "catalogs";
     }
     @GetMapping("/ASC")
-    public String sortCatalogsASC(Model model, HttpSession session) {
+    public String sortCatalogsASC(Model model, HttpSession session, HttpServletRequest request) {
+        request.setAttribute("catalogCookie", new Cookie("catalogCookie", "ASC"));
         List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getName));
         Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
@@ -43,7 +57,8 @@ public class CatalogsController {
         return "catalogs";
     }
     @GetMapping("/DESC")
-    public String sortCatalogsDESC(Model model, HttpSession session) {
+    public String sortCatalogsDESC(Model model, HttpSession session, HttpServletRequest request) {
+        request.setAttribute("catalogCookie", new Cookie("catalogCookie", "DESC"));
         List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getName).reversed());
         Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
@@ -53,7 +68,8 @@ public class CatalogsController {
     }
 
     @GetMapping("/notesASC")
-    public String sortCatalogsByNotesASC(Model model, HttpSession session) {
+    public String sortCatalogsByNotesASC(Model model, HttpSession session, HttpServletRequest request) {
+        request.setAttribute("catalogCookie", new Cookie("catalogCookie", "notesASC"));
         List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getNoteCount));
         Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
@@ -63,7 +79,8 @@ public class CatalogsController {
     }
 
     @GetMapping("/notesDESC")
-    public String sortCatalogsByNotesDESC(Model model, HttpSession session) {
+    public String sortCatalogsByNotesDESC(Model model, HttpSession session, HttpServletRequest request) {
+        request.setAttribute("catalogCookie", new Cookie("catalogCookie", "notesDESC"));
         List<Catalog> catalogList = catalogService.getCatalogsByUserId((Integer) session.getAttribute("userId"));
         catalogList.sort(Comparator.comparing(Catalog::getNoteCount).reversed());
         Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
