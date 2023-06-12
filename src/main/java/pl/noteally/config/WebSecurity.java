@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.noteally.data.Role;
 import pl.noteally.services.UserService;
 
@@ -49,6 +50,8 @@ public class WebSecurity {
                                 .maxSessionsPreventsLogin(false)
                 ).logout(
                         logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/")
                                 .deleteCookies("JSESSIONID")
                                 .invalidateHttpSession(true)
                 );
