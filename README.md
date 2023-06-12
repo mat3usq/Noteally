@@ -11,7 +11,6 @@
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
-- serwer REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
 - Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
 
