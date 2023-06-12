@@ -1,11 +1,12 @@
 # TODO/notatki:
-`BACKEND`
+        `BACKEND`
 - Walidacja/errory
 - filtrowanie pustego katalogu powinno nie robic nic
 - komunikaty typu "nieprawidlowe haslo lub login"
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
-`FRONTEND`
+
+        `FRONTEND`
 - ostylowanie walidacji
 - ostylowac lupe na wiekszych monitorach
 - "Usuń filtry" pod wyborem daty a nie pomiędzy 
