@@ -57,12 +57,20 @@ public class AdminController {
     }
 
     @GetMapping("/deleteUser/{userId}")
-    public String delete(Model model, @PathVariable("userId") Integer userId) {
+    public String delete(Model model, @PathVariable("userId") Integer userId, HttpSession session) {
+        if((session.getAttribute("userId")).equals(userId))
+        {
+            return "redirect:/admin";
+        }
         userService.deleteUserById(userId);
         return "redirect:/admin";
     }
     @GetMapping("/editUser/{userId}")
-    public String redirectEdit(Model model, @PathVariable("userId") Integer userId){
+    public String redirectEdit(Model model, @PathVariable("userId") Integer userId, HttpSession session){
+        if((session.getAttribute("userId")).equals(userId))
+        {
+            return "redirect:/admin";
+        }
         Optional<User> user = userService.getUserById(userId);
         model.addAttribute("user", user.get());
         return "editUser";
