@@ -2,6 +2,7 @@
 `            BACKEND                `
 - Walidacja/errory
 - filtrowanie pustego katalogu powinno nie robic nic
+- Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - komunikaty typu "nieprawidlowe haslo lub login"
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
@@ -14,7 +15,6 @@
 - zamiast asc/desc strzalki
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
-- Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
 
 #               Java Spring Projekt -> Noteally
