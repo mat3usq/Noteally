@@ -5,7 +5,7 @@
 - komunikaty typu "nieprawidlowe haslo lub login"
 - filtrowanie w shared sie rozjezdza
 - Zapamiętanie kierunków i kryteriów sortowania - 1p.
-- confirm pasword
+- confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
 - zamiast asc/desc strzalki
 - "Usuń filtry" pod wyborem daty a nie pomiędzy
 - w katalogu shared filtrowanie sie rozjeżdża
