@@ -1,14 +1,16 @@
 # TODO/notatki:
-- Walidacja/errory (one rozwalają okienka np w create)
+`BACKEND`
+- Walidacja/errory
 - filtrowanie pustego katalogu powinno nie robic nic
-- search sie znowu rozjeżdza na fullscreenie
 - komunikaty typu "nieprawidlowe haslo lub login"
-- filtrowanie w shared sie rozjezdza
-- confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
-- zamiast asc/desc strzalki
-- "Usuń filtry" pod wyborem daty a nie pomiędzy
-- w katalogu shared filtrowanie sie rozjeżdża
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
+- confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
+`FRONTEND`
+- ostylowanie walidacji
+- ostylowac lupe na wiekszych monitorach
+- "Usuń filtry" pod wyborem daty a nie pomiędzy 
+- guzik filtr w shared poprawic style
+- zamiast asc/desc strzalki
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
 - Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
