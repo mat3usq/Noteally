@@ -13,8 +13,7 @@
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
 - Ciasteczka - 1p.
-- Usługa REST (do uwierzytelniania użytkowników) - 3p. // Tego chyba nie trzeba?
-- Klient REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
+- serwer REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
 - Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
 

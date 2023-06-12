@@ -51,9 +51,13 @@ public class WebSecurity {
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/login")
                                 .deleteCookies("JSESSIONID")
                                 .invalidateHttpSession(true)
+                )
+                .rememberMe(
+                        remember -> remember
+                                .rememberMeParameter("remember-me")
                 );
         return http.build();
     }
