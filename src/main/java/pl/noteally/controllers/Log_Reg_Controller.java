@@ -58,8 +58,12 @@ public class Log_Reg_Controller {
         }
         userService.signUpUser(user);
 
-        response.addCookie(new Cookie("catalogCookie", "normal"));
-        response.addCookie(new Cookie("noteCookie", "normal"));
+        Cookie catalogCookie = new Cookie("catalogCookie" + user.getId(), "default");
+        catalogCookie.setMaxAge(60 * 60 * 24 * 365 * 10);
+        Cookie noteCookie = new Cookie("noteCookie" + user.getId(), "default");
+        noteCookie.setMaxAge(60 * 60 * 24 * 365 * 10);
+        response.addCookie(catalogCookie);
+        response.addCookie(noteCookie);
 
         return "login";
     }

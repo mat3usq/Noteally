@@ -1,5 +1,8 @@
 package pl.noteally.controllers;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -27,9 +30,21 @@ public class NotesController {
     final private UserService userService;
 
     @GetMapping("")
-    public String getCatalogsByUserId(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+    public String getNotesByCatalogId(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletRequest request) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
+
+        Optional<String> sortValue = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).map(Cookie::getValue).findAny();
+
+        if (sortValue.get().equals("ASC"))
+            return "redirect:/catalogs/{catalogId}/ASC";
+        else if (sortValue.get().equals("DESC"))
+            return "redirect:/catalogs/{catalogId}/DESC";
+        else if (sortValue.get().equals("dataASC"))
+            return "redirect:/catalogs/{catalogId}/dataASC";
+        else if (sortValue.get().equals("dataDESC"))
+            return "redirect:/catalogs/{catalogId}/dataDESC";
 
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
             List<Note> noteList;
@@ -66,10 +81,16 @@ public class NotesController {
     }
 
     @GetMapping("/ASC")
-    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+    public String sortNotesByTitleASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
+
+        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+        cookie.get().setValue("ASC");
+        response.addCookie(cookie.get());
+
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
@@ -105,9 +126,15 @@ public class NotesController {
     }
 
     @GetMapping("/DESC")
-    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+    public String sortNotesByTitleDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
+
+        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+        cookie.get().setValue("DESC");
+        response.addCookie(cookie.get());
+
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
@@ -144,9 +171,15 @@ public class NotesController {
     }
 
     @GetMapping("/dataASC")
-    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+    public String sortNotesByDateASC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
+
+        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+        cookie.get().setValue("dataASC");
+        response.addCookie(cookie.get());
+
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
@@ -183,9 +216,15 @@ public class NotesController {
     }
 
     @GetMapping("/dataDESC")
-    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
+    public String sortNotesByDateDESC(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
+
+        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+        cookie.get().setValue("dataDESC");
+        response.addCookie(cookie.get());
+
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {

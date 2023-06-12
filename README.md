@@ -4,7 +4,6 @@
 - search sie znowu rozjeżdza na fullscreenie
 - komunikaty typu "nieprawidlowe haslo lub login"
 - filtrowanie w shared sie rozjezdza
-- Zapamiętanie kierunków i kryteriów sortowania - 1p.
 - confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
 - zamiast asc/desc strzalki
 - "Usuń filtry" pod wyborem daty a nie pomiędzy
@@ -12,7 +11,6 @@
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
-- Ciasteczka - 1p.
 - serwer REST - 2p. (SPRAWDZANIE CZY NAZWA KATALOGU/NOTATKI JEST RZECZOWNIKIEM)
 - Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
