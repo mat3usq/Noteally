@@ -90,8 +90,11 @@
 				<label for="link">Link</label>
 			</div>
 
-			<button type="submit">Stwórz Notatke</button>
+			<button class="button" type="submit">Stwórz Notatke</button>
 		</form>
+		<a th:href="@{'/catalogs/'+${catalogId}}"
+		><i class="fa-solid fa-xmark"></i
+		></a>
 	</div>
 </div>
 

@@ -145,11 +145,11 @@ body:before {
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: flex-end;
 	margin-right: 30px;
 	padding-left: 0px;
 	padding-top: 10px;
-	padding-right: 40px;
+	padding-right: 20px;
 	height: 70px;
 	width: 120%;
 	max-width: 440px;
@@ -175,6 +175,25 @@ body:before {
 	background-repeat: no-repeat;
 	background-position: 96%;
 	color: #fff;
+}
+
+.search {
+	margin-bottom: 10px;
+	width: 60px;
+	height: 60px;
+	background-color: transparent;
+	border: none;
+	border-radius: 50px;
+	outline: none;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.search:hover {
+	cursor: pointer;
+	background-color: transparent;
 }
 
 .fa-magnifying-glass {
@@ -424,6 +443,7 @@ input[type="date"] {
 }
 
 .add-note i:hover {
+	font-size: 70px;
 	color: lightgreen;
 }
 
@@ -602,7 +622,7 @@ input[type="date"] {
 	padding: 10px;
 }
 
-form button {
+form .button {
 	position: absolute;
 	top: 90%;
 	width: 200px;
@@ -619,7 +639,7 @@ form button {
 	transition: 0.3s;
 }
 
-button:hover {
+.button:hover {
 	cursor: pointer;
 	background-color: aqua;
 	color: #f4157e;
@@ -756,26 +776,6 @@ a {
 	color: #05beae;
 }
 
-.search {
-	top: 12%;
-	left: 57%;
-	width: 60px;
-	height: 60px;
-	background-color: transparent;
-	border: none;
-	border-radius: 50px;
-	outline: none;
-	cursor: pointer;
-	font-size: 1em;
-	font-weight: bold;
-	transition: 0.3s;
-}
-
-.search:hover {
-	cursor: pointer;
-	background-color: transparent;
-}
-
 .name-catalog{
 	font-weight: bold;
 	letter-spacing: 2px;
@@ -796,8 +796,9 @@ a {
 }
 
 .filter{
-	font-size: 36px;
+	transition: .3s;
 	background-color: transparent;
+	border: none;
 	position: absolute;
 	left: 87%;
 	top: 75%;
@@ -806,6 +807,46 @@ a {
 	transform: translate(-50%, -50%);
 }
 
-.filter:hover{
+i{
+	transition: .2s;
+}
+
+button .fa-filter{
+	font-size: 42px;
+	color: aquamarine;
+}
+
+button .fa-filter:hover{
+	font-size: 46px;
+	cursor: pointer;
+	color:chartreuse;
 	background-color: transparent;
+}
+
+.sort:hover{
+	font-size: 46px;
+	color:chartreuse;
+}
+
+.fa-filter-circle-xmark:hover{
+	font-size: 46px;
+    color:#7f063e;
+}
+
+.fa-folder-plus:hover{
+	font-size: 70px;
+}
+
+.fa-xmark {
+	color: #f4157e;
+	font-size: 46px;
+	position: absolute;
+	top: 1%;
+	right: 3%;
+	transition: .3s;
+}
+
+.fa-xmark:hover {
+	color: crimson;
+	font-size: 50px;
 }

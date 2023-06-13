@@ -15,11 +15,11 @@
 		<div class="side-wrapper">
 			<div class="side-title">SORTOWANIE</div>
 			<div class="side-menu">
-				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" >Name <i class="sort fa-solid fa-arrow-down-a-z"></i></a>
-				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" >Name <i class="sort fa-solid fa-arrow-up-a-z"></i></a>
-				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataASC'}" th:value="3" >Date<i class="sort fa-regular fa-calendar-plus"></i></a>
-				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataDESC'}" th:value="4" >Date<i class="sort fa-regular fa-calendar-minus"></i></a>
-				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/deleteFilters'}" th:value="5" >Delete Filters <i class="fa-solid fa-filter-circle-xmark"></i></a>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataASC'}" th:value="3" ><i class="sort fa-regular fa-calendar-plus"></i></a>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/dataDESC'}" th:value="4" ><i class="sort fa-regular fa-calendar-minus"></i></a>
+				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/deleteFilters'}" th:value="5" ><i class="fa-solid fa-filter-circle-xmark"></i></a>
 			</div>
 		</div>
 		<div class="line"></div>
@@ -90,8 +90,11 @@
 				<label for="link">Link</label>
 			</div>
 
-			<button type="submit">Stwórz Notatke</button>
+			<button class="button" type="submit">Stwórz Notatke</button>
 		</form>
+		<a th:href="@{'/catalogs/'+${catalogId}}"
+		><i class="fa-solid fa-xmark"></i
+		></a>
 	</div>
 </div>
 

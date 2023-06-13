@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Admin</title>
 	<link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" href="../static/css/admin.css">
 	<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -92,6 +93,9 @@
 			</div>
 			<button type="submit">Zatwierdź Zmiany</button>
 		</form>
+		<a th:href="@{'/admin'}"
+		><i class="fa-solid fa-xmark"></i
+		></a>
 	</div>
 </div>
 

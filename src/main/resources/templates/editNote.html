@@ -87,8 +87,11 @@
 				<input type="text" id="link" name="link" th:field="*{link}" />
 				<label for="link">Link</label>
 			</div>
-			<button type="submit">Zatwierdź Edycje</button>
+			<button class="button" type="submit">Zatwierdź Edycje</button>
 		</form>
+		<a th:href="@{'/catalogs/'+${catalogId}}"
+		><i class="fa-solid fa-xmark"></i
+		></a>
 	</div>
 </div>
 

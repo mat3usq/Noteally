@@ -100,22 +100,22 @@ body:before {
 }
 .side-menu {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-evenly;
 }
 
 .side-menu a {
-	display: flex;
-	align-items: center;
+	margin: 0;
+	padding: 0;
+	display: block;
 	text-decoration: none;
 	color: aliceblue;
 	font-size: 16px;
 }
 
-.side-menu a + a {
-	margin-top: 26px;
-}
 
 .side-title {
+	font-weight: bold;
 	font-size: 18px;
 	letter-spacing: 0.07em;
 	margin-bottom: 24px;
@@ -347,7 +347,7 @@ i {
 	align-items: center;
 	text-align: center;
 	width: 350px;
-	height: 600px;
+	height: 640px;
 	background: #fef6e4;
 	border-radius: 50px;
 }
@@ -370,7 +370,7 @@ i {
 	position: absolute;
 	transform: translate(-50%, -50%);
 	left: 50%;
-	top: 2%;
+	top: 5%;
 	width: 300px;
 	color: #960a4b;
 }
@@ -466,4 +466,43 @@ p{
 	font-weight: bold;
 	font-size: 32px;
 	color: #ff005d;
+}
+
+i{
+	transition: .2s;
+}
+
+button .fa-filter{
+	font-size: 42px;
+	color: aquamarine;
+}
+
+button .fa-filter:hover{
+	font-size: 46px;
+	cursor: pointer;
+	color:chartreuse;
+	background-color: transparent;
+}
+
+.sort:hover{
+	font-size: 46px;
+	color:chartreuse;
+}
+
+.fa-filter-circle-xmark:hover{
+	font-size: 46px;
+    color:#7f063e;
+}
+.fa-xmark {
+	color: #f4157e;
+	font-size: 46px;
+	position: absolute;
+	top: 2%;
+	right: 3%;
+	transition: .3s;
+}
+
+.fa-xmark:hover {
+	color: crimson;
+	font-size: 50px;
 }

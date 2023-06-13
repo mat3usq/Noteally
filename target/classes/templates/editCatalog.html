@@ -15,11 +15,11 @@
 				<div class="side-wrapper">
 					<div class="side-title">SORTOWANIE</div>
 					<div class="side-menu">
-						<a th:href="@{'/catalogs/ASC' }" th:value="1" >Name <i class="sort fa-solid fa-arrow-down-a-z"></i></a>
-						<a th:href="@{'/catalogs/DESC' }" th:value="2" >Name <i class="sort fa-solid fa-arrow-up-a-z"></i></a>
-						<a th:href="@{'/catalogs/notesASC' }" th:value="3" >Note Count<i class="sort fa-solid fa-arrow-down-1-9"></i></a>
-						<a th:href="@{'/catalogs/notesDESC' }" th:value="4" >Note Count<i class="sort fa-solid fa-arrow-up-1-9"></i></a>
-						<a th:href="@{'/catalogs/deleteFilters' }" th:value="5" >Delete Filters <i class="fa-solid fa-filter-circle-xmark"></i></a>
+						<a th:href="@{'/catalogs/ASC' }" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
+						<a th:href="@{'/catalogs/DESC' }" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
+						<a th:href="@{'/catalogs/notesASC' }" th:value="3" ><i class="sort fa-solid fa-arrow-down-1-9"></i></a>
+						<a th:href="@{'/catalogs/notesDESC' }" th:value="4" ><i class="sort fa-solid fa-arrow-up-1-9"></i></a>
+						<a th:href="@{'/catalogs/deleteFilters' }" th:value="5" ><i class="fa-solid fa-filter-circle-xmark"></i></a>
 					</div>
 				</div>
 				<div class="line"></div>
@@ -73,8 +73,11 @@
 						<label for="name">Nazwa Katalogu</label>
 					</div>
 
-					<button type="submit">Zmień nazwę</button>
+					<button class="button" type="submit">Zmień nazwę</button>
 				</form>
+				<a th:href="@{'/catalogs'}"
+				><i class="fa-solid fa-xmark"></i
+				></a>
 			</div>
 		</div>
 

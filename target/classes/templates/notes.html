@@ -14,7 +14,7 @@
 			<div class="sidebar">
 				<h1 class="note">Note<span class="ally">ally</span></h1>
 				<div class="side-wrapper">
-					<div class="side-title">SORT BY: <span class="name-catalog" th:text="${catalog.getName()}">Katalog</span></div>
+					<div class="side-title">SORT: <span class="name-catalog" th:text="${catalog.getName()}">Katalog</span></div>
 					<div class="side-menu">
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 						<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -34,7 +34,7 @@
 							<span class="date-note">To: </span>
 							<input type="date" name="endDate" th:value="${newDate}" />
 						</label>
-						<button class="filter" type="submit"><i class="fa-solid fa-filter" style="color: aquamarine; font-size: 42px;" ></i></button>
+						<button class="filter" type="submit"><i class="fa-solid fa-filter" ></i></button>
 					</form>
 					<a th:if="${catalog.getName() != 'shared'}" th:href="@{'/catalogs/' + ${catalog.getId()} + '/createNote'}"
 					><i class="fa-regular fa-square-plus"></i

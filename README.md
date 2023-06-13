@@ -7,11 +7,8 @@
 
 `            FRONTEND              `
 - ostylowanie walidacji
-- ostylowac lupe na wiekszych monitorach
-- guzik filtr w shared poprawic style
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
-- dodac opcje wychodzenia z tworzenia/edycja/udostepnianiu notatek/katalogow
 
 #               Java Spring Projekt -> Noteally
 

@@ -81,8 +81,11 @@
 				<label for="username">Share To (username)</label>
 			</div>
 
-			<button type="submit">Share Note</button>
+			<button class="button" type="submit">Share Note</button>
 		</form>
+		<a th:href="@{'/catalogs/'+${catalogId}}"
+		><i class="fa-solid fa-xmark"></i
+		></a>
 	</div>
 </div>
 
