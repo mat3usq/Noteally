@@ -103,6 +103,15 @@ public class CatalogsController {
         return "catalogs";
     }
 
+    @GetMapping("/deleteFilters")
+    public String deleteFilters(Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                c -> c.getName().equals("catalogCookie" + session.getAttribute("userId"))).findAny();
+        cookie.get().setValue("default");
+        response.addCookie(cookie.get());
+        return "redirect:/catalogs";
+    }
+
     @GetMapping("/createCatalog")
     public String redirectCreate(Model model, HttpSession session){
         Catalog catalog = new Catalog();

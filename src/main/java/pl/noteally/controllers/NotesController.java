@@ -37,16 +37,16 @@ public class NotesController {
         Optional<String> sortValue = Arrays.stream(request.getCookies()).filter(
                 c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).map(Cookie::getValue).findAny();
 
-        if (sortValue.get().equals("ASC"))
-            return "redirect:/catalogs/{catalogId}/ASC";
-        else if (sortValue.get().equals("DESC"))
-            return "redirect:/catalogs/{catalogId}/DESC";
-        else if (sortValue.get().equals("dataASC"))
-            return "redirect:/catalogs/{catalogId}/dataASC";
-        else if (sortValue.get().equals("dataDESC"))
-            return "redirect:/catalogs/{catalogId}/dataDESC";
-
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            if (sortValue.get().equals("ASC"))
+                return "redirect:/catalogs/{catalogId}/ASC";
+            else if (sortValue.get().equals("DESC"))
+                return "redirect:/catalogs/{catalogId}/DESC";
+            else if (sortValue.get().equals("dataASC"))
+                return "redirect:/catalogs/{catalogId}/dataASC";
+            else if (sortValue.get().equals("dataDESC"))
+                return "redirect:/catalogs/{catalogId}/dataDESC";
+
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
                 noteList = noteService.getNotesFromSharedByCatalogId(userId);
@@ -68,6 +68,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             model.addAttribute("oldDate", oldDate);
             model.addAttribute("newDate", newDate);
@@ -86,12 +92,12 @@ public class NotesController {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
 
-        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
-                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
-        cookie.get().setValue("ASC");
-        response.addCookie(cookie.get());
-
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                    c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+            cookie.get().setValue("ASC");
+            response.addCookie(cookie.get());
+
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
                 noteList = noteService.getNotesFromSharedByCatalogId(userId);
@@ -112,6 +118,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getTitle));
             model.addAttribute("oldDate", oldDate);
@@ -130,12 +142,12 @@ public class NotesController {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
 
-        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
-                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
-        cookie.get().setValue("DESC");
-        response.addCookie(cookie.get());
-
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                    c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+            cookie.get().setValue("DESC");
+            response.addCookie(cookie.get());
+
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
                 noteList = noteService.getNotesFromSharedByCatalogId(userId);
@@ -157,6 +169,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getTitle).reversed());
             model.addAttribute("oldDate", oldDate);
@@ -175,12 +193,12 @@ public class NotesController {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
 
-        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
-                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
-        cookie.get().setValue("dataASC");
-        response.addCookie(cookie.get());
-
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                    c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+            cookie.get().setValue("dataASC");
+            response.addCookie(cookie.get());
+
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
                 noteList = noteService.getNotesFromSharedByCatalogId(userId);
@@ -202,6 +220,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getDate));
             model.addAttribute("oldDate", oldDate);
@@ -220,12 +244,12 @@ public class NotesController {
         Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
         Integer userId = (Integer) session.getAttribute("userId");
 
-        Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
-                c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
-        cookie.get().setValue("dataDESC");
-        response.addCookie(cookie.get());
-
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                    c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+            cookie.get().setValue("dataDESC");
+            response.addCookie(cookie.get());
+
             List<Note> noteList;
             if (catalog.get().getName().equals("shared")) {
                 noteList = noteService.getNotesFromSharedByCatalogId(userId);
@@ -247,6 +271,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             noteList.sort(Comparator.comparing(Note::getDate).reversed());
             model.addAttribute("oldDate", oldDate);
@@ -259,6 +289,22 @@ public class NotesController {
         }
         return "redirect:/catalogs";
     }
+
+    @GetMapping("/deleteFilters")
+    public String deleteFilters(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+        Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId)) {
+            Optional<Cookie> cookie = Arrays.stream(request.getCookies()).filter(
+                    c -> c.getName().equals("noteCookie" + session.getAttribute("userId"))).findAny();
+            cookie.get().setValue("default");
+            response.addCookie(cookie.get());
+            return "redirect:/catalogs/{catalogId}";
+        }
+        return "redirect:/catalogs";
+    }
+
 
     @GetMapping("/createNote")
     public String redirectCreate(Model model, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
@@ -390,6 +436,12 @@ public class NotesController {
                     newDate = currentDate;
                 }
             }
+
+            if(oldDate == null && newDate == null){
+                oldDate = LocalDate.now();
+                newDate = LocalDate.now();
+            }
+
             Optional<User> user = userService.getUserById((Integer) session.getAttribute("userId"));
             model.addAttribute("oldDate", oldDate);
             model.addAttribute("newDate", newDate);

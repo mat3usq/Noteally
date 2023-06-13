@@ -1,11 +1,10 @@
 # TODO/notatki:
 `            BACKEND                `
 - Walidacja/errory
-- filtrowanie pustego katalogu powinno nie robic nic
-- Gdy sie kliknie przycisk filtr bez zaznaczenia dat wywala bład
 - komunikaty typu "nieprawidlowe haslo lub login"
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
 - confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
+- w adminie jak sie posortuje to sie widzi samego siebie
 
 `            FRONTEND              `
 - ostylowanie walidacji
