@@ -329,6 +329,7 @@ i {
 }
 
 .sidebar .add-note {
+	text-align: center;
 	margin-top: 30px;
 }
 .container-catalog i.fa-xmark {
@@ -374,6 +375,7 @@ i {
 }
 
 .side-menu a:hover {
+	font-weight: bold;
 	color: #12c6de;
 }
 
@@ -495,4 +497,16 @@ button:hover {
 .search:hover {
 	cursor: pointer;
 	background-color: transparent;
+}
+
+.sort{
+	font-weight: bold;
+	color: aquamarine;
+	font-size: 32px;
+}
+
+.fa-filter-circle-xmark{
+	font-weight: bold;
+	font-size: 32px;
+	color: #ff005d;
 }
