@@ -18,9 +18,11 @@
 				<div class="side-wrapper">
 					<div class="side-title">SORTOWANIE</div>
 					<div class="side-menu">
-						<a th:href="@{'/catalogs=ASC' }" th:value="1" th:text="'Alfabetycznie A-Z'"></a>
-						<a th:href="@{'/catalogs=DESC' }" th:value="2" th:text="'Alfabetycznie Z-A'"></a>
-						<a th:href="@{'/catalogs' }" th:value="3" th:text="'Usuń Filtry'"></a>
+						<a th:href="@{'/catalogs/ASC' }" th:value="1" >Name <i class="sort fa-solid fa-arrow-down-a-z"></i></a>
+						<a th:href="@{'/catalogs/DESC' }" th:value="2" >Name <i class="sort fa-solid fa-arrow-up-a-z"></i></a>
+						<a th:href="@{'/catalogs/notesASC' }" th:value="3" >Note Count<i class="sort fa-solid fa-arrow-down-1-9"></i></a>
+						<a th:href="@{'/catalogs/notesDESC' }" th:value="4" >Note Count<i class="sort fa-solid fa-arrow-up-1-9"></i></a>
+						<a th:href="@{'/catalogs/deleteFilters' }" th:value="5" >Delete Filters <i class="fa-solid fa-filter-circle-xmark"></i></a>
 					</div>
 				</div>
 				<div class="line"></div>

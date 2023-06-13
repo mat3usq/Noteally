@@ -15,9 +15,9 @@
         <div class="side-wrapper">
             <div class="side-title">SORT BY</div>
             <div class="side-menu">
-                <a th:href="@{'/admin/ASC' }" th:value="1" th:text="'Name A-Z'"></a>
-                <a th:href="@{'/admin/DESC' }" th:value="2" th:text="'Name Z-A'"></a>
-                <a th:href="@{'/admin' }" th:value="3" th:text="'Delete Filters'"></a>
+                <a th:href="@{'/admin/ASC' }" th:value="1" >Name <i class="sort fa-solid fa-arrow-down-a-z"></i></a>
+                <a th:href="@{'/admin/DESC' }" th:value="2">Name <i class="sort fa-solid fa-arrow-up-a-z"></i></a>
+                <a th:href="@{'/admin' }" th:value="3" >Delete Filters <i class="sort fa-solid fa-filter-circle-xmark"></i></a>
             </div>
         </div>
         <div class="line"></div>
@@ -37,10 +37,10 @@
                     <div class="container-user">
                         <li>
                             <i class="fa-solid fa-user"></i>
-                            <a
+                            <p
                                     th:href="@{'/admin/' + ${user.getId()}}"
                                     th:text="${user.getLogin()}"
-                            >Nazwa Uzytkownika</a
+                            >Nazwa Uzytkownika</p
                             >
                         </li>
                         <a th:href="@{'/admin/' + 'deleteUser/' + ${user.getId()}}"

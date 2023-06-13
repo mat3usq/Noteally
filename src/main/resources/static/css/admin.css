@@ -325,6 +325,7 @@ i {
 }
 
 .side-menu a:hover {
+	font-weight: bold;
 	color: #12c6de;
 }
 
@@ -446,4 +447,23 @@ select{
 	font-size: 18px;
 	border-radius: 25px;
 	font-weight: bold;
+}
+
+p{
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: aliceblue;
+	font-size: 16px;
+}
+
+.sort{
+	font-weight: bold;
+	color: aquamarine;
+	font-size: 32px;
+}
+
+.fa-filter-circle-xmark{
+	font-weight: bold;
+	font-size: 32px;
+	color: #ff005d;
 }

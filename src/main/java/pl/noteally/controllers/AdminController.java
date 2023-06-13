@@ -49,7 +49,7 @@ public class AdminController {
             }
         }
         userList.sort(Comparator.comparing(User::getName));
-        model.addAttribute("userList", userList);
+        model.addAttribute("userList", filteredUserList);
         return "admin";
     }
     @GetMapping("/DESC")
@@ -62,7 +62,7 @@ public class AdminController {
             }
         }
         userList.sort(Comparator.comparing(User::getName).reversed());
-        model.addAttribute("userList", userList);
+        model.addAttribute("userList", filteredUserList);
         return "admin";
     }
 

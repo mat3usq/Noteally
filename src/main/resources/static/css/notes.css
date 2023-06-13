@@ -361,15 +361,6 @@ input[type="date"] {
 	padding: 8px;
 }
 
-.filter{
-	position: absolute;
-	left: 88%;
-	top: 80%;
-	width: 80px;
-	height: 40px;
-	transform: translate(-50%, -50%);
-}
-
 .date-note{
 	color: aliceblue;
 }
@@ -430,6 +421,7 @@ input[type="date"] {
 }
 
 .side-menu a:hover {
+	font-weight: bold;
 	color: #12c6de;
 }
 
@@ -791,4 +783,31 @@ a {
 	letter-spacing: 2px;
 	font-size: 20px;
 	color: rgba(0, 255, 255, 0.69);
+}
+
+.sort{
+	font-weight: bold;
+	color: aquamarine;
+	font-size: 32px;
+}
+
+.fa-filter-circle-xmark{
+	font-weight: bold;
+	font-size: 32px;
+	color: #ff005d;
+}
+
+.filter{
+	font-size: 36px;
+	background-color: transparent;
+	position: absolute;
+	left: 88%;
+	top: 80%;
+	width: 60px;
+	height: 60px;
+	transform: translate(-50%, -50%);
+}
+
+.filter:hover{
+	background-color: transparent;
 }
