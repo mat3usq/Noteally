@@ -100,19 +100,17 @@ body:before {
 }
 .side-menu {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-evenly;
 }
 
 .side-menu a {
-	display: flex;
-	align-items: center;
+	margin: 0;
+	padding: 0;
+	display: block;
 	text-decoration: none;
 	color: aliceblue;
 	font-size: 16px;
-}
-
-.side-menu a + a {
-	margin-top: 26px;
 }
 
 .side-title {
@@ -346,7 +344,7 @@ i {
 	justify-content: center;
 	flex-direction: row;
 	margin-top: 30px;
-	height: 200px;
+	height: 140px;
 }
 
 .dates{
@@ -801,8 +799,8 @@ a {
 	font-size: 36px;
 	background-color: transparent;
 	position: absolute;
-	left: 88%;
-	top: 80%;
+	left: 87%;
+	top: 75%;
 	width: 60px;
 	height: 60px;
 	transform: translate(-50%, -50%);
