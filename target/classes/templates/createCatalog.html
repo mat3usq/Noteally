@@ -71,10 +71,8 @@
 				<form th:action="@{'/catalogs/' + 'createCatalog'}" th:method="post" th:object="${catalog}">
 					<h2 class="note">Tworzenie <span class="ally">Katalogu</span></h2>
 					<div class="input-box">
-						<input type="text" id="name" name="name" th:field="*{name}" />
-						<label for="name" id="name-label">Nazwa Katalogu </label>
-					</div>
-					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" role="alert">
+						<label for="name" id="name-label">Nazwa Katalogu<div id="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
+						<input type="text" id="name" name="name" th:field="*{name}"/>
 					</div>
 					<button class="button" type="submit">Utwórz Katalog</button>
 				</form>

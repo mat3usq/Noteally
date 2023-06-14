@@ -71,7 +71,7 @@
 			<h2 class="note">Stwórz <span class="ally">Notatke</span></h2>
 			<div class="input-box">
 				<input type="text" id="title" name="title" th:field="*{title}" />
-				<label for="title">Tytuł</label>
+				<label for="title">Tytuł<div class="error-label-name" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div></label>
 			</div>
 
 			<div class="input-box">
@@ -82,7 +82,7 @@
 								id="content"
 								name="content"
 								th:field="*{content}"></textarea>
-				<label class="content" for="content">Zawartość</label>
+				<label class="content" for="content">Zawartość<div class="error-label-name" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div></label>
 			</div>
 
 			<div class="input-box">
