@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.Role;
 import pl.noteally.data.SharedNote;
@@ -75,8 +76,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByLogin(login);
+        httpSession.setAttribute("info","Wrong Password Or Login");
         if(user.isPresent())
         {
+            httpSession.setAttribute("info","");
             httpSession.setAttribute("userId", user.get().getId());
             return user.get();
         }

@@ -87,10 +87,13 @@ public class AdminController {
     }
 
     @PostMapping("/editUser/{userId}")
-    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,  @PathVariable("userId") Integer userId){
+    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,  @PathVariable("userId") Integer userId, Model model){
+
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult);
-            return "redirect:/admin/editUser/{userId}";
+            user.setId(userId);
+            model.addAttribute("user", user);
+            model.addAttribute("errors",bindingResult);
+            return "editUser";
         }
         userService.updateUser(user, userId);
         return "redirect:/admin";

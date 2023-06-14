@@ -19,13 +19,13 @@
 					<h2 class="note">Note<span class="ally">ally</span></h2>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-user"></i></span>
-						<input type="text" id="login" name="login" class="form-control" required />
-						<label for="login">Login</label>
+						<input type="text" id="login" name="login" class="form-control" />
+						<label for="login">Login<div class="error-label-name" th:if="${session.info!=null  && !session.info.equals('')}" th:text="${session.info}"></div></label>
 					</div>
 
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-lock"></i></span>
-						<input type="password" id="password" name="password" class="form-control" required />
+						<input type="password" id="password" name="password" class="form-control" />
 						<label for="password">Password</label>
 					</div>
 

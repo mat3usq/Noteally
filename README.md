@@ -1,12 +1,8 @@
 # TODO/notatki:
 `            BACKEND                `
-- Walidacja/errory
-- komunikaty typu "nieprawidlowe haslo lub login"
 - Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
-- confirm pasword (komunikat hasla nie zgadzają sie i inne takie wszystkie komunikaty do walidacji)
 
 `            FRONTEND              `
-- ostylowanie walidacji
 - Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
 - Wygląd - WCAG2.1
 

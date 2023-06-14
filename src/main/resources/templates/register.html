@@ -15,34 +15,34 @@
 					<h2 class="note">Registration<span class="ally">Form</span></h2>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-user"></i></span>
-						<input type="text" id="username" name="username" required th:field="*{login}"/>
-						<label for="username">Username</label>
+						<input type="text" id="username" name="username" th:field="*{login}" th:value="${login}"/>
+						<label for="username">Username<div class="error-label-name" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-signature"></i></span>
-						<input type="name" id="name" name="name" required th:field="*{name}"/>
-						<label for="name">Name</label>
+						<input type="name" id="name" name="name" th:field="*{name}" th:value="${name}"/>
+						<label for="name">Name<div class="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-signature"></i></span>
-						<input type="surname" id="surname" name="surname" required th:field="*{surname}" />
-						<label for="surname">Surname</label>
+						<input type="surname" id="surname" name="surname" th:field="*{surname}" th:value="${surname}"/>
+						<label for="surname">Surname<div class="error-label-name" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-calendar"></i></span>
-						<input type="age" id="age" name="age" required th:field="*{age}" />
-						<label for="age">Age</label>
+						<input type="age" id="age" name="age" th:field="*{age}" th:value="${age}"/>
+						<label for="age">Age<div class="error-label-name" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-lock"></i></span>
-						<input type="password" id="password" name="password" required th:field="*{password}" />
-						<label for="password">Password</label>
+						<input type="password" id="password" name="password"th:field="*{password}" th:value="${password}"/>
+						<label for="password">Password<div class="error-label-name" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></label>
 					</div>
 
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-check"></i></span>
-						<input type="password" id="confirmPassword" name="confirmPassword" required />
-						<label for="confirmPassword">Confirm Password</label>
+						<input type="password" id="confirmPassword" name="confirmPassword" />
+						<label for="confirmPassword">Confirm Password<div class="error-label-name" th:if="${confirm!=null}" th:text="${confirm}"></div></label>
 					</div>
 
 					<button type="submit">Register</button>

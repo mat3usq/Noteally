@@ -38,7 +38,7 @@ public class User implements UserDetails
     private String login;
 
     @Basic
-    @NotBlank(message = "Must not be empty")
+    @NotBlank(message = "Password is required")
     @Size(min = 6, message = "Must be longer than 5 letters")
     @Column(name = "password", nullable = false)
     private String password;
@@ -47,20 +47,22 @@ public class User implements UserDetails
     @NotBlank(message = "Must not be empty")
     @Column(name = "name", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")
-    @Pattern(regexp = "^[A-Z][a-z]*$", message = "Name must contain only letters.")
+    @Pattern(regexp = "^[A-Z][a-z]*$", message = "Name must start with capital letter and contain only letters.")
     private String name;
 
     @Basic
     @NotBlank(message = "Must not be empty")
     @Column(name = "surname", nullable = false)
     @Size(min = 3, max = 50, message = "Size must be between 3 and 50")
-    @Pattern(regexp = "^[A-Z][a-z]*$", message = "Name must contain only letters.")
+    @Pattern(regexp = "^[A-Z][a-z]*$", message = "Name must start with capital letter and contain only letters.")
     private String surname;
 
-    @Basic
     @Column(name = "age", nullable = false)
-    @DecimalMin(value = "18", message = "Must be 18 or older")
+    @NotNull(message = "Age is required")
+    @Min(value = 18, message = "You must be 18 or older")
+    @Max(value = 150, message = "Age cannot exceed 150")
     private Integer age;
+
 
     @Basic
     @Column(name = "role", nullable = false, columnDefinition = "varchar(7) default 'LIMITED'")

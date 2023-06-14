@@ -31,13 +31,13 @@ public class Note
     @Basic
     @Column(name = "title", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")
-    @NotBlank(message = "Must not be empty")
+    @NotBlank(message = "Title is required")
     private String title;
 
     @Basic
     @Column(name = "content", nullable = false)
     @Size(min = 5, max = 500, message = "Size must be between 5 and 500")
-    @NotBlank(message = "Must not be empty")
+    @NotBlank(message = "Content is required")
     private String content;
 
     @Basic

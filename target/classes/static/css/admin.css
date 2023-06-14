@@ -506,3 +506,25 @@ button .fa-filter:hover{
 	color: crimson;
 	font-size: 50px;
 }
+
+.error-label-name {
+	position: absolute;
+	left: -630px;
+	font-size: 15px;
+	padding: 3px;
+	width: 500px;
+	font-weight: bold;
+	color: #f4157e;
+	border-radius: 15px;
+	background-color: rgba(76, 69, 112, 0.84);
+}
+
+.error-label-name::after {
+	content: '\2192';
+	font-weight: bold;
+	font-size: 56px;
+	position: absolute;
+	right: -40px;
+	top: 50%;
+	transform: translateY(-50%);
+}

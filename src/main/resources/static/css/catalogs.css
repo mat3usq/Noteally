@@ -551,6 +551,7 @@ button .fa-filter:hover{
 }
 
 #error-label-name {
+	text-align: center;
 	position: absolute;
 	left: -410px;
 	font-size: 15px;

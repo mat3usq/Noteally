@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,12 +50,23 @@ public class Log_Reg_Controller {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam ("confirmPassword") String confirmPassword, HttpServletResponse response) {
+    public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam ("confirmPassword") String confirmPassword, HttpServletResponse response, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("name", user.getName());
+        model.addAttribute("surname", user.getSurname());
+        model.addAttribute("age", user.getAge());
+        model.addAttribute("password", user.getPassword());
+
+        System.out.println(user.toString());
         if (bindingResult.hasErrors()) {
+            model.addAttribute("errors",bindingResult);
             return "register";
         }
         if(!user.getPassword().equals(confirmPassword))
         {
+            model.addAttribute("confirm", "Passwords are diffrent");
+            model.addAttribute("errors",bindingResult);
             return "register";
         }
         userService.signUpUser(user);

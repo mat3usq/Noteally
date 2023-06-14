@@ -32,7 +32,7 @@ public class Catalog
     @Basic
     @Column(name = "name", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")
-    @NotBlank(message = "Must not be empty")
+    @NotBlank(message = "Name is required")
     @Pattern(regexp = "^[a-z]+$", message = "Name must contain only small letters.")
     private String name;
 
