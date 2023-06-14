@@ -155,10 +155,14 @@ public class CatalogsController {
     }
 
     @PostMapping("/editCatalog/{catalogId}")
-    public String editCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult,  @PathVariable("catalogId") Integer catalogId){
+    public String editCatalog(@Valid @ModelAttribute("catalog") Catalog catalog, BindingResult bindingResult,  @PathVariable("catalogId") Integer catalogId, Model model){
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/catalogs/editCatalog/{catalogId}";
+            model.addAttribute("errors",bindingResult);
+            catalog.setId(catalogId);
+            model.addAttribute("catalog", catalog);
+
+            return "editCatalog";
         }
         catalogService.updateCatalog(catalog, catalogId);
         return "redirect:/catalogs";

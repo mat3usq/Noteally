@@ -323,7 +323,10 @@ public class NotesController {
     public String addNote(@Valid @ModelAttribute("note") Note note, BindingResult bindingResult, Model model, @PathVariable("catalogId") Integer catalogId) {
         // walidacja
         if (bindingResult.hasErrors()) {
-            return "redirect:/catalogs/" + catalogId + "/createNote";
+            model.addAttribute("errors",bindingResult);
+            Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+            model.addAttribute("catalog", catalog.get());
+            return "createNote";
         }
 
         noteService.saveNote(note, catalogId);
@@ -355,10 +358,14 @@ public class NotesController {
     }
 
     @PostMapping("/editNote/{noteId}")
-    public String editNote(@Valid @ModelAttribute("note") Note note, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId) {
-        // walidacja
+    public String editNote(@Valid @ModelAttribute("note") Note note, BindingResult bindingResult, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, Model model) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/catalogs/" + catalogId + "/editNote/" + noteId;
+            note.setId(noteId);
+            model.addAttribute("note", note);
+            model.addAttribute("errors",bindingResult);
+            Optional<Catalog> catalog = catalogService.getCatalogById(catalogId);
+            model.addAttribute("catalog", catalog.get());
+            return "editNote";
         }
 
         noteService.updateNote(note, noteId);

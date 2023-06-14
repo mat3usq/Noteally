@@ -70,7 +70,7 @@
 					<h2 class="note">Edycja <span class="ally">Katalogu</span></h2>
 					<div class="input-box">
 						<input type="text" id="name" name="name" th:field="*{name}" />
-						<label for="name">Nazwa Katalogu</label>
+						<label for="name">Nazwa Katalogu<div id="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
 					</div>
 
 					<button class="button" type="submit">Zmień nazwę</button>
