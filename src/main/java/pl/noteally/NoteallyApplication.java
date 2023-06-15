@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class    NoteallyApplication {
+public class NoteallyApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NoteallyApplication.class, args);

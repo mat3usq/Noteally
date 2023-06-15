@@ -378,8 +378,14 @@ public class NotesController {
         Integer userId = (Integer) session.getAttribute("userId");
         if (catalog.isPresent() && catalog.get().getUser().getId().equals(userId) && !(catalog.get().getName().equals("shared"))) {
             List<User> userList = userService.getUsers();
+            List<User> filteredUserList = new ArrayList<>();
             Optional<Note> note = noteService.getNoteById(noteId);
-            model.addAttribute("users", userList);
+            for (User user : userList) {
+                if (!user.getId().equals(session.getAttribute("userId"))) {
+                    filteredUserList.add(user);
+                }
+            }
+            model.addAttribute("users", filteredUserList);
             model.addAttribute("note", note.get());
             model.addAttribute("catalog", catalog.get());
             return "shareNote";
@@ -390,14 +396,13 @@ public class NotesController {
     @PostMapping("/shareNote/{noteId}")
     public String shareNote(@RequestParam(value = "username", required = true) String username, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, Model model) {
         Optional<User> user = userService.getUserByUsername(username);
-        if (user.isPresent()) {
+        if (user.isPresent() && !username.equals(user.get().getLogin())) {
             SharedNote sharedNote = new SharedNote();
             sharedNote.setNote(noteService.getNoteById(noteId).get());
             sharedNote.setUser(user.get());
             noteService.saveSharedNote(sharedNote);
-            return "redirect:/catalogs/" + catalogId;
         }
-        return "redirect:/catalogs/";
+        return "redirect:/catalogs/" + catalogId;
     }
 
     @GetMapping("/deleteSharedNote/{shareId}")
