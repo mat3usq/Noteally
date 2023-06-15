@@ -30,7 +30,7 @@
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-calendar"></i></span>
-						<input type="age" id="age" name="age" th:field="*{age}" th:value="${age}"/>
+						<input type="number" id="age" name="age" th:field="*{age}" th:value="${age}"/>
 						<label for="age">Age<div class="error-label-name" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div></label>
 					</div>
 					<div class="input-box">
