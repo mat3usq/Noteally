@@ -47,6 +47,7 @@
 - Rejestracja - 1p.
 - Walidacja formularza - 1p.
 - Strona powitalna - 1p.
+- Wyświetlenie informacji z udostępnionego linku - 1p.
 
 #       4. Szczegółowe Funkcjonalności, admin (2p)
 - Wyśw. listy użytkowników - 1p.
