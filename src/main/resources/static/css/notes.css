@@ -483,7 +483,6 @@ input[type="date"] {
 	border-radius: 12px;
 	padding: 12px;
 	background-color: #fff;
-	box-shadow: 0 0 5px 5px #ea5aa9;
 	overflow: auto;
 }
 
