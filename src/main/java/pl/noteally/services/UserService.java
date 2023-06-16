@@ -1,7 +1,5 @@
 package pl.noteally.services;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,9 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import pl.noteally.data.Catalog;
-import pl.noteally.data.Role;
 import pl.noteally.data.SharedNote;
 import pl.noteally.data.User;
 import pl.noteally.repositories.CatalogRepository;
