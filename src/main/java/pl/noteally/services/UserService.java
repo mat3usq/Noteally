@@ -29,7 +29,6 @@ public class UserService implements UserDetailsService {
     private final CatalogRepository catalogRepository;
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
     private final HttpSession httpSession;
-    private final RestNameService restNameService;
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -43,15 +42,6 @@ public class UserService implements UserDetailsService {
     }
 
     public String signUpUser(User user){
-        boolean userExists = userRepository.findByLogin(user.getLogin()).isPresent();
-
-        if(userExists){
-            throw new IllegalStateException("Login already taken");
-        }
-
-        if(!restNameService.isNamePolish(user.getName())){
-            throw new IllegalStateException("Name isn't polish");
-        }
 
         String encodedPassword = bCryptpasswordEncoder.encode(user.getPassword());
 
@@ -102,6 +92,11 @@ public class UserService implements UserDetailsService {
         List<SharedNote> list = sharedRepository.findRelatedNotes(userId);
         sharedRepository.deleteAll(list);
         userRepository.deleteById(userId);
+    }
+
+    public boolean userExists(User user)
+    {
+        return userRepository.findByLogin(user.getLogin()).isPresent();
     }
 }
 

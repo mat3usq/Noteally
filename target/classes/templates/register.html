@@ -15,17 +15,21 @@
 					<h2 class="note">Registration<span class="ally">Form</span></h2>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-user"></i></span>
-						<input type="text" id="username" name="username" th:field="*{login}" th:value="${login}"/>
-						<label for="username">Username<div class="error-label-name" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div></label>
+						<input type="text" id="username" name="username" th:field="*{login}" th:value="${username}"/>
+						<label for="username">Username<div th:if="${#fields.hasErrors('login') || usernameTaken!=null}" class="error-label-name">
+						<span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+						<span th:if="${usernameTaken!=null}" th:text="${usernameTaken}"></span></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-signature"></i></span>
-						<input type="name" id="name" name="name" th:field="*{name}" th:value="${name}"/>
-						<label for="name">Name<div class="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
+						<input type="text" id="name" name="name" th:field="*{name}" th:value="${name}"/>
+						<label for="name">Name<div th:if="${#fields.hasErrors('name') || polishNameError!=null}" class="error-label-name">
+						<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+						<span th:if="${polishNameError!=null}" th:text="${polishNameError}"></span></div></label>
 					</div>
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-signature"></i></span>
-						<input type="surname" id="surname" name="surname" th:field="*{surname}" th:value="${surname}"/>
+						<input type="text" id="surname" name="surname" th:field="*{surname}" th:value="${surname}"/>
 						<label for="surname">Surname<div class="error-label-name" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div></label>
 					</div>
 					<div class="input-box">
@@ -42,7 +46,7 @@
 					<div class="input-box">
 						<span><i class="fa-sharp fa-solid fa-check"></i></span>
 						<input type="password" id="confirmPassword" name="confirmPassword" />
-						<label for="confirmPassword">Confirm Password<div class="error-label-name" th:if="${confirm!=null}" th:text="${confirm}"></div></label>
+						<label for="confirmPassword">Confirm Password<div class="error-label-name" th:if="${confirmError!=null}" th:text="${confirmError}"></div></label>
 					</div>
 
 					<button type="submit">Register</button>

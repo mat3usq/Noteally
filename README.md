@@ -1,12 +1,3 @@
-# TODO/notatki:
-`            BACKEND                `
-- Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
-
-`            FRONTEND              `
-- Wyswietlenie przy rejestracji jak imie nie jest polskie
-- Strona powitalna - 1p. (NOWA TRZEBA ZROBIC)
-- Wygląd - WCAG2.1
-
 #               Java Spring Projekt -> Noteally
 
 - Aplikacja do zapisywania i udostępniania wartych uwagi informacji,

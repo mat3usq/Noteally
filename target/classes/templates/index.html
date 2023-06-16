@@ -11,9 +11,13 @@
 				<div class="center--row">
 					<div class="title">
 						<h1 class="note">Note<span class="ally">ally</span></h1>
-						<p>Tworzymy Twoje Notatki!</p>
+						<p>Have your notes totally under control!</p>
 						<button class="button-link" onclick="document.getElementById('loginLink').click()">
-							<span><a id="loginLink" th:href="@{/login}">Zaloguj Się!</a></span>
+							<span><a id="loginLink" th:href="@{/login}">Log In!</a></span>
+						</button>
+						<br>
+						<button class="button-link" onclick="document.getElementById('registerLink').click()">
+							<span><a id="registerLink" th:href="@{/register}">Sign up!</a></span>
 						</button>
 					</div>
 					<div class="card-container">
@@ -46,13 +50,13 @@
 				</div>
 
 				<div class="center--row menu-container">
-					<h2>Co Oferujemy W Naszym Serwisie?</h2>
+					<h2>What do we offer?</h2>
 
 					<section class="menu">
 						<div class="menu--item">
-							<h3>Elastyczność</h3>
+							<h3>Elasticity</h3>
 							<ul>
-								<li>Udostępniaj notatki poprzez link.</li>
+								<li>Share your notes with friends.</li>
 								<li>Koledzy mogą rownież edytować twoje notatki.</li>
 							</ul>
 						</div>

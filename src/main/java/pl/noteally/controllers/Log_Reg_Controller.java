@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.noteally.data.User;
+import pl.noteally.services.RestNameService;
 import pl.noteally.services.UserService;
 
 import java.lang.reflect.Field;
@@ -28,6 +29,8 @@ import java.lang.reflect.Field;
 public class Log_Reg_Controller {
 
     private final UserService userService;
+
+    private final RestNameService restNameService;
 
     @GetMapping("/login")
     public String redirectLogin(HttpSession session){
@@ -51,6 +54,7 @@ public class Log_Reg_Controller {
 
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, @RequestParam ("confirmPassword") String confirmPassword, HttpServletResponse response, Model model) {
+        boolean errors = false;
         model.addAttribute("user", user);
         model.addAttribute("username", user.getUsername());
         model.addAttribute("name", user.getName());
@@ -58,17 +62,28 @@ public class Log_Reg_Controller {
         model.addAttribute("age", user.getAge());
         model.addAttribute("password", user.getPassword());
 
-        System.out.println(user.toString());
+        if(userService.userExists(user)) {
+            model.addAttribute("usernameTaken", "This username is already taken");
+            errors = true;
+        }
+
+        if(!user.getPassword().equals(confirmPassword)) {
+            model.addAttribute("confirmError", "Passwords are different");
+            errors = true;
+        }
+
+        if(!restNameService.isNamePolish(user.getName())) {
+            model.addAttribute("polishNameError", "Name must be Polish");
+            errors = true;
+        }
+
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors",bindingResult);
-            return "register";
+            model.addAttribute("errors", bindingResult);
+            errors = true;
         }
-        if(!user.getPassword().equals(confirmPassword))
-        {
-            model.addAttribute("confirm", "Passwords are diffrent");
-            model.addAttribute("errors",bindingResult);
-            return "register";
-        }
+
+        if(errors) return "register";
+
         userService.signUpUser(user);
 
         Cookie catalogCookie = new Cookie("catalogCookie" + user.getId(), "default");

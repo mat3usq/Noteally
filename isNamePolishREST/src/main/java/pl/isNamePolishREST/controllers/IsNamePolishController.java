@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.isNamePolishREST.services.IsNamePolishService;
 
 @RestController
-@RequestMapping("/")
 @AllArgsConstructor
 public class IsNamePolishController {
 
     private final IsNamePolishService isNamePolishService;
+
+    @GetMapping("/")
+    public boolean returnFalse() {
+        return false;
+    }
 
     @GetMapping("/{name}")
     public boolean contains(@PathVariable String name){

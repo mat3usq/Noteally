@@ -29,6 +29,7 @@ public class IsNamePolishService {
     }
     public boolean isNamePolish(String name)
     {
+        if(name == null) return false;
         if(nameList.contains(name)) return true;
         else return false;
     }
