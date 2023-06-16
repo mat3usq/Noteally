@@ -394,9 +394,9 @@ public class NotesController {
     }
 
     @PostMapping("/shareNote/{noteId}")
-    public String shareNote(@RequestParam(value = "username", required = true) String username, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, Model model) {
+    public String shareNote(@RequestParam(value = "username") String username, @PathVariable("noteId") Integer noteId, @PathVariable("catalogId") Integer catalogId, HttpSession session) {
         Optional<User> user = userService.getUserByUsername(username);
-        if (user.isPresent() && !username.equals(user.get().getLogin())) {
+        if (user.isPresent() && !session.getAttribute("userId").equals(user.get().getId())) {
             SharedNote sharedNote = new SharedNote();
             sharedNote.setNote(noteService.getNoteById(noteId).get());
             sharedNote.setUser(user.get());

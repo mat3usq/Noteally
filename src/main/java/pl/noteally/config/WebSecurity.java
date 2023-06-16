@@ -36,7 +36,9 @@ public class WebSecurity {
                         form -> form
                                 .loginPage("/login")
                                 .usernameParameter("login")
+                                .passwordParameter("password")
                                 .loginProcessingUrl("/login")
+                                .failureUrl("/login")
                                 .defaultSuccessUrl("/catalogs")
                                 .permitAll()
                 ).sessionManagement(
