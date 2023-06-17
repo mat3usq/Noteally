@@ -12,14 +12,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import pl.noteally.data.User;
 import pl.noteally.services.UserService;
 
 import java.io.IOException;
@@ -50,16 +47,7 @@ public class WebSecurity {
                                 .passwordParameter("password")
                                 .loginProcessingUrl("/login")
                                 .permitAll()
-                                .successHandler(new AuthenticationSuccessHandler() {
-                                    @Override
-                                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                                        Authentication authentication) throws IOException {
-                                        User user = (User) authentication.getPrincipal();
-                                        HttpSession session = request.getSession();
-                                        session.setAttribute("userId", user.getId());
-                                        response.sendRedirect("/catalogs");
-                                    }
-                                })
+                                .defaultSuccessUrl("/catalogs")
                                 .failureHandler(new AuthenticationFailureHandler() {
                                     @Override
                                     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
@@ -87,6 +75,7 @@ public class WebSecurity {
                 );
         return http.build();
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

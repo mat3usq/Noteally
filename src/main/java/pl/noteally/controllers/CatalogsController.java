@@ -15,7 +15,6 @@ import pl.noteally.data.Catalog;
 import pl.noteally.data.User;
 import pl.noteally.services.CatalogService;
 import pl.noteally.services.UserService;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -33,6 +32,10 @@ public class CatalogsController {
     public String getCatalogsByUserId(Model model, HttpSession session, HttpServletRequest request) {
         Optional<String> sortValue = Arrays.stream(request.getCookies()).filter(
                 c -> c.getName().equals("catalogCookie" + session.getAttribute("userId"))).map(Cookie::getValue).findAny();
+
+        if(sortValue.isEmpty())
+            return "redirect:/login";
+
         if (sortValue.get().equals("ASC"))
             return "redirect:/catalogs/ASC";
         else if (sortValue.get().equals("DESC"))
