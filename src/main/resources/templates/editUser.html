@@ -14,7 +14,7 @@
 	<div class="sidebar">
 		<h1 class="note">Note<span class="ally">ally</span></h1>
 		<div class="side-wrapper">
-			<div class="side-title">SORTOWANIE</div>
+			<div class="side-title">SORT OPTIONS</div>
 			<div class="side-menu">
 				<a th:href="@{'/admin/ASC' }" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 				<a th:href="@{'/admin/DESC' }" th:value="2"><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -41,7 +41,7 @@
 							<a
 									th:href="@{'/admin/' + ${user.getId()}}"
 									th:text="${user.getName()}"
-							>Nazwa Uzytkownika</a
+							>Username</a
 							>
 						</li>
 						<a th:href="@{'/admin/' + 'deleteUser/' + ${user.getId()}}"
@@ -61,7 +61,7 @@
 <div class="edit-user">
 	<div class="box-user">
 		<form th:action="@{'/admin/' + 'editUser/' + ${user.getId()}}" th:method="post" th:object="${user}">
-			<h2 class="note">Edycja <span class="ally">Uzytkownika</span></h2>
+			<h2 class="note">Edit<span class="ally">User</span></h2>
 			<div class="input-box">
 				<input type="text" id="login" name="login" th:field="*{login}" />
 				<label for="login">Login<div class="error-label-name" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div></label>
@@ -91,7 +91,7 @@
 				<input type="text" id="password" name="password" th:field="*{password}" />
 				<label for="password">Password</label>
 			</div>
-			<button type="submit">Zatwierdź Zmiany</button>
+			<button type="submit">Confirm</button>
 		</form>
 		<a th:href="@{'/admin'}"
 		><i class="fa-solid fa-xmark"></i

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Tworzenie Notatki</title>
+	<title>Create Note</title>
 	<link rel="stylesheet" th:href="@{/css/notes.css}" />
 	<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
 </head>
@@ -13,7 +13,7 @@
 	<div class="sidebar">
 		<h1 class="note">Note<span class="ally">ally</span></h1>
 		<div class="side-wrapper">
-			<div class="side-title">SORTING</div>
+			<div class="side-title">SORT OPTIONS</div>
 			<div class="side-menu">
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -32,7 +32,7 @@
 	<div class="wrapper">
 		<div class="header">
 			<nav class="nav">
-				<a th:text="${catalog.getName()}" class="nav-item is-active" active-color="pink">Katalog</a>
+				<a th:text="${catalog.getName()}" class="nav-item is-active" active-color="pink">Catalog</a>
 				<a th:href="@{'/catalogs'}" class="nav-item" active-color="pink">Catalogs</a>
 				<a th:href="@{/logout}" class="nav-item" active-color="pink">Sign Out!</a>
 				<span class="nav-indicator"></span>
