@@ -1,5 +1,7 @@
 #               Java Spring Projekt -> Noteally
 
+TODO REMEMBER ME
+
 - Aplikacja do zapisywania i udostępniania wartych uwagi informacji,
   np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
 - Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania

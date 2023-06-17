@@ -1,5 +1,9 @@
 package pl.noteally.config;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,10 +12,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import pl.noteally.data.User;
 import pl.noteally.services.UserService;
+
+import java.io.IOException;
 
 @Configuration
 @AllArgsConstructor
@@ -38,25 +49,41 @@ public class WebSecurity {
                                 .usernameParameter("login")
                                 .passwordParameter("password")
                                 .loginProcessingUrl("/login")
-                                .failureUrl("/login")
-                                .defaultSuccessUrl("/catalogs")
                                 .permitAll()
+                                .successHandler(new AuthenticationSuccessHandler() {
+                                    @Override
+                                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                                        Authentication authentication) throws IOException {
+                                        User user = (User) authentication.getPrincipal();
+                                        HttpSession session = request.getSession();
+                                        session.setAttribute("userId", user.getId());
+                                        response.sendRedirect("/catalogs");
+                                    }
+                                })
+                                .failureHandler(new AuthenticationFailureHandler() {
+                                    @Override
+                                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+                                        HttpSession session = request.getSession();
+                                        session.setAttribute("info","Incorrect Login or Password");
+                                        response.sendRedirect("/login");
+                                    }
+                                })
                 ).sessionManagement(
                         session -> session
                                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                                 .invalidSessionUrl("/login")
                                 .maximumSessions(1)
                                 .maxSessionsPreventsLogin(false)
+
+                ).rememberMe(
+                        remember -> remember
+                                .rememberMeParameter("remember-me")
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .logoutSuccessUrl("/login")
                                 .deleteCookies("JSESSIONID")
                                 .invalidateHttpSession(true)
-                )
-                .rememberMe(
-                        remember -> remember
-                                .rememberMeParameter("remember-me")
                 );
         return http.build();
     }

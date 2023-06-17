@@ -1,6 +1,5 @@
 package pl.noteally.services;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import pl.noteally.data.Catalog;
 import pl.noteally.data.SharedNote;
 import pl.noteally.data.User;
@@ -27,7 +24,6 @@ public class UserService implements UserDetailsService {
     private final SharedRepository sharedRepository;
     private final CatalogRepository catalogRepository;
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
-    private final HttpSession httpSession;
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -65,11 +61,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByLogin(login);
-        httpSession.setAttribute("info","Wrong Password Or Login");
         if(user.isPresent())
         {
-            httpSession.setAttribute("info","");
-            httpSession.setAttribute("userId", user.get().getId());
             return user.get();
         }
         else throw new UsernameNotFoundException("Niepoprawne hasło lub nazwa użytkownika");

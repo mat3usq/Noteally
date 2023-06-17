@@ -13,7 +13,7 @@
 	<div class="sidebar">
 		<h1 class="note">Note<span class="ally">ally</span></h1>
 		<div class="side-wrapper">
-			<div class="side-title">SORTOWANIE</div>
+			<div class="side-title">SORTING</div>
 			<div class="side-menu">
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -65,12 +65,10 @@
 
 <div class="share-note">
 	<div class="box-note share">
-		<form th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}"
-			  th:method="post">
+		<form th:action="@{'/catalogs/' + ${catalog.getId()} + '/shareNote/' + ${note.getId()}}" th:method="post">
 			<h2 class="note-share">Share <span class="ally">Note</span></h2>
 
-			<div class="shared-users">
-				<p>Available Users:</p>
+			<div class="shared-users">Available Users:
 				<ul class="user-list" th:each="user : ${users}">
 					<p th:text="${user.getLogin()}"></p>
 				</ul>
