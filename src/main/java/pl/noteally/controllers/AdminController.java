@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @GetMapping("/ASC")
-    public String sortCatalogsASC(Model model, HttpSession session) {
+    public String sortUsersASC(Model model, HttpSession session) {
         List<User> userList=userService.getUsers();
         List<User> filteredUserList = new ArrayList<>();
         for (User user : userList) {
@@ -43,12 +43,12 @@ public class AdminController {
                 filteredUserList.add(user);
             }
         }
-        userList.sort(Comparator.comparing(User::getName));
+        filteredUserList.sort(Comparator.comparing(User::getName));
         model.addAttribute("userList", filteredUserList);
         return "admin";
     }
     @GetMapping("/DESC")
-    public String sortCatalogsDESC(Model model, HttpSession session) {
+    public String sortUsersDESC(Model model, HttpSession session) {
         List<User> userList=userService.getUsers();
         List<User> filteredUserList = new ArrayList<>();
         for (User user : userList) {
@@ -56,7 +56,7 @@ public class AdminController {
                 filteredUserList.add(user);
             }
         }
-        userList.sort(Comparator.comparing(User::getName).reversed());
+        filteredUserList.sort(Comparator.comparing(User::getName).reversed());
         model.addAttribute("userList", filteredUserList);
         return "admin";
     }
