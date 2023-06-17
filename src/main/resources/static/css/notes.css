@@ -339,7 +339,7 @@ body:before {
 }
 
 .container-notes {
-	display: flex;
+	display: inline-block;
 	flex-wrap:wrap;
 	align-content: space-around;
 	justify-content: space-evenly;

@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -26,6 +27,8 @@ public class Note
     @JoinColumn(name = "catalog_id")
     private Catalog catalog;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "note")
+    private List<SharedNote> sharedNotes;
     @Basic
     @Column(name = "title", nullable = false)
     @Size(min = 3, max = 20, message = "Size must be between 3 and 20")

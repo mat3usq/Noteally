@@ -13,7 +13,7 @@
 	<div class="sidebar">
 		<h1 class="note">Note<span class="ally">ally</span></h1>
 		<div class="side-wrapper">
-			<div class="side-title">SORTOWANIE</div>
+			<div class="side-title">SORT OPTIONS</div>
 			<div class="side-menu">
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/ASC'}" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 				<a th:href="@{'/catalogs/' + ${catalog.getId()}+'/DESC'}" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -68,10 +68,10 @@
 				th:action="@{'/catalogs/' + ${catalog.id} + '/createNote'}"
 				th:method="post"
 				th:object="${note}">
-			<h2 class="note">Stwórz <span class="ally">Notatke</span></h2>
+				<h2 class="note">Create<span class="ally">Note</span></h2>
 			<div class="input-box">
 				<input type="text" id="title" name="title" th:field="*{title}" />
-				<label for="title">Tytuł<div class="error-label-name" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div></label>
+				<label for="title">Title<div class="error-label-name" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div></label>
 			</div>
 
 			<div class="input-box">
@@ -82,7 +82,7 @@
 								id="content"
 								name="content"
 								th:field="*{content}"></textarea>
-				<label class="content" for="content">Zawartość<div class="error-label-name" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div></label>
+				<label class="content" for="content">Content<div class="error-label-name" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div></label>
 			</div>
 
 			<div class="input-box">
@@ -90,7 +90,7 @@
 				<label for="link">Link</label>
 			</div>
 
-			<button class="button" type="submit">Stwórz Notatke</button>
+			<button class="button" type="submit">Create Note</button>
 		</form>
 		<a th:href="@{'/catalogs/'+${catalogId}}"
 		><i class="fa-solid fa-xmark"></i

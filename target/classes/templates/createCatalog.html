@@ -16,7 +16,7 @@
 			<div class="sidebar">
 				<h1 class="note">Note<span class="ally">ally</span></h1>
 				<div class="side-wrapper">
-					<div class="side-title">SORTOWANIE</div>
+					<div class="side-title">SORT OPTIONS</div>
 					<div class="side-menu">
 						<a th:href="@{'/catalogs/ASC' }" th:value="1" ><i class="sort fa-solid fa-arrow-down-a-z"></i></a>
 						<a th:href="@{'/catalogs/DESC' }" th:value="2" ><i class="sort fa-solid fa-arrow-up-a-z"></i></a>
@@ -49,7 +49,7 @@
 									<a
 										th:href="@{'/catalogs/' + ${catalog.getId()}}"
 										th:text="${catalog.getName()}"
-										>Nazwa Katalogu</a
+										>Catalog name</a
 									>
 								</li>
 								<a th:href="@{'/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
@@ -69,12 +69,12 @@
 		<div class="create-catalog">
 			<div class="box-catalog">
 				<form th:action="@{'/catalogs/' + 'createCatalog'}" th:method="post" th:object="${catalog}">
-					<h2 class="note">Tworzenie <span class="ally">Katalogu</span></h2>
+					<h2 class="note">Create <span class="ally">Catalog</span></h2>
 					<div class="input-box">
-						<label for="name" id="name-label">Nazwa Katalogu<div id="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
+						<label for="name" id="name-label">Catalog Name<div id="error-label-name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></label>
 						<input type="text" id="name" name="name" th:field="*{name}"/>
 					</div>
-					<button class="button" type="submit">Utwórz Katalog</button>
+					<button class="button" type="submit">Create Catalog</button>
 				</form>
 				<a th:href="@{'/catalogs'}"
 				><i class="fa-solid fa-xmark"></i

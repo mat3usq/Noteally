@@ -49,7 +49,7 @@
 							<div class="container-catalog">
 								<li>
 									<i class="fa-solid fa-folder"></i>
-									<a th:href="@{'/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Nazwa Katalogu</a>
+									<a th:href="@{'/catalogs/' + ${catalog.getId()}}" th:text="${catalog.getName()}">Catalog Name</a>
 								</li>
 								<div th:if="${catalog.getName() != 'default' && catalog.getName() != 'shared'}">
 									<a th:href="@{'/catalogs/' + 'deleteCatalog/' + ${catalog.getId()}}"
