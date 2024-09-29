@@ -1,74 +1,74 @@
-#               Java Spring Projekt -> Noteally
+# Noteally - Aplikacja Java Spring
 
-TODO REMEMBER ME
+## Opis projektu
 
-- Aplikacja do zapisywania i udostępniania wartych uwagi informacji,
-  np. strony www, listy zakupów, zaproszenia na spotkanie, notatki.
-- Dane informacji: tytuł (3-20), treść (5-500), [link], data dodania
-  (aktualna, format dd-mm-yyyy), kategoria
-- Dane kategorii: nazwa (3-20, małe litery)
-- Dane użytkownika: imię (3-20, litery, pierwsza duża), nazwisko
-  (3-50, litery, pierwsza duża), login (3-20, małe litery), hasło (co
-  najmniej 5 znaków), wiek (min. 18 lat)
+**Noteally** to aplikacja internetowa stworzona w technologii **Java Spring**, której celem jest umożliwienie użytkownikom zapisywania i udostępniania wartościowych informacji. Mogą to być notatki, linki do stron internetowych, listy zakupów, zaproszenia na spotkania, a także inne przydatne dane. Użytkownik ma możliwość przeglądania oraz wyszukiwania zapisanych informacji w dogodnym momencie, a także udostępniania ich innym użytkownikom.
 
-#                       OPIS
-- Aplikacja do zapisywania i udostępniania wartych uwagi
-  informacji, np. strony www, listy zakupów, zaproszenia
-  na spotkanie.
-- Główną funkcjonalnością jest umożliwienie zapisania na
-  swoim koncie ciekawych informacji, udostępniania ich
-  innym oraz wygodnego przeglądania i przeszukiwania w
-  dogodnym czasie.
+## Struktura danych
 
-#               1. Role Użytkowników
-- admin - zarządza użytkownikami,
-- uż. z ograniczonymi prawami (limited user) - jest
-  zarejestrowany, może przegladać udostępnione linki, ale nie
-  może tworzyć informacji,
-- uż. z pełnymi prawami (full user) - może tworzyć informacje i
-  udostępniać je innym, przeglądać w oddzielnym widoku
-  informacje udostępnione dla niego
-- użytkownik niezalogowany - ma dostęp tylko do strony
-  początkowej i strony rejestracji
+### Dane informacji
+- **Tytuł**: od 3 do 20 znaków.
+- **Treść**: od 5 do 500 znaków.
+- **Link**: opcjonalny.
+- **Data dodania**: bieżąca data, w formacie `dd-mm-yyyy`.
+- **Kategoria**: przypisana do informacji.
 
-#       2. Szczegółowe funkcjonalności, full user (19p)
-- dodanie/edycja/usunięcie przez siebie zebranych informacji - 5p.
-- Walidacja formularza - 1p.
-- Edycja na danych bieżących - 1p.
-- Dodanie nowej kategorii - 1p.
-- Wyświetlenie udostępnionych przez innych informacji - 2p.
-- udostępnienie : ze wskazaniem na konkretnego użytkownika lub w linku - 1p.
-- Wyświetlanie “swoich” informacji: sortowanie w obu kierunkach (data,
-  kategoria, alfabetycznie) - 2p.
-- Zapamiętanie kierunków i kryteriów sortowania - 1p.
-- Filtrowanie według daty (od aktualnej) i kategorii (od najbardziej popularnej) - 2p.
-- Logowanie - 1p.
-- Zapis do bazy danych dopiero przy wylogowaniu/wygaśnięciu sesji - 2p.
+### Dane kategorii
+- **Nazwa kategorii**: od 3 do 20 znaków, wyłącznie małe litery.
 
-#       3. Szczegółowe Funkcjonalności, Niezalogowany (4p)
-- Rejestracja - 1p.
-- Walidacja formularza - 1p.
-- Strona powitalna - 1p.
-- Wyświetlenie informacji z udostępnionego linku - 1p.
+### Dane użytkownika
+- **Imię**: od 3 do 20 znaków, wyłącznie litery, pierwsza litera musi być wielka.
+- **Nazwisko**: od 3 do 50 znaków, wyłącznie litery, pierwsza litera musi być wielka.
+- **Login**: od 3 do 20 znaków, wyłącznie małe litery.
+- **Hasło**: co najmniej 5 znaków.
+- **Wiek**: minimalny wiek to 18 lat.
 
-#       4. Szczegółowe Funkcjonalności, admin (2p)
-- Wyśw. listy użytkowników - 1p.
-- Zarządzanie rolami - 1p.
+## Role użytkowników
 
-#       5. Elementy Techniczne (25p.)
-- Kontrolery - 2p.
-- Baza danych (co najmniej 2 tabele z relacją) - 5p.
-- Widoki: formularze z walidacją (3 różne elementy),
-  5 różnych znaczników Thymeleafa - 3p.+2p.
-- Sesja - 2p.
-- Ciasteczka - 1p.
-- Usługa REST (do uwierzytelniania użytkowników) - 3p.
-- Klient REST - 2p.
-- Spring Security - 5p. (z bazą danych), 3p. (w pamięci)
+W aplikacji przewidziano cztery rodzaje użytkowników, każdy z odmiennym zakresem uprawnień:
 
-#       6. Dodatkowe Elementy
-- Dokumentacja z odniesieniem do wszystkich
-  elementów punktowanych
-- Wygląd - (Mateusz Ogarnie Frontend)
-- Prezentacja na forum grupy
-- Termin - ostatnie planowe zajęcia
+- **Admin**: Zarządza użytkownikami aplikacji, ma pełny dostęp do wszystkich zasobów i danych.
+- **Limited User**: Użytkownik z ograniczonymi uprawnieniami. Może przeglądać udostępnione informacje, jednak nie ma możliwości ich tworzenia.
+- **Full User**: Użytkownik z pełnymi uprawnieniami. Może tworzyć, edytować i usuwać własne informacje, a także udostępniać je innym użytkownikom.
+- **Gość (niezalogowany)**: Ma dostęp tylko do strony głównej oraz strony rejestracji. Nie może przeglądać ani tworzyć żadnych informacji.
+
+## Szczegółowe funkcjonalności dla użytkownika Full User
+
+Użytkownik z pełnymi uprawnieniami posiada dostęp do szerokiego zakresu funkcji w aplikacji:
+
+- **Dodawanie, edycja i usuwanie informacji**: Użytkownik może zarządzać swoimi informacjami, dodając nowe notatki, edytując istniejące oraz usuwając te, które uzna za zbędne.
+- **Walidacja formularzy**: Każdy formularz w aplikacji, w tym formularze do dodawania i edycji notatek, jest walidowany, co zapewnia poprawność wprowadzanych danych.
+- **Dodawanie kategorii**: Użytkownik może tworzyć nowe kategorie, w których będzie organizował swoje informacje.
+- **Wyświetlanie udostępnionych informacji**: Użytkownik ma dostęp do widoku informacji, które zostały mu udostępnione przez innych użytkowników.
+- **Udostępnianie informacji**: Użytkownik może udostępniać swoje informacje konkretnemu użytkownikowi lub za pomocą wygenerowanego linku.
+- **Sortowanie informacji**: Notatki mogą być sortowane według daty dodania, kategorii oraz alfabetycznie, a kryteria i kierunki sortowania są zapamiętywane w sesji użytkownika.
+- **Filtrowanie**: Użytkownik może filtrować informacje na podstawie daty (od aktualnej) oraz kategorii (według popularności).
+- **Logowanie**: Aplikacja obsługuje system logowania za pomocą formularza. Dane użytkowników są uwierzytelniane przy użyciu mechanizmu Spring Security.
+- **Sesje i ciasteczka**: Informacje o kierunku sortowania oraz inne ustawienia użytkownika są zapisywane w ciasteczkach, a sesja jest zarządzana w oparciu o mechanizm sesji Spring.
+
+## Szczegółowe funkcjonalności dla użytkownika niezalogowanego
+
+Użytkownik niezalogowany ma ograniczone możliwości interakcji z aplikacją. Dostępne funkcje obejmują:
+
+- **Rejestracja**: Możliwość założenia nowego konta poprzez formularz rejestracyjny.
+- **Walidacja formularza**: Każdy formularz, w tym rejestracyjny, jest walidowany, aby upewnić się, że dane użytkownika są prawidłowe.
+- **Strona powitalna**: Gość ma dostęp do strony głównej aplikacji, która pełni funkcję powitalną.
+- **Wyświetlanie informacji z udostępnionego linku**: Niezalogowany użytkownik może wyświetlić informacje za pomocą bezpośredniego linku, o ile takie udostępnienie zostało zrealizowane.
+
+## Szczegółowe funkcjonalności dla admina
+
+Administrator aplikacji posiada dodatkowe możliwości zarządzania użytkownikami oraz ich uprawnieniami:
+
+- **Wyświetlanie listy użytkowników**: Admin ma dostęp do pełnej listy zarejestrowanych użytkowników.
+- **Zarządzanie rolami**: Admin może przypisywać i zmieniać role użytkowników (np. nadanie roli "Full User" lub "Limited User").
+
+## Elementy techniczne
+
+Aplikacja **Noteally** została zaprojektowana z wykorzystaniem technologii **Spring Framework**. Główne elementy techniczne to:
+
+- **Kontrolery**: Odpowiadają za obsługę żądań użytkowników oraz przekierowania między widokami.
+- **Baza danych**: Aplikacja korzysta z bazy danych MySQL, zawierającej co najmniej dwie tabele z relacjami. Dane są zarządzane w oparciu o relacyjny model danych.
+- **Widoki**: Formularze w aplikacji są walidowane i zawierają różne elementy interaktywne, zintegrowane za pomocą Thymeleaf.
+- **Sesje i ciasteczka**: Dane użytkowników są przechowywane w sesjach, natomiast preferencje, takie jak kryteria sortowania, są zapisywane w ciasteczkach.
+- **REST API**: Aplikacja wykorzystuje usługę REST do uwierzytelniania użytkowników oraz innych operacji na danych.
+- **Spring Security**: Bezpieczeństwo aplikacji jest zapewnione przez Spring Security, który obsługuje zarówno autentykację, jak i autoryzację użytkowników.
